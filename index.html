@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Система автопродаж</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800;900&family=Caveat:wght@600;700&display=swap">
+<style>
+/* Лонгрид в колонку, как у Корытина: белый лист, жирная гротескная типографика, розовые и салатовые маркеры-выделения, скрины как «вклейки» */
+:root{
+  --paper:#fffafc;
+  --ink:#1f1420;
+  --text:#4a3d4b;
+  --muted:#6f5a6c;
+  --pink:#ff4fa3;
+  --pink-soft:#ffe0ef;
+  --pink-deep:#d6267a;
+  --lime:#b8f25a;
+  --lime-soft:#efffd6;
+  --lime-deep:#4f8a00;
+  --line:#f1d3e2;
+  --f-body:"Onest","TildaSans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --f-hand:"Caveat","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--text);font-family:var(--f-body);font-size:18px;line-height:1.7;padding-inline:16px;padding-block:0 48px}
+h1,h2,h3,b,strong,.shout,.big{color:var(--ink)}
+.wrap{max-width:680px;margin:0 auto}
+p{margin:0 0 1.3em}
+b,strong{font-weight:800}
+s{color:var(--muted)}
+h2{font-size:clamp(26px,6vw,36px);line-height:1.15;font-weight:900;letter-spacing:-.02em;margin:1.6em 0 .6em;text-wrap:balance}
+h3{font-size:22px;line-height:1.25;font-weight:800;margin:1.4em 0 .5em;text-wrap:balance}
+.mark{background:linear-gradient(transparent 55%,var(--lime) 55%);padding:0 .1em}
+.mark-pink{background:linear-gradient(transparent 55%,var(--pink-soft) 55%);padding:0 .1em}
+.caps{text-transform:uppercase;letter-spacing:.02em}
+
+/* hero */
+.hero{padding-block:40px 24px}
+.eyebrow{display:inline-block;background:var(--ink);color:var(--lime);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:999px;line-height:1.35}
+.hero h1{font-size:clamp(25px,6.2vw,38px);line-height:1.28;font-weight:800;letter-spacing:-.005em;margin:24px 0 20px;text-wrap:pretty;color:var(--ink)}
+.hero h1 em{font-style:normal;color:var(--pink-deep)}
+.hero h1 .money{background:var(--lime);padding:0 .2em;border-radius:6px;white-space:nowrap;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hero h1 .caps-acc{color:var(--pink-deep)}
+.sub{font-size:20px;font-weight:500;color:var(--muted);border-left:4px solid var(--pink);padding-left:16px}
+
+/* dialog */
+.dialog{display:flex;flex-direction:column;gap:6px;margin:18px 0 22px}
+.msg{max-width:78%;padding:9px 14px;border-radius:18px;font-size:17px;line-height:1.35}
+.msg.in{background:#fff;border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:6px}
+.msg.out{background:var(--pink);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
+
+/* big number */
+.big{font-size:clamp(44px,12vw,76px);font-weight:900;letter-spacing:-.03em;line-height:1;color:var(--pink-deep);margin:10px 0 6px;font-variant-numeric:tabular-nums}
+.stack-lines p{margin:0 0 .25em}
+
+/* screenshots */
+figure.shot{margin:22px auto 26px;max-width:420px}
+figure.shot.wide{max-width:560px}
+figure.shot img{display:block;width:100%;border-radius:18px;border:1px solid var(--line);box-shadow:0 10px 30px -14px rgba(214,38,122,.35)}
+figure.shot figcaption{font-family:var(--f-hand);font-size:22px;color:var(--pink-deep);text-align:center;margin-top:8px;line-height:1.2}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0 26px}
+.shots figure.shot{margin:0;max-width:none}
+@media (max-width:520px){.shots{grid-template-columns:1fr}}
+.todo{border:2px dashed var(--pink);border-radius:18px;padding:22px 18px;text-align:center;color:var(--pink-deep);font-weight:700;background:var(--pink-soft);margin:22px 0;font-size:15px}
+
+/* callouts */
+.callout{background:var(--pink-soft);border-radius:22px;padding:22px 22px 10px;margin:26px 0}
+.callout.lime{background:var(--lime-soft)}
+.callout.dark{background:var(--ink);color:#fff}
+.callout.dark{color:#f3e9f1}
+.callout.dark .shout{color:#fff}
+.callout.dark .mark{background:none;color:var(--lime);padding:0}
+.shout{font-size:clamp(22px,5.6vw,30px);font-weight:900;line-height:1.15;letter-spacing:-.01em;text-transform:uppercase;margin:0 0 .5em}
+.shout .pink{color:var(--pink)}
+
+/* lists */
+ul.ticks,ul.cross,ul.chips{list-style:none;padding:0;margin:0 0 1em}
+ul.ticks li,ul.cross li{position:relative;padding-left:34px;margin-bottom:.55em}
+ul.ticks li::before{content:"✔";position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--lime);color:var(--ink);font-size:13px;font-weight:900;display:grid;place-items:center;margin-top:3px}
+ul.cross li::before{content:"✕";position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--pink);color:#fff;font-size:13px;font-weight:900;display:grid;place-items:center;margin-top:3px}
+ul.chips{display:flex;flex-wrap:wrap;gap:8px}
+ul.chips li{background:#fff;border:2px solid var(--lime);border-radius:999px;padding:6px 14px;font-weight:700;font-size:16px}
+
+/* method steps */
+.step{display:grid;grid-template-columns:56px 1fr;gap:14px;margin:26px 0}
+.step .n{width:56px;height:56px;border-radius:16px;background:var(--pink);color:#fff;font-weight:900;font-size:28px;display:grid;place-items:center}
+.step > div{min-width:0}
+.step h3{margin-top:10px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.vs > div{border-radius:16px;padding:14px;font-size:16px;line-height:1.4;min-width:0}
+.vs .bad{background:#f4eef2;color:var(--muted)}
+.vs .good{background:var(--lime-soft);border:2px solid var(--lime)}
+.vs .tag{display:block;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.vs .res{display:block;margin-top:12px;padding-top:10px;border-top:1px dashed currentColor;font-size:15px;font-weight:900;text-transform:uppercase;letter-spacing:.05em}
+.vs .good .res{color:var(--lime-deep)}
+figure.shot video{display:block;width:100%;border-radius:18px;border:1px solid var(--line);background:#000}
+@media (max-width:520px){.vs{grid-template-columns:1fr}}
+
+/* quotes */
+blockquote{margin:22px 0;padding:18px 20px;border-radius:20px;background:#fff;border:2px solid var(--pink);font-size:20px;font-weight:600;line-height:1.4;position:relative}
+blockquote::before{content:"“";position:absolute;top:-22px;left:14px;font-size:64px;color:var(--pink);font-weight:900;line-height:1}
+
+/* memes */
+.meme{margin:30px auto;max-width:440px;border-radius:20px;overflow:hidden;border:3px solid var(--ink);background:#fff;transform:rotate(-1.2deg)}
+.meme.r{transform:rotate(1.2deg)}
+.meme .row{display:grid;grid-template-columns:1fr 92px;align-items:center;border-bottom:3px solid var(--ink)}
+.meme .row:last-child{border-bottom:0}
+.meme .txt{padding:14px 16px;font-weight:800;font-size:17px;line-height:1.3}
+.meme .pic{font-size:52px;text-align:center;align-self:stretch;display:grid;place-items:center;border-left:3px solid var(--ink)}
+.meme .row:nth-child(1) .pic{background:var(--pink-soft)}
+.meme .row:nth-child(2) .pic{background:var(--lime-soft)}
+.meme .label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--pink-deep);margin-bottom:2px}
+.meme-cap{text-align:center;font-family:var(--f-hand);font-size:21px;color:var(--muted);margin-top:-18px;margin-bottom:24px}
+@media (prefers-reduced-motion:reduce){.meme{transform:none}}
+
+/* paths */
+.path{border-radius:22px;padding:22px 22px 8px;margin:18px 0;border:2px solid var(--line);background:#fff}
+.path .pnum{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.path h3{margin-top:4px}
+.path.p1{border-color:#e7dce3}
+.path.p3{border-color:var(--pink);background:var(--pink-soft)}
+
+/* offer */
+.offer{background:var(--ink);color:#fff;border-radius:28px;padding:28px 22px 14px;margin:30px 0}
+.offer h2{color:#fff;margin-top:0}
+.offer h2 span{color:var(--lime)}
+.offer h3{color:var(--lime)}
+.offer ul.ticks li::before{background:var(--lime)}
+.gift{background:var(--pink);border-radius:16px;padding:14px 16px;font-weight:800;margin:16px 0}
+ol.flow{counter-reset:f;list-style:none;padding:0;margin:0 0 1em}
+ol.flow li{counter-increment:f;position:relative;padding:0 0 14px 46px;border-left:2px dashed var(--pink);margin-left:15px}
+ol.flow li:last-child{border-left-color:transparent}
+ol.flow li::before{content:counter(f);position:absolute;left:-16px;top:-2px;width:30px;height:30px;border-radius:50%;background:var(--lime);color:var(--ink);font-weight:900;display:grid;place-items:center;font-size:15px}
+ol.flow b{color:var(--lime)}
+.term{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.term div{background:#2e2230;border-radius:16px;padding:14px;min-width:0}
+.term .v{font-size:30px;font-weight:900;color:var(--lime);line-height:1.1}
+.term .k{font-size:14px;color:#d9c8d6}
+
+/* scarcity + cta */
+.cta-box{border:3px solid var(--ink);border-radius:28px;padding:24px 20px;margin:32px 0;background:var(--lime-soft);text-align:center}
+.cta-box p{text-align:left}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:800;font-size:15px;margin-bottom:14px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--pink);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+.btn{display:inline-block;background:var(--pink);color:#fff;text-decoration:none;font-weight:900;font-size:19px;text-transform:uppercase;letter-spacing:.03em;padding:18px 30px;border-radius:999px;box-shadow:0 6px 0 var(--pink-deep);transition:transform .12s,box-shadow .12s;margin:8px 0 6px;text-align:center}
+.btn:hover{transform:translateY(2px);box-shadow:0 4px 0 var(--pink-deep)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.btn-note{font-size:14px;color:var(--muted);text-align:center!important;margin-top:8px}
+
+/* objections */
+details{border-bottom:2px solid var(--line);padding:4px 0}
+details summary{cursor:pointer;list-style:none;font-weight:800;font-size:19px;padding:14px 40px 14px 0;position:relative}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";position:absolute;right:4px;top:8px;width:30px;height:30px;border-radius:50%;background:var(--lime);display:grid;place-items:center;font-weight:900}
+details[open] summary::after{content:"–";background:var(--pink);color:#fff}
+details p{margin-bottom:1em}
+
+.ps{margin:30px 0;padding-top:6px}
+.ps h3{font-family:var(--f-hand);font-size:32px;color:var(--pink-deep);margin:1.2em 0 .2em}
+
+hr.sep{border:0;height:24px;margin:34px 0;background:radial-gradient(circle,var(--pink) 3px,transparent 4px) center/28px 24px repeat-x}
+
+footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
+</style>
+</head><body>
+
+<div class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">Эксклюзивно для специалистов, которые хотят вырасти в доходе через создание своих онлайн-продуктов</span>
+  <h1>Я <em>ГОДАМИ</em> продавала только услуги, выкладывала рилсы и недозарабатывала <span class="money">300 000 ₽</span> КАЖДЫЙ МЕСЯЦ на тех же самых знаниях. Скорее всего, ты сейчас тоже.</h1>
+  <p class="sub">Объясняю, как специалисту создать свой онлайн-продукт и автоворонку, которая приносит деньги и заявки с блога 24/7.</p>
+</header>
+
+<p>Я об этом нигде не рассказывала, но тут расскажу.</p>
+<p>Недавняя ситуация.</p>
+<p>Время 23:30, я уже ложусь спать.<br>Как вдруг то самое сообщение от бывшего 😂</p>
+
+<figure class="shot">
+  <img src="img/dubai-chat.jpg" alt="Переписка в 23:24: «спишь?» — «нет» — «срочно улететь в Дубай на 2 дня, хочешь смотаться?» — вылет в 2:30" loading="lazy">
+  <figcaption>23:24. Вылет в 2:30 😂</figcaption>
+</figure>
+
+<p>Я думаю: чего? Окей. А в целом почему нет?</p>
+<p>Меня же ничего не держит. Я авантюристка, люблю спонтанности.</p>
+<p>30 сек обдумываю. Вещи собрать — минут десять. Понимаю, что в принципе мы успеваем.</p>
+<p>Пишу: «Окей, погнали».</p>
+<p>Покупаем билеты, и утром я была уже у моря.</p>
+
+<figure class="shot wide">
+  <img src="img/dubai-stories.jpg" alt="Сторис из Дубая: вид из иллюминатора, марина, пальмы и Бурдж-эль-Араб" loading="lazy">
+  <figcaption>утром я уже была у моря</figcaption>
+</figure>
+
+<p>И дальше происходит вот что.</p>
+<p>3 дня я отдыхаю.</p>
+<p><b>И знаешь, сколько мне капнуло за эти 3 дня с моего блога?</b></p>
+
+<figure class="shot">
+  <img src="img/dubai-76752.jpg" alt="Платёжная система: с 30.09 по 02.10.2026, 52 платежа на 82 000 ₽, заработано 76 752 ₽" loading="lazy">
+  <figcaption>30.09 – 02.10, пока я лежала у моря</figcaption>
+</figure>
+
+<div class="big">76 752 ₽</div>
+<div class="stack-lines">
+  <p>Вот столько.</p>
+  <p>За 3 дня.</p>
+  <p><b>Лёжа на лежаке. Без моего участия.</b></p>
+</div>
+
+<p>Более того, такие суммы мне приходят не только на отдыхе. <span class="mark">А вообще каждый день.</span></p>
+
+<div class="shots">
+  <figure class="shot"><img src="img/days-december.jpg" alt="Оплаты по дням: 28 ноября 3к, 29-го 9к, 30-го 11к, 1 декабря 15к, 2 декабря 23к" loading="lazy"><figcaption>ноябрь–декабрь, по дням</figcaption></figure>
+  <figure class="shot"><img src="img/days-january.jpg" alt="Оплаты по дням: 1 января 14к, 2-го 35к, 3-го 36к, 4-го 27к, 5-го 20к" loading="lazy"><figcaption>январские праздники, по дням</figcaption></figure>
+</div>
+
+<p>И сегодня я тебе расскажу, как эту <s>магию</s> технологию ты можешь применить и к себе, если тоже продаёшь свои услуги.</p>
+<p>А пока давай по порядку.</p>
+
+<hr class="sep">
+
+<h2>Знакомая картина? И поехали…</h2>
+<p>Ты 100% классный специалист.</p>
+<p>Твои клиенты довольны. Тебя рекомендуют. Ты точно знаешь своё дело.</p>
+<p>Но есть один нюанс, который ты пыталась решить уже несколько раз.</p>
+<p><b>Ты хочешь расти в доходе, но упираешься в часы своей работы.</b></p>
+<ul class="cross">
+  <li>Хочешь больше денег? Больше работай.</li>
+  <li>Заболела — доход просел.</li>
+  <li>Хочешь в отпуск — сначала посчитай, сколько ты на нём потеряешь.</li>
+</ul>
+<p>Ты можешь быть лучшим спецом.<br><span class="mark-pink">Но выше своих часов всё равно не прыгнешь.</span></p>
+
+<p>И, конечно, ты пробовала это исправить. (Я делала так же.)</p>
+<p><i>«Как мне сделать больше денег? Ага, нужно больше клиентов. Где их взять? Так, ну все делают рилсы. Наверное, не зря. Щас начну делать, и тоже пойдут клиенты».</i></p>
+<p>Ты попробовала сама — ничерта не получилось, только устала. Заявок с блога больше не стало.</p>
+
+<p>Ты пыталась нанять рилсмейкера.</p>
+<p>Тебе обещают залётные ролики, поток клиентов.</p>
+<p>И ты думаешь: вот оно! Ну сейчас точно получится!</p>
+<p>Но что мы имеем по итогу?</p>
+<p><b>Деньги заплачены. Ролики выходят. А заявок с этих роликов как не было — так и нет.</b></p>
+
+<div class="meme" role="img" aria-label="Мем: ожидание и реальность от рилсмейкера">
+  <div class="row"><div class="txt"><span class="label">Ожидание</span>Наняла рилсмейкера, сейчас пойдёт поток клиентов</div><div class="pic">🤑</div></div>
+  <div class="row"><div class="txt"><span class="label">Реальность</span>12 красивых роликов, 3 комментария «огонь 🔥» и ни одной заявки</div><div class="pic">🫠</div></div>
+</div>
+
+<p>Ты думаешь: окей, я уже давно мастер в своём деле. Надо запускать обучения. Найму продюсера!</p>
+<p>И ты открываешь директ, соглашаешься на предложение от недопродюсера, который только что закончил курс.</p>
+<p>Вы пашете несколько месяцев,<br>прописываете программу,<br>записываете уроки,<br>каждый день фигачите сторис,<br>снимаете рилсы, открываете продажи, и…</p>
+<p class="shout">В директе тишина.<br><span class="pink">Ноль продаж.</span> Запуск в никуда. Классика.</p>
+
+<p><b class="caps">Либо.</b></p>
+<p>Вроде всё получается.</p>
+<p>Продюсер приходит на твою уже готовую аудиторию.<br>Полтора месяца вы её греете.<br>Затем ещё 2 недели продаёте.<br>Дальше два месяца ты ведёшь учеников.</p>
+<p>Итог: вы заработали 500 тысяч. Тебе досталось 250к.</p>
+<p>Ты считаешь выхлоп:<br>Оказывается, на запуск ушло 4 месяца.<br><span class="mark">Поделим 250к на 4 — и как-то сумма уже не так впечатляет, правда?</span></p>
+<p>А после четырёх месяцев такой плотной работы ты уже хочешь на море. Но вместо моря тебе нужно скорее снова набирать аудиторию для следующего запуска.</p>
+<p>Параллельно ты думаешь: да нахер мне вообще этот продюсер нужен был? Сама б всё сделала, ещё учеников вести, а он уже отдыхает.</p>
+
+<div class="meme r" role="img" aria-label="Мем: продюсер и эксперт после запуска">
+  <div class="row"><div class="txt"><span class="label">Продюсер после запуска</span>Забрал свои 50% и улетел отдыхать</div><div class="pic">🏝️</div></div>
+  <div class="row"><div class="txt"><span class="label">Ты после запуска</span>Ещё 2 месяца ведёшь учеников и набираешь аудиторию на следующий</div><div class="pic">🧟‍♀️</div></div>
+</div>
+
+<p>И с продюсером с такими результатами вы, конечно же, расходитесь. Ты снова перестаёшь верить в обучения и возможность дохода с инстаграма.</p>
+<p>И вновь возвращаешься к продаже своих услуг.</p>
+
+<p>Окей, нафиг этих продюсеров. Вон другие продают всякие файлики, гайдики. И получают деньги на пассиве. Сделаю так же.</p>
+<p>И ты делаешь.</p>
+<p>Создаёшь продукт, от которого сама в восторге! Разбираешься, как технически создать бота, подключаешь платёжку.</p>
+<p>А потом сидишь и думаешь: окей, а какие мне теперь рилсы-то снимать? 😂 Чтоб это всё продавалось. В лоб не хочу.</p>
+<p>Путаешься в контенте, пытаешься продать через сторис, как умеешь. И в итоге: <b>2 продажи за месяц.</b> И ты снова откладываешь эту историю в долгий ящик.</p>
+<p>Продолжая терять по 300к в месяц просто из-за того, что перестала верить в эту идею.</p>
+
+<div class="callout">
+  <p class="shout">Хотя дело было вообще не в тебе.</p>
+  <p>Не в твоей нише. Не в людях, с кем ты работала. Не в курсах, которые ты проходила, не в твоём инстаграме и даже не в рилсах.</p>
+</div>
+
+<h2>Просто всё это время ты нанимала не тех людей</h2>
+<p><b>Рилсмейкер</b> может тебе сделать рилсы, но он НЕ ЗНАЕТ, как добавить в ролики продающие смыслы, чтобы с них покупали.</p>
+<ul class="cross">
+  <li>Он не соберёт тебе воронку, которая приносила бы тебе заявки.</li>
+  <li>Не проработает тебе продукт, не разработает бота, не напишет тебе автопрогрев и не выстроит путь клиента от просмотра рилс до покупки.</li>
+</ul>
+<p><b>Продюсер</b> не сможет тебе выстроить крупную онлайн-школу и просто приносить деньги на блюдечке: потому что у вас пока не такие охваты.</p>
+<p>А продавать на 500 человек в сторис — долго, муторно и невыгодно.</p>
+<p><b>Ты сама</b>, чисто на покупках курсов, не сможешь быть хороша во всём: быть одновременно и SMM-щиком, и рилсмейкером, и маркетологом, и ещё и оставаться топовым специалистом в своей сфере.</p>
+<p>Скорее всего ты просядешь и в своём деле, и в чужом ничего не достигнешь, и получишь просмотры на отметке 500, ноль заявок с блога, рилсы в никуда и разочарование.</p>
+<p>Вот плата человека за его попытки сделать всё самостоятельно.</p>
+
+<div class="callout dark">
+  <p>‼️ Ты не должна быть маркетологом, который разбирается, как разрабатывать и продавать инфопродукты.</p>
+  <p class="shout">Ты должна заниматься своим делом.<br><span class="mark">А продажи в блоге — задача маркетолога.</span></p>
+</div>
+
+<hr class="sep">
+
+<p>А теперь переходим к той самой технологии, о которой я рассказывала в самом начале.</p>
+<h2>Мой авторский метод монетизации блога — <span class="mark">автооплаты 24/7</span></h2>
+<p>Сейчас кратко расскажу, как это работает.</p>
+
+<div class="step">
+  <div class="n">1</div>
+  <div>
+    <h3>Продукт</h3>
+    <p>Не тот, от которого ты сама в восторге. А тот, который создан на основе <b>АНАЛИЗА РЫНКА</b> и проблем твоих покупателей.</p>
+    <p>Продукт должен решать ту боль, которая у них горит уже настолько давно и настолько сильно, что за её решение они готовы прямо сейчас отдать любые деньги.</p>
+    <p><b>Сравни, кто быстрее купит?</b></p>
+    <div class="vs">
+      <div class="bad"><span class="tag">👞 Вариант 1</span>Мужчина, которому надоели старые ботинки и он хочет их обновить?</div>
+      <div class="good"><span class="tag">🩹 Вариант 2</span>Или мужчина, который прилетел в командировку в другой город, у него изорвались ботинки и натёрли ему все ноги?</div>
+    </div>
+    <p>Так я и решаю, какой продукт создать.</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="n">2</div>
+  <div>
+    <h3>Воронка с автоматическим прогревом до покупки</h3>
+    <p>Человек пишет кодовое слово под рилсом. Его перекидывает в бот, где он читает цепочку продающих сообщений. Так он прогревается и доходит до оплаты.</p>
+<p>Без тебя, всё происходит автоматически через бота и подключённую платёжку.</p>
+    <ul class="ticks">
+      <li>Но как зрителя с рилса завлечь в бот?</li>
+      <li>Как его заставить читать эти сообщения?</li>
+      <li>Какие маркетинговые смыслы должны быть в этих сообщениях, чтоб человек захотел купить твой продукт прямо здесь и сейчас?</li>
+    </ul>
+    <p><span class="mark">Эти вопросы может закрыть ТОЛЬКО МАРКЕТОЛОГ. И я их закрываю.</span></p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="n">3</div>
+  <div>
+    <h3>Рилсы со скрытыми продающими смыслами</h3>
+    <p>Не тренды и мемы, которые никуда не ведут. Не «купи-купи» в лоб. Не сложный дорогой продакшн. А простой, интересный контент, с которого и подписываются, и покупают.</p>
+    <div class="vs">
+      <div class="bad"><span class="tag">Пример 1</span>«Почему наша студия лазера лучшая в городе?» 60 секунд основатель скучным голосом рассказывает о преимуществах студии. Зрители не понимают, что им с этой информацией делать дальше и вообще зачем она им нужна (они не собирались на лазер).<span class="res">❌ Итог: 1300 просмотров, 0 заявок</span></div>
+      <div class="good"><span class="tag">Пример 2</span>«Почему ходить на лазер ОПАСНО, пока ты не знаешь ЭТОГО (большинство узнают слишком поздно)». Берём реальный страх ЦА, благодаря чему ролик выйдет на тех, кто уже задумывается о лазере, но пока боится. А в описании в шуточном формате переворачиваем всё в другую сторону.<span class="res">✅ Итог: 1 млн просмотров, +130 заявок</span></div>
+    </div>
+    <div class="shots">
+      <figure class="shot"><img src="img/laser-reel.jpg" alt="Рилс «Почему ходить на лазер ОПАСНО», 1 млн просмотров" loading="lazy"><figcaption>1 млн просмотров</figcaption></figure>
+      <figure class="shot"><img src="img/laser-desc1.jpg" alt="Описание к рилсу: 13 «опасностей» лазера в шуточном формате" loading="lazy"><img src="img/laser-desc2.jpg" alt="Окончание описания: призыв написать «ЛАЗЕР» в директ" loading="lazy" style="margin-top:10px"><figcaption>а вот и «опасности» 😏</figcaption></figure>
+    </div>
+    <p><b>Итог: 1 млн просмотров и +130 новых заявок.</b></p>
+    <p>Дело в смыслах, благодаря которым ролики СРАЗУ выходят именно на твоих покупателей. Поэтому у меня высокая конверсия из комментария в покупку — я умею работать со смыслами.</p>
+    <p>Рилс, кстати, занял 2 минуты — и никакого сложного продакшна.</p>
+  </div>
+</div>
+
+<h2>И самое приятное</h2>
+<p>Такую воронку может себе выстроить любой эксперт, который продаёт свои услуги. Будь ты психологом, тарологом, гинекологом.</p>
+<p>Да хоть риэлтором. Я чуть позже расскажу, что тебе можно продавать.</p>
+<p>А вот лишь часть ниш, которым эта система подходит идеально, с потенциалом в 300к/мес (это точно лучше, чем выкладывать рилсы впустую):</p>
+<ul class="chips">
+  <li>бьюти-мастера</li><li>фитнес-тренеры</li><li>стоматологи</li><li>врачи</li><li>диетологи</li><li>нутрициологи</li><li>психологи</li><li>косметологи</li><li>тарологи</li><li>риэлторы</li>
+</ul>
+
+<div class="callout">
+  <p><b class="caps">Кому не подойдёт!</b></p>
+  <p>Если ты не имеешь никакой экспертности, вообще не разбираешься в инстаграме и никогда ничего не продавал.</p>
+  <p>Тут иди учись и становись экспертом в какой-либо области, увы.</p>
+</div>
+
+<h3>И КСТАТИ! БОЛЕЕ ТОГО! Такие автоворонки делаются не только на продукт, но и на твои услуги.</h3>
+<p>То есть человек купил у тебя гайд за 499 ₽, ему понравилось — и он идёт к тебе на дорогую услугу. Уже прогретый. Уже доверяющий.</p>
+<p>У меня с одной такой воронки упало <span class="mark">79 заявок в анкету и ещё около 45 в директ.</span></p>
+
+<figure class="shot wide">
+  <img src="img/anketa-79.jpg" alt="Анкета на создание воронки: 79 ответов" loading="lazy">
+  <figcaption>+ около 45 в директе</figcaption>
+</figure>
+
+<p><b>НО!</b> Если не иметь за спиной многолетнего опыта маркетолога в создании и продаже инфопродуктов, не уметь делать залётные продающие рилсы и не разбираться хотя бы в одном элементе из всей системы — воронка, к сожалению, не сработает.</p>
+<p>И ни одно обучение, ни один рилсмейкер или продюсер тебе эту систему не соберёт.</p>
+<p>Будет 2–3 оплаты за месяц. И ты решишь, что механика не рабочая.</p>
+<p>Я знаю это не только по чужим историям.</p>
+
+<hr class="sep">
+
+<h2>Почему я так уверенно обо всём этом говорю? Я сама прошла через каждую из этих ошибок</h2>
+<p>Я не родилась с этим знанием.</p>
+<p>Я так же, как и ты, годами продавала только свои услуги.</p>
+<p>Но мне хотелось зарабатывать больше.<br>Чтобы у меня было несколько источников дохода.<br>И хотя бы один из них был таким, чтобы я могла в любой момент улететь, уйти в отпуск, заболеть — и это никак не влияло на мои деньги.</p>
+<p>Я годами снимала рилсы.<br>Я думала: будут просмотры — будут клиенты.</p>
+<p>Но неее) ничерта))</p>
+<p>Аудитория-то набиралась. Ролики залетали.<br>Но клиентов не было) Оплат — тем более.</p>
+<p>Что логично. Я же ничего не продавала. А что покупать-то?</p>
+<p>Зрителей из рилс я никуда не вела. Они не понимали, куда зайти, куда тыкнуть, как записаться и что у меня вообще можно купить.</p>
+<p><b>Пришли, посмотрели, лайкнули, ушли. Как в музей.</b></p>
+
+<div class="meme" role="img" aria-label="Мем: зрители из рилс как посетители музея">
+  <div class="row"><div class="txt"><span class="label">Я</span>Ролик залетел на 100 тысяч, сейчас пойдут клиенты!</div><div class="pic">🤩</div></div>
+  <div class="row"><div class="txt"><span class="label">Зрители</span>Посмотрели, лайкнули, ушли. Как в музей</div><div class="pic">🖼️</div></div>
+</div>
+
+<p>Я не понимала, как делать продающие рилсы. Как найти продукт, который будет продаваться. Как бл*ть вообще сделать воронку??? Я вообще ничего этого не понимала.</p>
+<p>И дальше не было озарения или переломного момента.<br>Был просто долгий путь и усердная многолетняя работа)</p>
+<p>Я закапывалась в маркетинг. В психологию потребителей. В то, как думает зритель в инстаграме, почему у одних он покупает, а у других нет.</p>
+<p>С какого контента он покупает и по каким стоимостям. Какие форматы и на какие смыслы он идёт.</p>
+<p>Читала книги. Изучала тысячи чужих воронок. Снимала по 10 рилсов в день. Тестировала гипотезы, половина из которых проваливалась. Переписывала смыслы. Снова тестировала.</p>
+<p>Ошибалась. Сливала время. Сливала деньги. Что-то получалось, что-то снова проваливалось.</p>
+<p>И только последние годы, спустя 4 года моих проб и ошибок, изучений и тестов, я получаю одни из самых высоких результатов на рынке.</p>
+<p>Ко мне приходят консультироваться звёзды и топовые продюсеры.</p>
+<p>А мои продукты приносят <span class="mark">до 40 тыс руб В ДЕНЬ.</span> (А ведь это чья-то месячная зарплата…)</p>
+<p>Моя почта уже год выглядит так:</p>
+
+<figure class="shot">
+  <video src="img/my-mail.mp4" poster="img/my-mail-poster.jpg" autoplay muted loop playsinline aria-label="Листаю почту: оплаты по 499 ₽ одна за другой"></video>
+  <figcaption>оплаты, оплаты, оплаты</figcaption>
+</figure>
+
+<p>И это доход ТОЛЬКО с пассива (автооплат), где я вообще ничего не делаю, без учёта продаж консультаций, обучений и услуг:</p>
+<div class="callout lime stack-lines">
+  <p><b>1 января:</b> 14к</p>
+  <p><b>2 января:</b> 35к</p>
+  <p><b>3 января:</b> 36к</p>
+  <p><b>4 января:</b> 27к</p>
+  <p><b>5 января:</b> 20к</p>
+  <p>&nbsp;</p>
+</div>
+
+<div class="shots">
+  <figure class="shot"><img src="img/january-1003.jpg" alt="Январь 2026: 1003 платежа на 627 692 ₽" loading="lazy"><figcaption>январь: 1003 платежа</figcaption></figure>
+  <figure class="shot"><img src="img/january-profit.jpg" alt="Прибыль 1–30 января: 721 179,69 ₽" loading="lazy"><figcaption>январь: +721 тыс. прибыли</figcaption></figure>
+</div>
+
+<p>Это был мой продукт всего за 499 рублей: промпты для рилсов. При этом ролики набирали в среднем 2–4 тысячи просмотров, а каждый приносил 2–3,5 тысячи рублей.</p>
+<p>Это лучше, чем выкладывать их в пустоту. Продукт стал приносить по 600 тысяч в месяц, а за три месяца воронка принесла <b>1 350 713 ₽.</b></p>
+
+<figure class="shot wide">
+  <img src="img/3months-1350k.jpg" alt="2261 платёж на 1 410 310 ₽, заработано 1 350 713 ₽" loading="lazy">
+</figure>
+
+<div class="callout">
+  <p><b>Важная пометка.</b></p>
+  <p>Всё это без наставничеств, без раздутых обещаний, без оверпрайсовых продуктов, фотографий с Ламборджини, кринж-прогревов в сторис и прочего.</p>
+  <p><b>Только продукт, попадающий в боль, рилс и качественная воронка.</b></p>
+</div>
+
+<p>И вот тогда-то я и посчитала, сколько годами я не брала денег, лежащих на столе перед носом. <span class="mark-pink">Минимум 300 тысяч каждый месяц. На тех же самых знаниях.</span></p>
+
+<h2>А потом я повторила эту систему ЕЩЁ РАЗ с нуля</h2>
+<p>Если честно, хотелось доказать самой себе, что могу повторять результат с любым количеством подписчиков и в любой нише.</p>
+<p>Смотри и запоминай:</p>
+<ul class="ticks">
+  <li><b>10 июля</b> я создала новый аккаунт. Ноль подписчиков.</li>
+  <li><b>25 июля</b> запустила на нём воронку на новый продукт — решила сделать клуб.</li>
+</ul>
+<figure class="shot"><img src="img/acc-zero.jpg" alt="Новый аккаунт: 5 публикаций, 0 подписчиков" loading="lazy"><figcaption>10 июля: ноль подписчиков</figcaption></figure>
+<p>На разработку ушло 15 дней, и к 25 июля подписчиков было уже около 3 700. Даже не 10 тысяч.</p>
+<p>Я запускаю продажи. <b>НЕ В СТОРИС!! А ТОЛЬКО ПУЛЯЮ НЕСКОЛЬКО РИЛС</b> в своём любимом продающем стиле.</p>
+<p>Я не копила аудиторию годами, чтоб начать продавать, и не ждала, когда стану экспертом в дисциплине (на эту тему клуб).</p>
+<p>И знаешь, что произошло? Сколько времени мне понадобилось, чтобы получить первые деньги с нулевого аккаунта?</p>
+<p><span class="mark">25 июля мне уже упала первая оплата. В день запуска воронки. 2430 ₽.</span></p>
+<p>26 июля мне уже накапало 10 530 ₽.</p>
+
+<figure class="shot">
+  <img src="img/club-first-payments.jpg" alt="Первые оплаты клуба 25–26 июля: 2430 ₽ и по 2700 ₽" loading="lazy">
+  <figcaption>первые оплаты с нулевого аккаунта</figcaption>
+</figure>
+
+<p>Уже захотел так же? 😂 Как я могу это сделать тебе — расскажу в конце.</p>
+<p>Сейчас блогу уже 3 месяца, а воронке 2 месяца. И за это время с одного лишь клуба мне накапало вот столько:</p>
+<p class="shout">За два месяца клуб с нового аккаунта принёс мне <span class="pink">больше 600 тысяч рублей.</span></p>
+
+<div class="shots">
+  <figure class="shot"><img src="img/club-tribute.jpg" alt="Tribute: доход 138 787,47 ₽" loading="lazy"></figure>
+  <figure class="shot"><img src="img/club-prodamus.jpg" alt="284 платежа на 466 998 ₽" loading="lazy"></figure>
+</div>
+
+<div class="callout lime">
+  <p><b>И вот что важно не перепутать.</b></p>
+  <p>Большинство думает: сначала годами копим аудиторию, а потом начинаем продавать.</p>
+  <p class="shout">Нет. Сначала продукт и воронка. Потом рилсы.</p>
+  <p>Аудитория всё равно будет набираться параллельно. Мне за 3 месяца пришло 14 тыс подписчиков. Но при этом ещё 600 тыс руб.</p>
+  <div class="shots">
+    <figure class="shot"><img src="img/acc-14k.jpg" alt="Аккаунт сейчас: 14,8 тыс. подписчиков" loading="lazy"><figcaption>14,8 тыс. подписчиков</figcaption></figure>
+    <figure class="shot"><img src="img/club-profit-593k.jpg" alt="Прибыль 25 июля – 7 октября: 593 336 ₽, доходы 605 936 ₽" loading="lazy"><figcaption>и 600 тысяч с клуба</figcaption></figure>
+  </div>
+<p>Поэтому делай так, чтоб тебе с каждого рилсика уже капала денежка, так и блог вести интересней.</p>
+</div>
+
+<hr class="sep">
+
+<h2>«Окей, но это у тебя. А у меня сложная узкая ниша. Что мне вообще продавать?»</h2>
+<p>Справедливо.</p>
+
+<h3>Вот Аня, мастер по волосам, моя клиентка</h3>
+<p>Казалось бы, она работает руками, с клиентами в кресле. Кого и чему ей обучать?</p>
+<p>До меня Аня сливала по 300к на обучения, которые не привели ей ни одной заявки. <b>Ни одной.</b></p>
+<p>Рилсы она снимала. Старалась. А в ответ в директе была тишина.</p>
+<p>И она уже не знала: то ли это с ней что-то не так? То ли у неё ниша слишком специфическая? То ли инстаграм её «не любит»?</p>
+<p>И в какой-то момент Аня просто закрыла все свои непонятные обучалки, прекратила работу с продюсером и пришла ко мне.</p>
+<p>Вместе мы сделали 2 платных продукта и 1 бесплатный. Я настроила ей воронку.</p>
+<p>А дальше я просто процитирую, что она мне написала. Лучше, чем она, я не скажу:</p>
+
+<figure class="shot wide">
+  <img src="img/anya.jpg" alt="Сообщение Ани: первые оплаты по гайду, +27 300 ₽ за две недели; профиль раньше и сейчас; уведомления об оплатах" loading="lazy">
+  <figcaption>её сообщение, профиль до/после и оплаты</figcaption>
+</figure>
+
+<div class="big">+27 300 ₽</div>
+<p><b>за две недели. С нуля.</b></p>
+
+<p>Вот как выглядела её почта после работы со мной:</p>
+<figure class="shot">
+  <video src="img/anya-mail.mp4" poster="img/anya-mail-poster.jpg" autoplay muted loop playsinline aria-label="Почта Ани: оплаты по 499 ₽ одна за другой"></video>
+  <figcaption>почта Ани</figcaption>
+</figure>
+<p>А спустя всего МЕСЯЦ после запуска нашей воронки было уже вот так:</p>
+<figure class="shot">
+  <img src="img/anya-166k.jpg" alt="Счёт Продамус у Ани: 166 615,18 ₽" loading="lazy">
+  <figcaption>«а сколько у тебя уже в кассе?»</figcaption>
+</figure>
+<p>А до этого у Ани не было ВООБЩЕ никаких оплат из инсты. Ни разу. Только изредка приходили какие-то клиенты.</p>
+
+<p><b>Вдумайся.</b></p>
+<p>Человек годами вкладывал сотни тысяч в обучения. Верил. Ждал. Разочаровывался.</p>
+<p>А первые деньги из инсты пришли за две недели после того, как у неё появилась система.</p>
+<p>И знаешь, что для меня самое ценное в этом кейсе? Не цифры.</p>
+<p>А её последняя фраза:</p>
+<blockquote>Я обязательно доберусь до заветного 1 🍋 в месяц на инсте)) Теперь я понимаю, что это возможно)))</blockquote>
+<p>Не «надеюсь». Не «может быть когда-нибудь».</p>
+<p class="shout">Теперь понимаю, что возможно.</p>
+<figure class="shot">
+  <img src="img/anya-thanks.jpg" alt="Аня: «Я безмерно тебе благодарна»" loading="lazy">
+</figure>
+<p>Вот ради этого я и делаю свою работу.</p>
+
+<h3>Другой пример — доказывающий, что не нужно ждать аудиторию годами</h3>
+<p>Илья, фитнес-тренер.</p>
+<p>Мы создали нулевой аккаунт. Выкладывали рилсы ровно 4 дня. Просмотры — до 291 тысячи.</p>
+
+<figure class="shot">
+  <img src="img/ilya-reels.jpg" alt="Рилсы Ильи с нулевого аккаунта: от 1428 до 291 тысячи просмотров" loading="lazy">
+  <figcaption>4 дня, нулевой аккаунт</figcaption>
+</figure>
+
+<p>И ладно просмотры, это было не главное.</p>
+<p>Цель — деньги, и мы её выполнили.</p>
+<p><span class="mark">Внимание. В ПЕРВЫЕ ДВА ДНЯ в кассе уже 6 500 ₽ просто с рилсов.</span></p>
+
+<figure class="shot">
+  <img src="img/ilya-payments.jpg" alt="Оплаты Ильи: клуб за 4490 ₽ и метод за 499 ₽" loading="lazy">
+</figure>
+
+<p>Это я к тому, что если ты уже несколько лет ведёшь инстаграм, но твой контент тебе всё ещё не приносит деньги — ты оойййй как много тыс рублей теряешь КАЖДЫЙ ДЕНЬ на пустом месте.</p>
+
+<h3>А вот ещё одна моя клиентка</h3>
+<p>Раньше у неё уже были ролики АЖ НА 300 ТЫСЯЧ ПРОСМОТРОВ! Что могло бы ей принести до 200 000 ₽ тупо с одного такого ролика.</p>
+<p>Но.</p>
+<p><b>У неё с этого рилса было ноль оплат. Ноль.</b></p>
+<p>Именно с этим она и пришла ко мне.</p>
+
+<figure class="shot wide">
+  <img src="img/c3-request.jpg" alt="Запрос клиентки: залетающие рилсы 100–300 тысяч просмотров, продукт есть, оплат нет" loading="lazy">
+  <figcaption>её запрос</figcaption>
+</figure>
+
+<p>Я внедрила ей скрытно продающие смыслы в её рилсы, и у неё сразу пошли продажи:</p>
+
+<div class="shots">
+  <figure class="shot"><img src="img/c3-tz.jpg" alt="Готовое ТЗ с дожимными сообщениями" loading="lazy"></figure>
+  <figure class="shot"><img src="img/c3-44k.jpg" alt="Рилс 44 378 просмотров, первые 4 оплаты, конверсия из комментария в покупку 10%" loading="lazy"></figure>
+</div>
+<figure class="shot">
+  <img src="img/c3-thanks.jpg" alt="«Спасибо, я очень рада, теперь только бомбить»" loading="lazy">
+</figure>
+
+<div class="callout lime">
+  <p class="shout">Просмотры и деньги — разные вещи.</p>
+  <p>И подход к ним нужен РАЗНЫЙ. Для моей системы не нужно уметь делать миллионники.</p>
+</div>
+
+<p>Это доказывает четвёртый пример.</p>
+<p>У ещё одной моей клиентки — мастера маникюра — первая оплата пришла с ролика, на котором было всего смешных <b>500 просмотров.</b></p>
+
+<div class="shots">
+  <figure class="shot"><img src="img/c4-first.jpg" alt="«Божечки, у меня первая оплата! Только что!»" loading="lazy"></figure>
+  <figure class="shot"><img src="img/c4-500.jpg" alt="«Ещё одна продажа была ночью, когда я сплю… продажа была где-то с 500 просмотров»" loading="lazy"></figure>
+</div>
+
+<p>А теперь посчитай, сколько роликов у тебя есть на 500 просмотров? Сколько денег ты уже упустила? Оплата, кстати, пришла ночью.</p>
+<p>Пока она спала 🥰 О чём я и говорю, что воронки работают за тебя всегда, даже пока ты спишь — это не выдумка 🤣 Те самые люди, которые листают рилсы в 3 часа ночи, покупают твои продукты :)</p>
+
+<div class="meme r" role="img" aria-label="Мем: покупки в три часа ночи">
+  <div class="row"><div class="txt"><span class="label">Ты в 3:00</span>Спишь</div><div class="pic">😴</div></div>
+  <div class="row"><div class="txt"><span class="label">Твоя воронка в 3:00</span>«Вам пришла оплата 499 ₽»</div><div class="pic">💸</div></div>
+</div>
+
+<hr class="sep">
+
+<h2>Окей, Настя, это всё хорошо. Но что вообще можно продавать?</h2>
+<p>Как обещала, возвращаюсь к этому вопросу.</p>
+<p>Если сейчас тебе кажется, что продавать нечего, посмотри на эти, казалось бы, ГЛУПЕЙШИЕ примеры, на которых люди делают миллионные выручки :) пока ты думаешь, что ты не готова продавать…</p>
+<ul class="ticks">
+  <li><b>Тренер:</b> 7-дневный план тренировок дома без инвентаря</li>
+  <li><b>Психолог:</b> гайд «5 упражнений, чтобы перестать тревожиться перед сном»</li>
+  <li><b>Косметолог:</b> схема восстановления кожи за 14 дней без трат на крема и косметологов</li>
+  <li><b>Эксперт:</b> шаблоны продающих ответов в директе, чтобы клиенты покупали без созвонов</li>
+</ul>
+<p><span class="mark">То, что тебе кажется «ну это же элементарно», для другого человека — решение его проблемы.</span></p>
+<p>И смотри. Те самые «глупейшие» примеры.</p>
+<div class="callout">
+  <p>🏙️ Девушка просто переехала в Москву. Собрала список районов, реальные цены, свои ошибки и подводные камни. Продаёт за 690 ₽. <b>Напродавала на 3,5 миллиона.</b> Она не риэлтор.</p>
+<p>Она просто поделилась полезным для других опытом.</p>
+  <p>🤖 Парень собрал 50 бесплатных нейросетей для бизнеса. Ссылки и короткое описание. 490 ₽. <b>Выручка — порядка 2 миллионов за 2 месяца.</b> Он не айтишник) просто поделился своими наработками.</p>
+  <p>🎥 Рилсмейкер. Собрала список ссылок на своё проверенное оборудование на озон и вб. Выручка, тут не упади… <b>7 млн…</b> да, здесь уже даже я была в шоке 🤣</p>
+</div>
+<p>Если люди без экспертности делают на этом миллионы, представь, что можно упаковать из твоего опыта.</p>
+<p>Но помнишь мужчину с натёртыми ногами?</p>
+<p>Вот найти в твоей нише этого человека — и есть самая сложная для других, но любимая для меня задача. Изучить твоих покупателей, найти горячую боль, с которой они уже устали жить, а затем узнать, какие рилсы на них снимать, чтобы они вышли сразу на тех, кто УЖЕ ищет твой продукт — вот что я закрываю, и что принесёт тебе деньги.</p>
+<p><b>Именно это я и делаю как маркетолог в автопродажах в инстаграме.</b></p>
+
+<hr class="sep">
+
+<p>Надеюсь, на моих личных примерах ты уже поняла, что система действительно работает, и будет работать и у тебя, просто ранее ты работала не с теми людьми и вы строили не те системы.</p>
+
+<h2>И теперь у тебя есть 3 пути</h2>
+
+<div class="path p1">
+  <div class="pnum">Путь первый</div>
+  <h3>Отложить создание воронки и продолжить терять деньги каждый день</h3>
+  <p>Дальше выкладывать рилсы в никуда. Сидеть без заявок и без денег. Работать руками с утра до вечера. Вручную записывать себе людей, отвечать в директ, переносить, подтверждать.</p>
+<p>Надеяться на сарафан. Пытаться продать обучения самостоятельно.</p>
+  <p>И очнуться спустя три года. Когда твои коллеги уже купили тачки и квартиры с инстаграма, а ты всё боялась тогда продавать.</p>
+  <p>Только вот какая штука: этот путь тебе всё равно предстоит пройти. Вопрос лишь в том, когда ты на него встанешь — сейчас или через три года, когда рынок уже займут другие.</p>
+  <p><b>А пока ты не выстроишь себе эту систему, ты продолжишь платить. Либо временем, либо деньгами, либо нервами. Каждый день.</b></p>
+</div>
+
+<div class="path">
+  <div class="pnum">Путь второй</div>
+  <h3>Сделать всё самой</h3>
+  <p>Изучить создание воронок, как делать продающие рилсы, погрузиться в маркетинг в инфобизе, разобраться в ботах и платёжках, протестировать разные продукты, разные стоимости, написать разные цепочки, отслеживать конверсии, ошибаться, терять 70% клиентов (и даже не знать, на каком этапе), снова докручивать, снова ошибаться, а потом рилс не залетел, блин, в чём же дело?</p>
+<p>Почему не покупают?</p>
+  <p>Пройти этот путь — реально. Я так и сделала. Но вот только я маркетолог, и это моя профессия. Я и должна была это сделать.</p>
+<p>А твоя профессия — другая. И как я плачу мастеру маникюра за маникюр — так и мне мастер маникюра платит как маркетологу за деньги, которые я ему приношу.</p>
+  <p>Если у тебя есть свободные четыре года и ты вдруг решил переквалифицироваться в маркетолога 😂 — вперёд! Это рабочий путь.</p>
+</div>
+
+<div class="path p3">
+  <div class="pnum">Путь третий</div>
+  <h3>Чтобы систему тебе сделал человек, который уже прошёл этот путь</h3>
+  <p>А вот если ты хочешь оставаться мастером в своём деле, при этом открыть для себя новый источник заработка на своих же знаниях, которые у тебя годами уже накопились — это ко мне.</p>
+  <p class="shout">Ты занимаешься своим делом — я своим.</p>
+  <p>А именно: приношу тебе автооплаты.</p>
+  <p>Вернее, настраиваю всё один раз так, чтобы эта система тебе потом годами приносила оплаты.</p>
+</div>
+
+<h2>Ближе к делу. Как я сама могу построить тебе эту систему</h2>
+<ul class="cross">
+  <li>Я не продам тебе обучение с обещанием золотых гор за 250 тысяч рублей (не мечтай 😂), т.к. даже если б у меня было обучение — ты всё равно запуталась бы в сложности и на половине слилась, потеряв время.</li>
+  <li>Я не проведу тебе консультацию, рассказав, как всё устроено, потому что в одиночку ты это всё не сделаешь.</li>
+  <li>Я не буду работать с тобой за %, отбирая твой хлеб, потому что на это у меня есть свои личные проекты.</li>
+</ul>
+<p><span class="mark">И в целом я маркетолог, а не инфоцыган, чтоб заниматься таким.</span></p>
+<p>Вместо этого я как специалист в своём деле <b>СОБЕРУ ТЕБЕ САМА ОТ И ДО ВСЮ ЭТУ СИСТЕМУ своими руками</b>: ту самую, которая прямо сейчас приносит деньги мне, Ане, Илье и другим моим клиентам.</p>
+
+<h3>Кому подойдёт</h3>
+<p>Как я сказала, я работаю со специалистами, у которых уже есть опыт и ниша. Бьюти-мастера, фитнес-тренеры, стоматологи, врачи, диетологи, нутрициологи, психологи.</p>
+<ul class="ticks">
+  <li>У кого-то продукт уже есть, но он не продаётся — я докручу воронку и продукт, чтоб его покупали.</li>
+  <li>Кто-то пока вообще не знает, что продавать, кроме своих часов. Это нормально, для этого есть я, продукт сама вам разработаю, так даже лучше.</li>
+</ul>
+<ul class="cross">
+  <li>Нет ниши, нет экспертности, и хочется, чтобы я с нуля придумала, кем тебе быть, и принесла тебе деньги — тут уж нет, не получится. Мне нужно, чтоб было, что упаковывать.</li>
+</ul>
+
+<section class="offer" id="offer">
+  <p class="pnum" style="color:#d9c8d6;font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:13px">Что ты получишь на выходе от работы со мной</p>
+  <h2><span>СИСТЕМА АВТОПРОДАЖ</span> на каждый день</h2>
+  <p>Вы получаете готовую воронку под ключ, которая будет:</p>
+  <ul class="ticks">
+    <li>nродавать без выходов в сторис и регулярно приносить новые заявки</li>
+    <li>собирать базу клиентов в вашем личном боте, которую в дальнейшем можно монетизировать, делать на нее рассылки и доп nродажи</li>
+    <li>nродавать на автомате и получать пассивный доход без вашего участия благодаря подключению автоnродаж</li>
+    <li>настроим все процессы в блоге, чтобы он приносил вам заявки за вас, пока вы занимаетесь другими делами</li>
+    <li>полностью автоматизируем чат-бота, через которого лид автоматически прогревается до заявки на услугу / автооплату</li>
+    <li>докрутим лид-магниты, продукт, чтобы доставать максимум nродаж ежедневно</li>
+  </ul>
+  <h3>ЧТО БУДЕТ СДЕЛАНО ⬇️</h3>
+  <ul class="ticks">
+    <li>бриф, распаковка экспертности, изучение вашего продукта</li>
+    <li>анализ ЦА: изучение болей, потребностей + нахождение проблемы, за которую платят СРАЗУ.</li>
+    <li>подготовка материалов: докрутим лид-магниты и продукт</li>
+    <li>разработка telegram-бота: создание сценариев диалогов, прописывание автопрогрева и триггеров</li>
+    <li>полная автоматизация чат-бота с доведением лида до заявки на услугу / автооплату</li>
+  </ul>
+  <div class="gift">🎁 ДОПОЛНИТЕЛЬНО: 10 сценариев к рилс, чтобы вы запустили воронку и уже получили первые оплаты с нее</div>
+
+  <h3>Как всё проходит</h3>
+  <ol class="flow">
+    <li>Сейчас ты заполняешь анкету, чтоб оставить заявку на работу со мной.</li>
+    <li>Далее — <b>Консультация.</b> Голосовой созвон. Разбираю твою ситуацию: нишу, опыт, блог, что уже есть и что можно из этого сделать. Если мы друг другу подходим — рассказываю условия работы. Консультация бесплатная.</li>
+    <li>После созвона, если договорились работать — <b>оплата</b>, и я начинаю работу.</li>
+    <li><b>Бриф и распаковка.</b> Достаю из тебя всё, что можно превратить в деньги.</li>
+    <li><b>Концепция продукта.</b> Анализирую рынок и проблемы твоих покупателей.</li>
+    <li><b>Согласование.</b> Показываю тебе концепцию воронки и продукта, утверждаем вместе. Только потом собираю.</li>
+    <li><b>Реализация.</b> Продукт, воронка, бот, цепочки, платёжка.</li>
+    <li><b>Сценарии к рилс и запуск.</b> Ты выкладываешь рилс, получаешь первые оплаты.</li>
+  </ol>
+  <div class="term">
+    <div><div class="v">14 дней</div><div class="k">от брифа до запуска</div></div>
+    <div><div class="v">+14 дней</div><div class="k">после запуска я на связи по всем вопросам</div></div>
+  </div>
+</section>
+
+<div class="cta-box" id="anketa">
+  <div class="badge"><span class="dot"></span>Сейчас возможна запись только на ноябрь</div>
+  <p><b>Прямо сейчас я готова взять несколько проектов на ноябрь.</b></p>
+  <p>Т.к. каждый проект я реализую сама вручную, много проектов одновременно я взять не могу, поэтому количество мест ограничено.</p>
+  <p>‼️‼️ <b>Только для тех, кто уже имеет нишу и экспертность.</b></p>
+  <p><span class="mark">Следующий набор — только в январе.</span></p>
+  <p>Поэтому, если хочешь успеть на ноябрь, жми кнопку «Оставить заявку», и я с тобой свяжусь.</p>
+  <a class="btn js-anketa" href="https://forms.yandex.ru/u/6ac554e3f47e738b027ca8e9" target="_blank" rel="noopener">Оставить заявку</a>
+</div>
+
+<h2>Этот путь тебе всё равно предстоит пройти</h2>
+<p>Можно и дальше продавать только свои часы.</p>
+<p>Можно ещё год снимать рилсы в пустоту. Можно месяц делать «гениальный» продукт, который купят два человека. Можно ещё раз сходить к недопродюсеру.</p>
+<p>Я этот путь прошла. Знаю, сколько он стоит. И по времени, и по деньгам.</p>
+<p><b>И ты уже платишь. Прямо сейчас, каждый день.</b></p>
+<p>Рано или поздно ты всё равно придёшь к своему продукту и своей воронке. Вопрос только, сколько лет и денег ты на это потратишь.</p>
+<p class="shout">А можно уже в ноябре <span class="pink">всего за 14 дней</span> :)</p>
+<p>Жми кнопку «Оставить заявку» и заполняй анкету.</p>
+<p style="text-align:center"><a class="btn js-anketa" href="https://forms.yandex.ru/u/6ac554e3f47e738b027ca8e9" target="_blank" rel="noopener">Оставить заявку</a></p>
+
+<hr class="sep">
+
+<h2>Ой. Ты всё ещё тут? 😅</h2>
+<p>Тогда просто представь, как это может выглядеть.</p>
+<p>Ты заканчиваешь с клиентом, берёшь телефон, а там уведомления об оплатах. Пришедшие, пока у тебя были заняты руки.</p>
+<p>Ты не выходила в сторис, не уговаривала никого в директе, не проводила созвоны. <span class="mark">Рилс сделал своё дело, бот — своё, платёжка — довела.</span></p>
+<p>Помнишь мой Дубай? Вот это оно.</p>
+
+<h2>Ты всё ещё читаешь? Класс! Тогда давай разберём твои «а если…?» :)</h2>
+
+<details open>
+  <summary>«А если у меня маленький блог?»</summary>
+  <p>Илья стартовал вообще с нулевого аккаунта и за первые два дня заработал 6 500 ₽. Другая моя клиентка получила первую оплату с рилса на 500 просмотров.</p>
+<p>Ночью. Пока спала. Я сделала 600к с аккаунта, которого 3 месяца назад ещё не было. <b>Запомни: нет смысла делать рилсы, пока у тебя нет воронки.</b></p>
+</details>
+<details>
+  <summary>«А если у меня нет времени?»</summary>
+  <p>Поэтому всё делаю я. От тебя только: бриф, согласовать идею и выкладывать рилсы по готовым сценариям. Всё на мне.</p>
+<p>И нет, сценарии не на полдня съёмок. Ролик лазерной студии на миллион просмотров сняли за две минуты. Я только простые, но результативные рилсы и делаю.</p>
+</details>
+<details>
+  <summary>«А если я не умею снимать?»</summary>
+  <p>Тебе не нужен продакшн, монтажёр и кольцевая лампа за 15 тысяч. Нужен простой кадр, но с правильным смыслом. Смысл я тебе дам, а снять на телефон ты точно сможешь.</p>
+</details>
+<details>
+  <summary>«А если я уже пробовала, и ничего не вышло?»</summary>
+  <p>Аня тоже пробовала. И сливала по 300к на обучения. Разница в том, что теперь этим занимается маркетолог, а не недопродюсер или ты сама по курсам.</p>
+</details>
+<details>
+  <summary>«А если моя ниша не подходит?»</summary>
+  <p>Аня — мастер по волосам. Илья — фитнес-тренер. Я — делала продукты и про рилсы, и про дисциплину. Приводила деньги студии лазера, мастеру маникюра, финансисту.</p>
+<p>Ни у кого из них не было какой-то особенной «простой ниши». Если у тебя есть экспертность, из неё можно сделать деньги.</p>
+</details>
+<details>
+  <summary>«Я не разбираюсь в ботах, платёжках и всём этом»</summary>
+  <p>И не надо. Это моя работа. Всю техническую часть я сделаю за тебя, с тебя только СЗ или ИП для приёма платежей.</p>
+</details>
+<details>
+  <summary>«Дорого же, наверное?»</summary>
+  <p>Не знаю :) у всех «дорого» — своё. Но точно стоит того, чтоб заплатить один раз, а далее получать по 200–300к дополнительно каждый месяц годами.</p>
+<p>Аня отдавала по 300 тысяч за обучения, которые не привели ей ни одного клиента. Продюсер забирает половину запуска и уходит.</p>
+<p>А система, которую я делаю, остаётся у тебя и продаёт дальше. Каждый день.</p>
+</details>
+
+<div class="meme" role="img" aria-label="Мем: сделать всё самой">
+  <div class="row"><div class="txt"><span class="label">Я в начале</span>Сама разберусь по курсам, чего там сложного</div><div class="pic">💪</div></div>
+  <div class="row"><div class="txt"><span class="label">Я через 4 года</span>Ну… разобралась</div><div class="pic">🥲</div></div>
+</div>
+<p class="meme-cap">тебе не обязательно повторять 🙃</p>
+
+<div class="cta-box">
+  <h2 style="margin-top:0">Как записаться?</h2>
+  <p>Жми кнопку ниже и заполняй анкету на разработку твоей собственной воронки 👇🏼</p>
+  <a class="btn js-anketa" href="https://forms.yandex.ru/u/6ac554e3f47e738b027ca8e9" target="_blank" rel="noopener">Заполнить анкету</a>
+  <p class="btn-note">Если ты давно хотела создать свой онлайн-продукт — время пришло!</p>
+</div>
+
+<section class="ps">
+  <h3>P.S.</h3>
+  <p>О, ты добралась до P.S.</p>
+  <p>Тогда коротко, суть:</p>
+  <p>Я своими руками собираю тебе систему автопродаж: продукт, рилсы, воронку. На продукт и на услуги. За 14 дней.</p>
+  <p>Один раз запускаешь — дальше она приносит деньги и заявки. Даже когда ты в Дубае. Или спишь. Или в Дубае спишь.</p>
+  <p><b>Сейчас доступна запись только на ноябрь.</b></p>
+
+  <h3>P.P.S.</h3>
+  <p>Серьёзно? Ты всё ещё читаешь?</p>
+  <p>Ладно. Тогда вот что.</p>
+  <p>Ещё один месяц ты будешь продавать свои часы.<br>Ещё один месяц твои рилсы будут приносить лайки, а не деньги.<br>Ещё один месяц 300 тысяч, которые могли быть твоими, но пройдут мимо.</p>
+  <p>Вопрос только, сколько таких месяцев ЕЩЁ ты готова прожить.</p>
+  <p>До тех пор, пока не придёшь снова ко мне 😂 но вот цена будет уже дороже… (инфляция).</p>
+
+  <h3>P.P.P.S.</h3>
+  <p>Невероятно. Ты всё ещё здесь.</p>
+  <p>Что ещё тебе показать? Фокус? Скрин из Дубая ещё раз?</p>
+  <figure class="shot" style="max-width:300px"><img src="img/dubai-76752.jpg" alt="Снова 76 752 ₽ за 3 дня" loading="lazy"><figcaption>ну держи 😂</figcaption></figure>
+  <p>Тогда последнее.</p>
+  <p>Пока ты читаешь эту статью, кто-то в твоей нише выкладывает рилс с кодовым словом.</p>
+  <p>Возможно, он слабее тебя как специалист.<br>Возможно, у него хуже продукт.</p>
+  <p><b>Но твой будущий клиент купит у него.</b></p>
+  <p>Не потому что он лучше. А потому что он у клиента в ленте с готовым продуктом, а у тебя его нет.</p>
+  <p style="text-align:center"><a class="btn js-anketa" href="https://forms.yandex.ru/u/6ac554e3f47e738b027ca8e9" target="_blank" rel="noopener">Заполнить анкету</a></p>
+  <p class="btn-note">Запись на начало ноября. Следующий набор в январе.</p>
+</section>
+
+<footer>Барашкова Анастасия · маркетолог, автопродажи в инстаграме</footer>
+</div>
+
+
+<script>
+/* Вставь ссылку на анкету сюда — она подставится во все кнопки */
+const ANKETA_URL = "https://forms.yandex.ru/u/6ac554e3f47e738b027ca8e9";
+if (ANKETA_URL) {
+  document.querySelectorAll(".js-anketa").forEach(a => {
+    a.href = ANKETA_URL; a.target = "_blank"; a.rel = "noopener";
+  });
+}
+</script>
+</body></html>
