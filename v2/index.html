@@ -345,6 +345,13 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 .tree-cards div{background:#2e2230;border-left:4px solid var(--lime);border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.5;color:#f3e9f1}
 .tree-cards b{color:#fff}
 
+.shots.three{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:8px;scrollbar-width:none}
+.shots.three::-webkit-scrollbar{display:none}
+.shots.three .shot{flex:0 0 72%;max-width:300px;scroll-snap-align:start}
+.shots.three .shot img{aspect-ratio:auto;object-fit:contain}
+.behind .shot figcaption{color:var(--lime)}
+.swipe-hint{font-family:var(--f-hand);font-size:20px;color:var(--lime);text-align:center;margin:0}
+
 .methods .method:nth-child(5){grid-column:1/-1}
 </style>
 </head>
@@ -1020,6 +1027,19 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
     <div class="case-row st"><span>Старт</span><p>Клиент поработал со многими командами, и никто не смог набрать даже 10 тысяч просмотров. Заявок из инсты не было вообще.</p></div>
     <div class="case-row it"><span>Итог</span><p>Каждый третий ролик стабильно выходил в рекомендации: 315к, 187к, 148к. <b>Виллу примерно за 45 млн продали холодному клиенту с одного ролика.</b> С одного.</p></div>
   </div>
+  <p class="swipe-hint">листай вбок 👉 3 фото</p>
+  <div class="shots three">
+    <figure class="shot"><img src="../img/behind-4.jpg" alt="Другие команды делали этому клиенту ролики на 1–2 тысячи просмотров" loading="lazy"><figcaption>как было у других команд</figcaption></figure>
+    <figure class="shot"><img src="../img/behind-6.jpg" alt="Рилсы для клиента на Пхукете: 148 тыс., 315 тыс., 187 тыс. просмотров" loading="lazy"><figcaption>как стало со мной</figcaption></figure>
+    <figure class="shot"><img src="../img/behind-5.jpg" alt="Вилла за 16,5 млн бат, проданная холодному клиенту с одного ролика" loading="lazy"><figcaption>та самая вилла за ~45 млн ₽</figcaption></figure>
+  </div>
+
+  <div class="case">
+    <div class="case-who">🚗 Личный бренд · Испания · автомобили</div>
+    <div class="case-row st"><span>Старт</span><p>2 тысячи подписчиков. Без точной ниши, аудитории и понимания формата. Клиент хотел просто популярный паблик.</p></div>
+    <div class="case-row it"><span>Итог</span><p>Нашли формат, который с первого месяца начал набирать миллионы просмотров. В первый месяц +10 тысяч подписчиков. <b>Через год — 1 млн подписчиков. И 0 ₽ на рекламу.</b></p></div>
+  </div>
+  <figure class="shot wide"><img src="../img/behind-3.jpg" alt="Профиль клиента: 1 млн подписчиков" loading="lazy"><figcaption>с 2 тысяч до 1 млн за год</figcaption></figure>
 </section>
 
 <div class="cta-box">
