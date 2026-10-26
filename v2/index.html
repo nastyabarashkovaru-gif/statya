@@ -273,6 +273,27 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 .offer p{color:#e9dde7}
 .placeholder{background:#fff3c4;border-radius:4px;padding:0 .3em;color:var(--ink);font-weight:800}
 
+/* карусель отзывов */
+.rv{margin:22px 0 30px}
+.rv-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.rv-tab{font:inherit;font-size:14px;font-weight:800;border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:7px 11px;cursor:pointer;line-height:1.2}
+.rv-tab span{display:inline-block;min-width:22px;padding:0 6px;border-radius:999px;background:var(--pink-soft);font-size:13px;margin-left:4px}
+.rv-tab.on{background:var(--ink);color:#fff}
+.rv-tab.on span{background:var(--lime);color:var(--ink)}
+.rv-tab:focus-visible,.rv-btn:focus-visible,.rv-track:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+.rv-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 4px;padding:4px 4px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rv-track::-webkit-scrollbar{display:none}
+.rv-card{flex:0 0 84%;max-width:420px;scroll-snap-align:start;margin:0;background:#fff;border:2px solid var(--ink);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.rv-img{background:#111;display:flex;align-items:center;justify-content:center;height:min(62vh,440px)}
+.rv-img img{max-width:100%;max-height:100%;width:auto;height:auto;display:block;object-fit:contain}
+.rv-card figcaption{padding:12px 14px 14px;font-weight:800;font-size:15px;line-height:1.35;color:var(--ink);border-top:2px solid var(--ink);background:var(--lime-soft);flex:1}
+.rv-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:4px}
+.rv-btn{width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--pink);color:#fff;font-size:20px;font-weight:900;cursor:pointer;box-shadow:0 3px 0 var(--pink-deep)}
+.rv-btn:disabled{background:#eee;color:#aaa;box-shadow:none;cursor:default}
+.rv-count{font-weight:800;font-variant-numeric:tabular-nums;min-width:64px;text-align:center}
+.rv-hint{text-align:center;font-family:var(--f-hand);font-size:22px;color:var(--muted);margin:6px 0 0}
+@media (min-width:700px){.rv-card{flex-basis:48%}}
+
 .methods .method:nth-child(5){grid-column:1/-1}
 </style>
 </head>
@@ -758,7 +779,49 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 
 <p>У меня здесь огромный опыт. И результаты учеников говорят сами за себя:</p>
 
-<div class="todo">📎 Сюда: отзывы и кейсы учеников с моего обучения<br>(кто сколько набрал просмотров, подписчиков, заработал)</div>
+<div class="rv" id="reviews">
+  <div class="rv-tabs" role="tablist">
+    <button type="button" class="rv-tab on" data-g="money" role="tab" aria-selected="true">💸 Деньги <span>7</span></button>
+    <button type="button" class="rv-tab" data-g="reels" role="tab" aria-selected="false">🔥 Рилсы <span>6</span></button>
+    <button type="button" class="rv-tab" data-g="words" role="tab" aria-selected="false">💬 Слова <span>7</span></button>
+  </div>
+  <div class="rv-group" data-g="money">
+    <div class="rv-track" tabindex="0" aria-label="Отзывы, листай вбок">
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r01.jpg" alt="100 000 ₽ за день: «впервые пробила свой потолок»" loading="lazy"></div><figcaption>100 000 ₽ за день: «впервые пробила свой потолок»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r02.jpg" alt="216 000 ₽ за ноябрь" loading="lazy"></div><figcaption>216 000 ₽ за ноябрь</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r03.jpg" alt="Подписан договор: 30 рилсов, недвижка, 70 000 ₽" loading="lazy"></div><figcaption>Подписан договор: 30 рилсов, недвижка, 70 000 ₽</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r04.jpg" alt="Закрыла клиента на 125 000 ₽ в месяц" loading="lazy"></div><figcaption>Закрыла клиента на 125 000 ₽ в месяц</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r05.jpg" alt="50 000 ₽ за сценарии к 12 рилсам" loading="lazy"></div><figcaption>50 000 ₽ за сценарии к 12 рилсам</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r06.jpg" alt="45 000 ₽: продала пак из 3 консультаций" loading="lazy"></div><figcaption>45 000 ₽: продала пак из 3 консультаций</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r07.jpg" alt="2 постоянных клиента, свой ассистент и монтажёр" loading="lazy"></div><figcaption>2 постоянных клиента, свой ассистент и монтажёр</figcaption></figure>
+    </div>
+    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 7</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
+  </div>
+  <div class="rv-group" data-g="reels" hidden>
+    <div class="rv-track" tabindex="0" aria-label="Отзывы, листай вбок">
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r09.jpg" alt="47 тыс. просмотров у клиента" loading="lazy"></div><figcaption>47 тыс. просмотров у клиента</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r10.jpg" alt="13,5 тыс. просмотров у кафе" loading="lazy"></div><figcaption>13,5 тыс. просмотров у кафе</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r11.jpg" alt="11,3 тыс. просмотров у кафе" loading="lazy"></div><figcaption>11,3 тыс. просмотров у кафе</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r12.jpg" alt="10 тыс. просмотров у кондитерской" loading="lazy"></div><figcaption>10 тыс. просмотров у кондитерской</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r13.jpg" alt="10,1 тыс. просмотров у кафе" loading="lazy"></div><figcaption>10,1 тыс. просмотров у кафе</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r14.jpg" alt="Загнали трафик в платный тг-канал" loading="lazy"></div><figcaption>Загнали трафик в платный тг-канал</figcaption></figure>
+    </div>
+    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 6</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
+  </div>
+  <div class="rv-group" data-g="words" hidden>
+    <div class="rv-track" tabindex="0" aria-label="Отзывы, листай вбок">
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r15.jpg" alt="«Это было лучшее решение пойти на обучение»" loading="lazy"></div><figcaption>«Это было лучшее решение пойти на обучение»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r08.jpg" alt="«Идут лиды, перевела все твои рекомендации»" loading="lazy"></div><figcaption>«Идут лиды, перевела все твои рекомендации»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r16.jpg" alt="«Целый курс прошла, а мысли по рилсам расширила только с тобой»" loading="lazy"></div><figcaption>«Целый курс прошла, а мысли по рилсам расширила только с тобой»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r17.jpg" alt="«Самое лучшее вложение в свои знания»" loading="lazy"></div><figcaption>«Самое лучшее вложение в свои знания»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r18.jpg" alt="«Ни от кого такую обратную связь не чувствовала»" loading="lazy"></div><figcaption>«Ни от кого такую обратную связь не чувствовала»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r19.jpg" alt="«Если бы не ты, я бы не решилась 100%»" loading="lazy"></div><figcaption>«Если бы не ты, я бы не решилась 100%»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img src="../img/reviews/r20.jpg" alt="«Спасибо за обучение и твою лёгкость в общении»" loading="lazy"></div><figcaption>«Спасибо за обучение и твою лёгкость в общении»</figcaption></figure>
+    </div>
+    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 7</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
+  </div>
+  <p class="rv-hint">листай вбок 👉 всего 20 отзывов</p>
+</div>
 
 <p>Но теперь я хочу двигаться дальше.</p>
 <p>Я сама уже давно не только рилс-продюсер. Я маркетолог, который умеет не только привлекать аудиторию, но и успешно и на больших объёмах её монетизировать. И показываю хорошие результаты из года в год.</p>
@@ -803,7 +866,7 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
     <div><div class="v">1,5 месяца</div><div class="k">обучение</div></div>
     <div><div class="v">+2 недели</div><div class="k">после обучения я на связи</div></div>
   </div>
-  <p>Старт обучения — <span class="placeholder">[дата старта]</span>.</p>
+  <p><b style="color:var(--lime)">Старт обучения — 10 ноября.</b></p>
 </section>
 
 <div class="cta-box" id="anketa">
@@ -815,7 +878,7 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
     <li>и самое главное — попасть на обучение по скидке и точно успеть забрать себе место</li>
   </ul>
   <p>…то скорее заполняй анкету, и я с тобой свяжусь.</p>
-  <a class="btn js-anketa" href="https://t.me/m/KfU9Q1KIMmQy" target="_blank" rel="noopener">Заполнить анкету</a>
+  <a class="btn js-anketa" href="https://t.me/m/_iyJ-8s5Yzdi" target="_blank" rel="noopener">Заполнить анкету</a>
 </div>
 
 <hr class="sep">
@@ -864,14 +927,14 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 <div class="cta-box">
   <h2 style="margin-top:0">Как попасть на обучение?</h2>
   <p>Жми кнопку ниже и заполняй анкету. Я свяжусь с тобой, расскажу полную программу и условия со скидкой.</p>
-  <a class="btn js-anketa" href="https://t.me/m/KfU9Q1KIMmQy" target="_blank" rel="noopener">Заполнить анкету</a>
+  <a class="btn js-anketa" href="https://t.me/m/_iyJ-8s5Yzdi" target="_blank" rel="noopener">Заполнить анкету</a>
   <p class="btn-note">Мест мало, потому что я работаю лично с каждым.</p>
 </div>
 
 <section class="ps">
   <h3>P.S.</h3>
   <p>О, ты добралась до P.S. Тогда коротко, суть:</p>
-  <p>«Просмотры + деньги» — обучение, где ты научишься делать залетающие рилсы, создашь свой продукт и настроишь автоворонку. 1,5 месяца плюс 2 недели я на связи. И я лично буду с тобой, пока не пойдут первые оплаты.</p>
+  <p>«Просмотры + деньги» — обучение, где ты научишься делать залетающие рилсы, создашь свой продукт и настроишь автоворонку. Старт 10 ноября, 1,5 месяца плюс 2 недели я на связи. И я лично буду с тобой, пока не пойдут первые оплаты.</p>
 
   <h3>P.P.S.</h3>
   <p>Ещё один месяц ты будешь говорить «я не готова».</p>
@@ -883,11 +946,31 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
   <p>Пока ты читаешь эту статью, кто-то в твоей нише выкладывает рилс с кодовым словом.</p>
   <p>Возможно, он слабее тебя. Возможно, у него хуже продукт.</p>
   <p><b>Но твой будущий клиент купит у него.</b> Потому что он был наглее и начал раньше.</p>
-  <p style="text-align:center"><a class="btn js-anketa" href="https://t.me/m/KfU9Q1KIMmQy" target="_blank" rel="noopener">Заполнить анкету</a></p>
+  <p style="text-align:center"><a class="btn js-anketa" href="https://t.me/m/_iyJ-8s5Yzdi" target="_blank" rel="noopener">Заполнить анкету</a></p>
 </section>
 
 <footer>Барашкова Анастасия · маркетолог, рилсы и автоворонки</footer>
 </div>
 
+<script>
+(function(){
+  var root=document.getElementById('reviews'); if(!root) return;
+  var tabs=root.querySelectorAll('.rv-tab'), groups=root.querySelectorAll('.rv-group');
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    tabs.forEach(function(x){x.classList.toggle('on',x===t);x.setAttribute('aria-selected',x===t)});
+    groups.forEach(function(g){g.hidden=g.dataset.g!==t.dataset.g; if(!g.hidden&&g._upd){g.querySelector('.rv-track').scrollLeft=0;g._upd()}});
+  })});
+  groups.forEach(function(g){
+    var tr=g.querySelector('.rv-track'), cards=tr.children, prev=g.querySelector('.prev'), next=g.querySelector('.next'), cnt=g.querySelector('.rv-count b');
+    function idx(){var l=tr.scrollLeft, best=0, d=1e9; for(var i=0;i<cards.length;i++){var dd=Math.abs(cards[i].offsetLeft-tr.offsetLeft-l-4); if(dd<d){d=dd;best=i}} return best}
+    function upd(){var i=idx(); cnt.textContent=i+1; prev.disabled=i===0; next.disabled=tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-4}
+    function go(n){var i=Math.max(0,Math.min(cards.length-1,idx()+n)); tr.scrollTo({left:cards[i].offsetLeft-tr.offsetLeft-4,behavior:'smooth'})}
+    prev.addEventListener('click',function(){go(-1)}); next.addEventListener('click',function(){go(1)});
+    tr.addEventListener('scroll',function(){window.requestAnimationFrame(upd)},{passive:true});
+    tr.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();go(1)} if(e.key==='ArrowLeft'){e.preventDefault();go(-1)}});
+    g._upd=upd; upd();
+  });
+})();
+</script>
 </body>
 </html>
