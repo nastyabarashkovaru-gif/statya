@@ -294,6 +294,17 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 .rv-hint{text-align:center;font-family:var(--f-hand);font-size:22px;color:var(--muted);margin:6px 0 0}
 @media (min-width:700px){.rv-card{flex-basis:48%}}
 
+.play-hint{font-family:var(--f-hand);font-size:24px;color:var(--pink-deep);text-align:center;margin:0 0 -6px;line-height:1.2}
+.dorm{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 26px;max-width:520px;margin-inline:auto}
+.dorm figure{margin:0;min-width:0}
+.dorm img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:14px;border:2px solid var(--ink);display:block}
+.dorm figure:nth-child(1){grid-column:1/-1}
+.dorm figure:nth-child(1) img{aspect-ratio:16/9;object-position:center 70%}
+.dorm figcaption{font-family:var(--f-hand);font-size:21px;color:var(--pink-deep);text-align:center;line-height:1.1;margin-top:4px}
+.dorm figure:nth-child(2){transform:rotate(1.5deg)}
+.dorm figure:nth-child(3){transform:rotate(-1.5deg)}
+@media (prefers-reduced-motion:reduce){.dorm figure{transform:none}}
+
 .methods .method:nth-child(5){grid-column:1/-1}
 </style>
 </head>
@@ -309,10 +320,11 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 <p>Сразу к делу. Без воды и без «расскажу потом».</p>
 <p>Сначала цифры. Объяснения после.</p>
 
-<p>Вот так выглядит моя почта. Это не запуск и не распродажа. Это обычные будни:</p>
+<p>Вот так выглядит моя почта. Это не запуск и не распродажа. Это обычные будни.</p>
+<p class="play-hint">👇 Жми ▶ на видео, чтобы увидеть это в действии</p>
 
 <figure class="shot">
-  <video src="../img/my-mail.mp4" poster="../img/my-mail-poster.jpg" autoplay muted loop playsinline aria-label="Листаю почту: оплаты по 499 ₽ одна за другой"></video>
+  <video src="../img/my-mail.mp4" poster="../img/my-mail-poster.jpg" controls muted loop playsinline preload="metadata" aria-label="Листаю почту: оплаты по 499 ₽ одна за другой"></video>
   <figcaption>оплаты, оплаты, оплаты</figcaption>
 </figure>
 
@@ -676,8 +688,8 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 
 <p>В 2023 году я просто пошла в блог.</p>
 <p>Я и до этого его пыталась развивать, но, знаешь, это было так, непонятными нестабильными наплывами. Плюс я совершенно не понимала (я только сейчас это осознаю), как нужно продвигаться в рилсах. Я делала какие-то хаотичные действия и, понятное дело, так и стояла на отметке в 800 человек, которые состояли из моих друзей и знакомых.</p>
-<p>Годами я мечтала пробить планку хотя бы в 1000 подписчиков.</p>
-<p>Но в 2023 году я решила взяться за это основательно. И очень быстро выросла. Я пробила планку не только в 1000 подписчиков, а аж в 46 тысяч.</p>
+<p class="shout">Годами я мечтала пробить планку хотя бы в 1000 подписчиков.</p>
+<p>Но в 2023 году я решила взяться за это основательно. И очень быстро выросла. <span class="mark">Я пробила планку не только в 1000 подписчиков, а аж в 46 тысяч.</span></p>
 
 <div class="ba">
   <div class="b"><div class="lab">было</div><div class="num">800</div><div class="cap">подписчиков, друзья и знакомые</div></div>
@@ -699,9 +711,21 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 </figure>
 
 <p>Оказалось, да, это реально работает. Я безумно себе благодарна за то, что тогда хотя бы решила попробовать узнать: правда ли то, что говорят блогеры в инстаграме?</p>
-<p><b>Оказалось правдой.</b></p>
+<p class="shout"><span class="pink">Оказалось правдой.</span></p>
 
-<p>Учитывая то, что ещё за полгода до этого я в свои 20 лет не зарабатывала практически ничего. Я была репетитором по обществознанию, жила в общежитии, училась в университете и зарабатывала 8 тысяч. И уже тогда была этому очень рада, потому что могла себе заказать дополнительную еду в Самокате.</p>
+<p>Учитывая то, что ещё за полгода до этого я в свои 20 лет не зарабатывала практически ничего.</p>
+
+<div class="callout">
+  <p>Я была репетитором по обществознанию, жила в общежитии, училась в университете и <b>зарабатывала 8 тысяч.</b></p>
+  <p>И уже тогда была этому очень рада, потому что могла себе заказать дополнительную еду в Самокате.</p>
+</div>
+
+<p>Это я тогда 👇</p>
+<div class="dorm">
+  <figure><img src="../img/dorm-uni.jpg" alt="Пары в университете: тетради на столе" loading="lazy"><figcaption>пары в универе</figcaption></figure>
+  <figure><img src="../img/dorm-pasta.jpg" alt="Настя в магазине с пачкой макарон на 4 кг" loading="lazy"><figcaption>студенческий бюджет 😅</figcaption></figure>
+  <figure><img src="../img/dorm-mirror.jpg" alt="Селфи в зеркале в комнате общежития" loading="lazy"><figcaption>та самая общага</figcaption></figure>
+</div>
 
 <ul class="timeline">
   <li><b>Общага, 8 000 ₽ в месяц</b><span>Репетитор, университет, 800 подписчиков</span></li>
@@ -711,15 +735,30 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
   <li class="last"><b>Дубай, зимовки за границей</b><span>Путешествую самостоятельно на свои деньги</span></li>
 </ul>
 
-<p>Всего спустя полгода ведения блога и продаж своих онлайн-продуктов я пробиваю планку в 1 миллион рублей.</p>
-<p>Было бы это возможно в найме? Да нет, конечно. Такое возможно только в инстаграме.</p>
-<p>И, конечно, из общежития я быстро съезжаю. Переезжаю в Москву, потому что здесь у меня появляется комьюнити: больше блогеров, движовых людей, интересных продюсеров. В общем, тот круг общения, который мне был нужен.</p>
-<p>Я начинаю жить в Москве, в собственной квартире, о которой раньше и мечтать не могла. И всегда думала: а кто же эти люди, которые снимают квартиры за 100 тысяч рублей? Это же ужас как дорого.</p>
-<p>Мечты стали исполняться вмиг. Я впервые лечу в Дубай, что тоже было моей мечтой. Начинаю зимовать за границей, открываю для себя совершенно новый мир, начинаю активно путешествовать самостоятельно на собственные деньги.</p>
+<p>Всего спустя полгода ведения блога и продаж своих онлайн-продуктов…</p>
+<p class="shout">…я пробиваю планку <span class="pink">в 1 миллион рублей.</span></p>
 
-<div class="callout">
-  <p>И всё это, самое безумное осознание, всего лишь благодаря блогу. <b>Всё это мне оплачивает просто моя страница в инстаграме.</b></p>
-  <p>Не дядька сверху. Не офис. Не график 5/2. Не запланированные оплачиваемые отпуска. А я сама.</p>
+<div class="callout lime">
+  <p><b>Было бы это возможно в найме?</b></p>
+  <p>Да нет, конечно. <span class="mark">Такое возможно только в инстаграме.</span></p>
+</div>
+
+<p>И, конечно, из общежития я быстро съезжаю. <b>Переезжаю в Москву</b>, потому что здесь у меня появляется комьюнити: больше блогеров, движовых людей, интересных продюсеров. В общем, тот круг общения, который мне был нужен.</p>
+
+<p>Я начинаю жить в Москве, <span class="mark">в собственной квартире, о которой раньше и мечтать не могла.</span></p>
+<p>И всегда думала: а кто же эти люди, которые снимают квартиры за 100 тысяч рублей? Это же ужас как дорого.</p>
+
+<p class="shout">Мечты стали исполняться вмиг.</p>
+<ul class="ticks">
+  <li>Я впервые лечу в Дубай, что тоже было моей мечтой.</li>
+  <li>Начинаю зимовать за границей, открываю для себя совершенно новый мир.</li>
+  <li>Начинаю активно путешествовать самостоятельно на собственные деньги.</li>
+</ul>
+
+<div class="callout dark">
+  <p>И всё это, самое безумное осознание, всего лишь благодаря блогу.</p>
+  <p class="shout">Всё это мне оплачивает просто моя страница в инстаграме.</p>
+  <p>Не дядька сверху. Не офис. Не график 5/2. Не запланированные оплачиваемые отпуска. <span class="mark">А я сама.</span></p>
   <p>Я сама полностью руковожу своей жизнью. Я сама вправе выбирать, сколько мне заработать в следующем месяце. Я сама вправе регулировать свои финансы.</p>
 </div>
 
@@ -883,7 +922,7 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 
 <div class="shots">
   <figure class="shot"><img src="../img/anya-166k.jpg" alt="Счёт Продамус у Ани: 166 615,18 ₽" loading="lazy"><figcaption>«а сколько у тебя уже в кассе?»</figcaption></figure>
-  <figure class="shot"><video src="../img/anya-mail.mp4" poster="../img/anya-mail-poster.jpg" autoplay muted loop playsinline aria-label="Почта Ани: оплаты по 499 ₽ одна за другой"></video><figcaption>почта Ани</figcaption></figure>
+  <figure class="shot"><video src="../img/anya-mail.mp4" poster="../img/anya-mail-poster.jpg" controls muted loop playsinline preload="metadata" aria-label="Почта Ани: оплаты по 499 ₽ одна за другой"></video><figcaption>почта Ани</figcaption></figure>
 </div>
 
 <blockquote>Я обязательно доберусь до заветного 1 🍋 в месяц на инсте)) Теперь я понимаю, что это возможно)))</blockquote>
@@ -919,6 +958,14 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 <h3>Для тех, кто делает рилсы клиентам</h3>
 <p>Пхукет, недвижимость. Клиент поработал со многими командами, и никто не смог набрать даже 10 тысяч просмотров. Заявок из инсты не было вообще.</p>
 <p>Мы начали, и каждый третий ролик стабильно выходил в рекомендации: 315к, 187к, 148к. <span class="mark">Виллу примерно за 45 млн продали холодному клиенту с одного ролика.</span> С одного.</p>
+
+<div class="cta-box">
+  <div class="badge"><span class="dot"></span>Старт 10 ноября</div>
+  <p>Ниши разные, стартовые точки разные, а работает одно и то же. <b>Хочешь так же?</b></p>
+  <p>Заполняй анкету: я свяжусь с тобой, расскажу полную программу и как попасть на обучение по скидке.</p>
+  <a class="btn js-anketa" href="https://t.me/m/_iyJ-8s5Yzdi" target="_blank" rel="noopener">Заполнить анкету</a>
+  <p class="btn-note">Мест мало, потому что я работаю лично с каждым.</p>
+</div>
 
 <hr class="sep">
 
@@ -985,8 +1032,15 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
   <p>Пока ты читаешь эту статью, кто-то в твоей нише выкладывает рилс с кодовым словом.</p>
   <p>Возможно, он слабее тебя. Возможно, у него хуже продукт.</p>
   <p><b>Но твой будущий клиент купит у него.</b> Потому что он был наглее и начал раньше.</p>
-  <p style="text-align:center"><a class="btn js-anketa" href="https://t.me/m/_iyJ-8s5Yzdi" target="_blank" rel="noopener">Заполнить анкету</a></p>
+  
 </section>
+
+<div class="cta-box">
+  <h2 style="margin-top:0">Хватит ждать разрешения 😉</h2>
+  <p>Старт обучения «Просмотры + деньги» — <b>10 ноября</b>. 1,5 месяца, лично со мной, пока не пойдут первые оплаты.</p>
+  <a class="btn js-anketa" href="https://t.me/m/_iyJ-8s5Yzdi" target="_blank" rel="noopener">Заполнить анкету</a>
+  <p class="btn-note">Мест мало. Запись по скидке — через анкету.</p>
+</div>
 
 <footer>Барашкова Анастасия · маркетолог, рилсы и автоворонки</footer>
 </div>
