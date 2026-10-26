@@ -330,6 +330,21 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 
 .mark,.mark-pink{-webkit-box-decoration-break:clone;box-decoration-break:clone}
 
+.program .sublist{list-style:none;padding:6px 0 0;margin:0;display:grid;gap:4px}
+.program .sublist li{display:block;background:none;padding:0 0 0 18px;position:relative;font-size:15px;color:#e9dde7}
+.program .sublist li::before{content:"→";position:absolute;left:0;color:var(--lime);font-weight:900}
+.tree{margin:10px auto 6px;max-width:420px;text-align:center}
+.tree-cloud{position:relative;width:240px;max-width:80%;margin:0 auto}
+.tree-cloud svg{display:block;width:100%;height:auto}
+.tree-cloud span{position:absolute;inset:18% 0 0 0;display:grid;place-items:center;font-weight:900;font-size:18px;line-height:1.15;color:#1f1420}
+.tree-lines{display:block;width:100%;height:46px}
+.tree-heads{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tree-heads div{background:var(--pink);color:#fff;font-weight:900;border-radius:16px;padding:10px 4px;font-size:14px;line-height:1.2;min-width:0;border:2px solid #fff}
+.tree-heads span{display:block;font-size:24px;margin-bottom:4px}
+.tree-cards{display:grid;gap:8px;margin:14px 0 16px}
+.tree-cards div{background:#2e2230;border-left:4px solid var(--lime);border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.5;color:#f3e9f1}
+.tree-cards b{color:#fff}
+
 .methods .method:nth-child(5){grid-column:1/-1}
 </style>
 </head>
@@ -882,10 +897,48 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
   </ul>
 
   <div class="personal">
-    <h3 style="margin-top:0">Я буду работать лично с каждым</h3>
-    <p>Я лично каждому буду говорить, какие ему снимать рилсы, какой продукт ему создать. Я беру всю эту ответственность на себя, потому что мне интересно сделать вам сильные кейсы.</p>
-    <p><b style="color:var(--lime)">Я буду долбить вас до тех пор, пока у вас не пойдут первые оплаты с инстаграма. Прямо во время обучения.</b></p>
+    <h3 style="margin-top:0">Я работаю лично с каждым</h3>
+    <p>На своих обучениях я работаю лично с каждым. Лично каждому говорю, какие ему снимать рилсы, какой продукт создать. Я беру всю эту ответственность на себя, потому что мне интересно сделать вам сильные кейсы.</p>
+    <p><b style="color:var(--lime)">Я долблю вас до тех пор, пока у вас не пойдут первые оплаты с инстаграма. Прямо во время обучения.</b></p>
   </div>
+
+  <h3>Формат обучения</h3>
+  <p>Записанные уроки, где я по шагам рассказываю: какие рилсы снимать, как создать продукт, как написать автопрогрев, как настроить бота, как подключить платёжную систему.</p>
+  <ul class="program">
+    <li><span>🖥️</span><span><b>Вся техника — на записи экрана.</b> Я прямо на компьютере пошагово показываю, куда зайти, на какой сайт, куда тыкнуть. Разберётся каждый, даже с нуля.</span></li>
+    <li><span>🔗</span><span><b>Все ссылки и инструкции:</b> куда надо зайти, чтобы что-то подключить, и что как сделать.</span></li>
+    <li><span>📑</span><span><b>Текстовые презентации</b> к урокам.</span></li>
+    <li><span>📊</span><span><b>Таблички аналитики</b> и шаблоны.</span></li>
+    <li><span>🧰</span><span><b>Все мои готовые инструменты</b>, которые я наработала за 4 года.</span></li>
+    <li><span>🤖</span><span><b>Мои промпты для ChatGPT и Claude</b>, которыми я пользуюсь сама. Они помогают:
+      <ul class="sublist">
+        <li>создать сценарии для роликов на миллионы просмотров</li>
+        <li>создать стратегию</li>
+        <li>написать тексты для цепочек автопрогрева</li>
+        <li>написать продающее описание для роликов</li>
+        <li>создавать карусели</li>
+        <li>придумывать триггерные заголовки, которые будут залетать</li>
+        <li>сгенерировать идеи для продуктов</li>
+        <li>создать сам продукт за пару дней</li>
+      </ul></span></li>
+  </ul>
+
+  <h3>По сути, это обучение — 3 в 1</h3>
+  <div class="tree" role="img" aria-label="Схема: обучение «Просмотры + деньги» включает три направления: рилсы, техническую часть и маркетинг">
+    <div class="tree-cloud"><svg viewBox="0 0 300 120" aria-hidden="true"><path d="M70 104 C30 104 18 72 44 60 C36 30 74 16 96 34 C108 6 168 4 180 34 C204 14 250 26 244 60 C278 66 276 104 236 104 Z" fill="#fff" stroke="#b8f25a" stroke-width="4" stroke-linejoin="round"/></svg><span>«Просмотры<br>+ деньги»</span></div>
+    <svg class="tree-lines" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M150 0 C150 30 50 20 50 60" fill="none" stroke="#b8f25a" stroke-width="3" stroke-dasharray="6 6"/>
+      <path d="M150 0 L150 60" fill="none" stroke="#b8f25a" stroke-width="3" stroke-dasharray="6 6"/>
+      <path d="M150 0 C150 30 250 20 250 60" fill="none" stroke="#b8f25a" stroke-width="3" stroke-dasharray="6 6"/>
+    </svg>
+    <div class="tree-heads"><div><span>🔥</span>Рилсы</div><div><span>⚙️</span>Техника</div><div><span>💸</span>Маркетинг</div></div>
+  </div>
+  <div class="tree-cards">
+    <div><b>1. Рилсы.</b> Как делать залетающие рилсы и набирать аудиторию с нуля.</div>
+    <div><b>2. Техническая часть.</b> Как настраивать ботов, подключать платёжки в инстаграме и в телеграме.</div>
+    <div><b>3. Маркетинг.</b> Как создавать свои онлайн-продукты и писать автопрогревы и продающие цепочки сообщений, которые будут продавать за тебя.</div>
+  </div>
+  <p>Я собрала всё это в одно обучение, в одну связку — 3 в 1. <b style="color:var(--lime)">Такого вы больше не найдёте ни у кого на рынке. Такого на рынке в принципе нет.</b> Этому никто не обучает. Потому что в действительности, если освоить эти навыки, это приносит много денег.</p>
 
   <div class="term">
     <div><div class="v">1,5 месяца</div><div class="k">обучение</div></div>
