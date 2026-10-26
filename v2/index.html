@@ -352,6 +352,15 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 .behind .shot figcaption{color:var(--lime)}
 .swipe-hint{font-family:var(--f-hand);font-size:20px;color:var(--lime);text-align:center;margin:0}
 
+.toc{background:#fff;border:3px solid var(--ink);border-radius:22px;padding:18px 18px 4px;margin:6px 0 30px;box-shadow:6px 6px 0 var(--lime)}
+.toc-title{font-weight:900;font-size:19px;color:var(--ink);margin:0 0 12px}
+.toc ul.ticks li{font-size:16px;line-height:1.45;margin-bottom:.6em}
+.laser-row{display:grid;grid-template-columns:130px 1fr;gap:16px;align-items:center;margin:22px 0 14px}
+.laser-row > div{min-width:0}
+.laser-row img{width:130px;border-radius:14px;border:2px solid var(--ink);display:block}
+.laser-row p{margin:0 0 .6em;font-size:16px;line-height:1.45}
+.laser-res{font-weight:900;font-size:22px!important;line-height:1.2!important;color:var(--lime-deep)}
+
 .methods .method:nth-child(5){grid-column:1/-1}
 </style>
 </head>
@@ -363,6 +372,20 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
   <h1>Как получать <span class="money">до 40 000 ₽ в день</span> со своего инстаграма, пока ты спишь. <em>Даже если</em> ты никогда не вела блог и у тебя мало подписчиков</h1>
   <p class="sub">Разбираю на своих цифрах и кейсах, как работает система автооплат, почему построить её может каждый и почему ею до сих пор пользуются единицы.</p>
 </header>
+
+<div class="toc">
+  <p class="toc-title">В этой статье ты узнаешь:</p>
+  <ul class="ticks">
+    <li>как мне капает до 40 000 ₽ в день, пока я сплю или отдыхаю</li>
+    <li>какие вообще есть способы заработка в инстаграме и какой из них лучший</li>
+    <li>как устроена автоворонка: всего 5 шагов, нарисовала на картинке</li>
+    <li>что для этого нужно (спойлер: телефон, интернет и продукт за 2 дня)</li>
+    <li>почему этим до сих пор пользуются единицы</li>
+    <li>что продавать, если кажется, что нечего</li>
+    <li>как я из общаги с 8 000 ₽ в месяц пришла к миллионам с блога</li>
+    <li>и как это повторили мои клиенты и ученицы</li>
+  </ul>
+</div>
 
 <p>Сразу к делу. Без воды и без «расскажу потом».</p>
 <p>Сначала цифры.</p>
@@ -617,12 +640,17 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
   <div class="good"><span class="tag">Пример 2</span>«Почему ходить на лазер ОПАСНО, пока ты не знаешь ЭТОГО (большинство узнают слишком поздно)». Берём реальный страх ЦА, благодаря чему ролик выйдет на тех, кто уже задумывается о лазере, но пока боится. А в описании в шуточном формате переворачиваем всё в другую сторону.<span class="res">✅ Итог: 1 млн просмотров, +130 заявок</span></div>
 </div>
 
-<div class="shots">
-  <figure class="shot"><img src="../img/laser-reel.jpg" alt="Рилс «Почему ходить на лазер ОПАСНО», 1 млн просмотров" loading="lazy"><figcaption>1 млн просмотров</figcaption></figure>
-  <figure class="shot"><img src="../img/laser-desc1.jpg" alt="Описание к рилсу: «опасности» лазера в шуточном формате" loading="lazy"><img src="../img/laser-desc2.jpg" alt="Окончание описания: призыв написать «ЛАЗЕР» в директ" loading="lazy" style="margin-top:10px"><figcaption>а вот и «опасности» 😏</figcaption></figure>
+<div class="laser-row">
+  <img src="../img/laser-reel.jpg" alt="Рилс «Почему ходить на лазер ОПАСНО», 1 млн просмотров" loading="lazy">
+  <div>
+    <p class="laser-res">1 млн просмотров<br>+130 новых заявок</p>
+    <p>Тот самый ролик «Почему ходить на лазер ОПАСНО…». А в описании — шуточные «опасности» 😏</p>
+  </div>
 </div>
-
-<p><b>Итог: 1 млн просмотров и +130 новых заявок.</b></p>
+<div class="shots">
+  <figure class="shot"><img src="../img/laser-desc1.jpg" alt="Описание к рилсу: «опасности» лазера в шуточном формате" loading="lazy"></figure>
+  <figure class="shot"><img src="../img/laser-desc2.jpg" alt="Окончание описания: призыв написать «ЛАЗЕР» в директ" loading="lazy"><figcaption>описание к ролику</figcaption></figure>
+</div>
 
 <p>Дело в смыслах, благодаря которым ролики СРАЗУ выходят именно на твоих покупателей. Рилс, кстати, занял 2 минуты — и никакого сложного продакшна.</p>
 
@@ -732,9 +760,8 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 <h2>«Я не верю, что у меня получится»</h2>
 
 <p>Я тоже не верила.</p>
-<p>Но мне было интересно проверить. Я видела, как у других людей это работает, и мне было интересно проверить именно на себе: а что, это реально так? Если так, то я тоже хочу. Я не хочу упускать этот шанс.</p>
+<p class="shout">И давай я тебе сейчас просто расскажу, <span class="pink">что тебе могут дать рилсы</span> 👇</p>
 
-<p>Давай я расскажу, с чего начинала.</p>
 
 <div class="callout">
   <p>Мне 20 лет. Я была репетитором по обществознанию, жила в общежитии, училась в университете и <b>зарабатывала 8 тысяч в месяц.</b></p>
@@ -814,7 +841,7 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 
 <p class="shout">…то тебе сюда.</p>
 
-<h2>Я уже не первый год учу продвигаться в рилсах</h2>
+<h2>Я уже не первый год обучаю продвигаться в рилсах</h2>
 
 <p>У меня здесь огромный опыт. И результаты учеников говорят сами за себя:</p>
 
@@ -910,13 +937,12 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
   </div>
 
   <h3>Формат обучения</h3>
-  <p>Записанные уроки, где я по шагам рассказываю: какие рилсы снимать, как создать продукт, как написать автопрогрев, как настроить бота, как подключить платёжную систему.</p>
   <ul class="program">
-    <li><span>🖥️</span><span><b>Вся техника — на записи экрана.</b> Я прямо на компьютере пошагово показываю, куда зайти, на какой сайт, куда тыкнуть. Разберётся каждый, даже с нуля.</span></li>
+    <li><span>🎬</span><span><b>Записанные уроки</b>, где я по шагам рассказываю: какие рилсы снимать, как создать продукт, как написать автопрогрев, как настроить бота, как подключить платёжную систему.</span></li>
+    <li><span>🖥️</span><span><b>Если урок про настройку технической части — записи экрана.</b> Пошагово прямо на компьютере показываю, куда тыкнуть, чтобы настроить бота. Разберётся даже новичок.</span></li>
     <li><span>🔗</span><span><b>Все ссылки и инструкции:</b> куда надо зайти, чтобы что-то подключить, и что как сделать.</span></li>
-    <li><span>📑</span><span><b>Текстовые презентации</b> к урокам.</span></li>
-    <li><span>📊</span><span><b>Таблички аналитики</b> и шаблоны.</span></li>
-    <li><span>🧰</span><span><b>Все мои готовые инструменты</b>, которые я наработала за 4 года.</span></li>
+    <li><span>📑</span><span><b>Текстовые презентации к урокам</b>, которые у вас останутся навсегда как шпаргалки.</span></li>
+    <li><span>📊</span><span><b>Все мои таблички аналитики, шаблоны и другие готовые инструменты</b>, которые я наработала за 4 года.</span></li>
     <li><span>🤖</span><span><b>Мои промпты для ChatGPT и Claude</b>, которыми я пользуюсь сама. Они помогают:
       <ul class="sublist">
         <li>создать сценарии для роликов на миллионы просмотров</li>
@@ -938,14 +964,14 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
       <path d="M150 0 L150 60" fill="none" stroke="#b8f25a" stroke-width="3" stroke-dasharray="6 6"/>
       <path d="M150 0 C150 30 250 20 250 60" fill="none" stroke="#b8f25a" stroke-width="3" stroke-dasharray="6 6"/>
     </svg>
-    <div class="tree-heads"><div><span>🔥</span>Рилсы</div><div><span>⚙️</span>Техника</div><div><span>💸</span>Маркетинг</div></div>
+    <div class="tree-heads"><div><span>🔥</span>Рилсы</div><div><span>🤖</span>Свои боты</div><div><span>💸</span>Маркетинг</div></div>
   </div>
   <div class="tree-cards">
     <div><b>1. Рилсы.</b> Как делать залетающие рилсы и набирать аудиторию с нуля.</div>
-    <div><b>2. Техническая часть.</b> Как настраивать ботов, подключать платёжки в инстаграме и в телеграме.</div>
+    <div><b>2. Создание своих ботов.</b> Как настраивать ботов, подключать платёжки в инстаграме и в телеграме.</div>
     <div><b>3. Маркетинг.</b> Как создавать свои онлайн-продукты и писать автопрогревы и продающие цепочки сообщений, которые будут продавать за тебя.</div>
   </div>
-  <p>Я собрала всё это в одно обучение, в одну связку — 3 в 1. <b style="color:var(--lime)">Такого вы больше не найдёте ни у кого на рынке. Такого на рынке в принципе нет.</b> Этому никто не обучает. Потому что в действительности, если освоить эти навыки, это приносит много денег.</p>
+  <p>Я собрала всё это в одно обучение, в одну связку — 3 в 1. <b style="color:var(--lime)">Этому никто не обучает.</b> Потому что в действительности, если освоить эти навыки, это приносит много денег.</p>
 
   <div class="term">
     <div><div class="v">1,5 месяца</div><div class="k">обучение</div></div>
