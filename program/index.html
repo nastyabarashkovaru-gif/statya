@@ -369,7 +369,7 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 .toc-list li::before{content:counter(t);width:36px;height:36px;border-radius:50%;background:var(--pink);color:#fff;display:grid;place-items:center;font-weight:900;font-size:17px}
 
 .methods .method:nth-child(5){grid-column:1/-1}
-.hero h1{font-size:clamp(34px,9vw,54px);line-height:1.1}
+
 .mods{display:grid;gap:10px;margin:18px 0 6px}
 .mod{background:#fff;border:2px solid var(--ink);border-radius:20px;padding:0 16px;border-bottom:2px solid var(--ink)}
 .mod summary{display:grid;grid-template-columns:40px 1fr 30px;gap:12px;align-items:center;padding:14px 0;font-size:17px;font-weight:900;color:var(--ink);line-height:1.3}
@@ -414,51 +414,40 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
 .pay-n{font-size:24px;font-weight:900;color:var(--ink);margin-bottom:8px}
 .pay p{font-size:15px;line-height:1.5;margin:0}
 @media (max-width:560px){.pay{grid-template-columns:1fr}}
+
+.prog-hero{text-align:center;padding-block:44px 26px}
+.prog-fire{font-size:64px;line-height:1;margin:22px 0 4px}
+.prog-title{font-size:clamp(40px,12vw,84px)!important;line-height:.98!important;font-weight:900;letter-spacing:-.03em;text-transform:uppercase;color:#ff6a00!important;margin:6px 0 18px!important;text-shadow:3px 3px 0 var(--ink)}
+.prog-sub{font-size:16px;line-height:1.55;color:var(--muted);max-width:420px;margin:0 auto}
+.u-fire{text-decoration:underline;text-decoration-color:#ff6a00;text-decoration-thickness:3px;text-underline-offset:4px}
 .term .v{font-size:clamp(19px,5.4vw,28px);white-space:nowrap}.term > div{padding:14px 10px}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<header class="hero">
+<header class="hero prog-hero">
   <span class="eyebrow">Программа обучения</span>
-  <h1>«Просмотры <span class="money">+ деньги</span>»</h1>
-  <p class="sub">Обучение, где ты научишься делать залетающие рилсы, создашь свой продукт и настроишь автоворонку, которая продаёт за тебя каждый день.</p>
+  <div class="prog-fire">🔥</div>
+  <h1 class="prog-title">Просмотры<br>+ деньги</h1>
+  <p class="prog-sub">Где ты научишься делать залетающие рилсы, создашь свой продукт и настроишь автооплаты, которые будут приходить тебе каждый день.</p>
 </header>
-
-<h2>Это обучение — 3 в 1</h2>
-<div class="offer">
-  <div class="tree" role="img" aria-label="Схема: обучение включает рилсы, создание своих ботов и маркетинг">
-    <div class="tree-cloud"><svg viewBox="0 0 300 120" aria-hidden="true"><path d="M70 104 C30 104 18 72 44 60 C36 30 74 16 96 34 C108 6 168 4 180 34 C204 14 250 26 244 60 C278 66 276 104 236 104 Z" fill="#fff" stroke="#b8f25a" stroke-width="4" stroke-linejoin="round"/></svg><span>«Просмотры<br>+ деньги»</span></div>
-    <svg class="tree-lines" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M150 0 C150 30 50 20 50 60" fill="none" stroke="#b8f25a" stroke-width="3" stroke-dasharray="6 6"/>
-      <path d="M150 0 L150 60" fill="none" stroke="#b8f25a" stroke-width="3" stroke-dasharray="6 6"/>
-      <path d="M150 0 C150 30 250 20 250 60" fill="none" stroke="#b8f25a" stroke-width="3" stroke-dasharray="6 6"/>
-    </svg>
-    <div class="tree-heads"><div><span>🔥</span>Рилсы</div><div><span>🤖</span>Свои боты</div><div><span>💸</span>Маркетинг</div></div>
-  </div>
-  <div class="tree-cards">
-    <div><b>1. Рилсы.</b> Как делать залетающие рилсы и набирать аудиторию с нуля.</div>
-    <div><b>2. Создание своих ботов.</b> Как настраивать ботов, подключать платёжки в инстаграме и в телеграме.</div>
-    <div><b>3. Маркетинг.</b> Как создавать свои онлайн-продукты и писать автопрогревы и продающие цепочки сообщений, которые будут продавать за тебя.</div>
-  </div>
-</div>
 
 <h2>Кому подойдёт</h2>
 <div class="who">
   <div><div class="ic">💼</div><div><h4>Эксперту и специалисту</h4><p>Который продаёт свои услуги и хочет получать больше клиентов с инстаграма.</p></div></div>
-  <div><div class="ic">📦</div><div><h4>Тому, кто хочет свой продукт</h4><p>Создать свой онлайн-продукт и зарабатывать на нём каждый день. В том числе новичкам и тем, кто в найме.</p></div></div>
-  <div><div class="ic">🎬</div><div><h4>Рилсмейкеру и СММ-специалисту</h4><p>Который хочет давать клиентам сильные результаты в охватах и продажах и брать другой чек.</p></div></div>
+  <div><div class="ic">🌱</div><div><h4>Новичку</h4><p>Который хочет выйти в онлайн-доход.</p></div></div>
+  <div><div class="ic">🎬</div><div><h4>Рилсмейкеру и СММ-специалисту</h4><p>Который хочет давать клиентам реальные результаты в виде денег.</p></div></div>
 </div>
 
 <div class="callout">
-  <p><b>Этот курс для тебя, если:</b></p>
+  <p><b>Эта программа обучения для тебя, если:</b></p>
   <ul class="ticks">
-    <li>ты уже пробовала снимать рилсы, но оплат либо нет, либо они случайные</li>
+    <li>ты не знаешь, какой продукт создать и как сделать воронку</li>
+    <li>уже пробовала снимать рилсы, но оплат либо нет, либо они случайные</li>
     <li>не понимаешь, какие рилсы приводят деньги, а не просто просмотры</li>
     <li>тебе сложно придумать, что снимать именно тебе, и ты выкладываешь контент хаотично</li>
     <li>устала «заставлять себя» снимать и хочешь делать контент легко, регулярно и без выгорания</li>
-    <li>не знаешь, какой продукт создать и как сделать воронку</li>
     <li>хочешь продавать скрытно, чтоб оплаты капали каждый день, а клиенты сами к тебе записывались</li>
     <li>хочешь получать мою личную обратную связь по каждому шагу</li>
   </ul>
@@ -548,13 +537,16 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
     <div class="fmt-ic">🎬</div>
     <h4>Записанные уроки</h4>
     <p>По шагам: какие рилсы снимать, как создать продукт, как написать автопрогрев, как настроить бота, как подключить платёжку. Техническую часть показываю на записи экрана, куда тыкнуть. Разберётся даже новичок.</p>
-    <p>Плюс текстовые презентации-шпаргалки, таблички аналитики, шаблоны, мои промпты для ChatGPT и Claude. <b>Доступ навсегда.</b></p>
+    <p>Плюс текстовые презентации-шпаргалки, таблички аналитики, шаблоны, мои промпты для ChatGPT и Claude.</p>
+    <p><b>Доступ к записанным урокам, всем материалам и презентациям — навсегда.</b></p>
   </div>
   <div class="fmt-plus">+</div>
   <div class="fmt-card hot">
     <div class="fmt-ic">💬</div>
-    <h4>Моя личная обратная связь</h4>
-    <p>Я работаю лично с каждым. Говорю, какие рилсы снимать, как это делать, какой продукт лучше создать.</p>
+    <h4><span class="u-fire">🔥 Моя личная обратная связь</span></h4>
+    <p><b>С вами работают не какие-то кураторы, а лично я.</b> Ежедневно, индивидуально с каждым.</p>
+    <p>Провожу вас за ручку от и до. По всей программе. До результата.</p>
+    <p>Проверяю каждое домашнее задание. Даю свои правки. Подсказываю, какие рилсы снимать и как именно это делать. Какой продукт лучше создать. Как докрутить смыслы в воронке, как повысить конверсии — и всё-всё-всё, что нужно для хорошего результата.</p>
   </div>
 </div>
 
@@ -586,13 +578,13 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
   <div><span>🎯</span>знаешь, что снимать себе или клиенту</div>
   <div><span>🎞️</span>выбрала свои форматы рилс</div>
   <div><span>⚡</span>снимаешь быстро и стабильно</div>
-  <div><span>🤖</span>умеешь пользоваться ChatGPT</div>
-  <div><span>📦</span>имеешь продукт за 499 ₽ и продукт подороже (1 500–5 000 ₽)</div>
-  <div><span>🧲</span>выстроила воронку на продукты и воронку на услуги</div>
+  <div><span>🤖</span>умеешь на 200% использовать ChatGPT и Claude</div>
+  <div><span>📦</span>создала и упаковала свои продукты</div>
+  <div><span>🧲</span>выстроила автоворонку, автоматически прогревающую на покупку или заявку</div>
   <div><span>🛠️</span>технически всё настроила: бот, оплаты, подписки</div>
   <div><span>✍️</span>прописала маркетинговые автопрогревы</div>
   <div><span>💸</span>регулярно получаешь автооплаты с продуктов и заявки на услуги</div>
-  <div><span>🔥</span>делаешь по несколько рилс в день с азартом и без выгорания</div>
+  <div><span>🔥</span>делаешь контент быстро, с азартом и без выгорания</div>
 </div>
 <p>И главное: у тебя будет не только готовая автоворонка, но и <span class="mark">навык создавать такие воронки в каком угодно количестве, в любом проекте и нише.</span></p>
 
@@ -607,7 +599,7 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
     <ul class="price-inc">
       <li>6 модулей + бонусы</li>
       <li>записанные уроки, доступ навсегда</li>
-      <li>моя личная обратная связь по каждой домашке</li>
+      <li>моя личная ежедневная обратная связь</li>
       <li>1,5 месяца обучения + 2 недели на связи</li>
     </ul>
   </div>
