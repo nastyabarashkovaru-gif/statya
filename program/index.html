@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Программа «Просмотры + деньги»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800;900&family=Caveat:wght@600;700&display=swap">
+<style>
+/* Лонгрид в колонку, как у Корытина: белый лист, жирная гротескная типографика, розовые и салатовые маркеры-выделения, скрины как «вклейки» */
+:root{
+  --paper:#fffafc;
+  --ink:#1f1420;
+  --text:#4a3d4b;
+  --muted:#6f5a6c;
+  --pink:#ff4fa3;
+  --pink-soft:#ffe0ef;
+  --pink-deep:#d6267a;
+  --lime:#b8f25a;
+  --lime-soft:#efffd6;
+  --lime-deep:#4f8a00;
+  --line:#f1d3e2;
+  --f-body:"Onest","TildaSans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --f-hand:"Caveat","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--text);font-family:var(--f-body);font-size:18px;line-height:1.7;padding-inline:16px;padding-block:0 48px}
+h1,h2,h3,b,strong,.shout,.big{color:var(--ink)}
+.wrap{max-width:680px;margin:0 auto}
+p{margin:0 0 1.3em}
+b,strong{font-weight:800}
+s{color:var(--muted)}
+h2{font-size:clamp(26px,6vw,36px);line-height:1.15;font-weight:900;letter-spacing:-.02em;margin:1.6em 0 .6em;text-wrap:balance}
+h3{font-size:22px;line-height:1.25;font-weight:800;margin:1.4em 0 .5em;text-wrap:balance}
+.mark{background:linear-gradient(transparent 55%,var(--lime) 55%);padding:0 .1em}
+.mark-pink{background:linear-gradient(transparent 55%,var(--pink-soft) 55%);padding:0 .1em}
+.caps{text-transform:uppercase;letter-spacing:.02em}
+
+/* hero */
+.hero{padding-block:40px 24px}
+.eyebrow{display:inline-block;background:var(--ink);color:var(--lime);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:999px;line-height:1.35}
+.hero h1{font-size:clamp(25px,6.2vw,38px);line-height:1.28;font-weight:800;letter-spacing:-.005em;margin:24px 0 20px;text-wrap:pretty;color:var(--ink)}
+.hero h1 em{font-style:normal;color:var(--pink-deep)}
+.hero h1 .money{background:var(--lime);padding:0 .2em;border-radius:6px;white-space:nowrap;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hero h1 .caps-acc{color:var(--pink-deep)}
+.sub{font-size:20px;font-weight:500;color:var(--muted);border-left:4px solid var(--pink);padding-left:16px}
+
+/* dialog */
+.dialog{display:flex;flex-direction:column;gap:6px;margin:18px 0 22px}
+.msg{max-width:78%;padding:9px 14px;border-radius:18px;font-size:17px;line-height:1.35}
+.msg.in{background:#fff;border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:6px}
+.msg.out{background:var(--pink);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
+
+/* big number */
+.big{font-size:clamp(44px,12vw,76px);font-weight:900;letter-spacing:-.03em;line-height:1;color:var(--pink-deep);margin:10px 0 6px;font-variant-numeric:tabular-nums}
+.stack-lines p{margin:0 0 .25em}
+
+/* screenshots */
+figure.shot{margin:22px auto 26px;max-width:420px}
+figure.shot.wide{max-width:560px}
+figure.shot img{display:block;width:100%;border-radius:18px;border:1px solid var(--line);box-shadow:0 10px 30px -14px rgba(214,38,122,.35)}
+figure.shot figcaption{font-family:var(--f-hand);font-size:22px;color:var(--pink-deep);text-align:center;margin-top:8px;line-height:1.2}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0 26px}
+.shots figure.shot{margin:0;max-width:none}
+@media (max-width:520px){.shots{grid-template-columns:1fr}}
+.todo{border:2px dashed var(--pink);border-radius:18px;padding:22px 18px;text-align:center;color:var(--pink-deep);font-weight:700;background:var(--pink-soft);margin:22px 0;font-size:15px}
+
+/* callouts */
+.callout{background:var(--pink-soft);border-radius:22px;padding:22px 22px 10px;margin:26px 0}
+.callout.lime{background:var(--lime-soft)}
+.callout.dark{background:var(--ink);color:#fff}
+.callout.dark{color:#f3e9f1}
+.callout.dark .shout{color:#fff}
+.callout.dark .mark{background:none;color:var(--lime);padding:0}
+.shout{font-size:clamp(22px,5.6vw,30px);font-weight:900;line-height:1.15;letter-spacing:-.01em;text-transform:uppercase;margin:0 0 .5em}
+.shout .pink{color:var(--pink)}
+
+/* lists */
+ul.ticks,ul.cross,ul.chips{list-style:none;padding:0;margin:0 0 1em}
+ul.ticks li,ul.cross li{position:relative;padding-left:34px;margin-bottom:.55em}
+ul.ticks li::before{content:"✔";position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--lime);color:var(--ink);font-size:13px;font-weight:900;display:grid;place-items:center;margin-top:3px}
+ul.cross li::before{content:"✕";position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--pink);color:#fff;font-size:13px;font-weight:900;display:grid;place-items:center;margin-top:3px}
+ul.chips{display:flex;flex-wrap:wrap;gap:8px}
+ul.chips li{background:#fff;border:2px solid var(--lime);border-radius:999px;padding:6px 14px;font-weight:700;font-size:16px}
+
+/* method steps */
+.step{display:grid;grid-template-columns:56px 1fr;gap:14px;margin:26px 0}
+.step .n{width:56px;height:56px;border-radius:16px;background:var(--pink);color:#fff;font-weight:900;font-size:28px;display:grid;place-items:center}
+.step > div{min-width:0}
+.step h3{margin-top:10px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.vs > div{border-radius:16px;padding:14px;font-size:16px;line-height:1.4;min-width:0}
+.vs .bad{background:#f4eef2;color:var(--muted)}
+.vs .good{background:var(--lime-soft);border:2px solid var(--lime)}
+.vs .tag{display:block;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.vs .res{display:block;margin-top:12px;padding-top:10px;border-top:1px dashed currentColor;font-size:15px;font-weight:900;text-transform:uppercase;letter-spacing:.05em}
+.vs .good .res{color:var(--lime-deep)}
+figure.shot video{display:block;width:100%;border-radius:18px;border:1px solid var(--line);background:#000}
+@media (max-width:520px){.vs{grid-template-columns:1fr}}
+
+/* quotes */
+blockquote{margin:22px 0;padding:18px 20px;border-radius:20px;background:#fff;border:2px solid var(--pink);font-size:20px;font-weight:600;line-height:1.4;position:relative}
+blockquote::before{content:"“";position:absolute;top:-22px;left:14px;font-size:64px;color:var(--pink);font-weight:900;line-height:1}
+
+/* memes */
+.meme{margin:30px auto;max-width:440px;border-radius:20px;overflow:hidden;border:3px solid var(--ink);background:#fff;transform:rotate(-1.2deg)}
+.meme.r{transform:rotate(1.2deg)}
+.meme .row{display:grid;grid-template-columns:1fr 92px;align-items:center;border-bottom:3px solid var(--ink)}
+.meme .row:last-child{border-bottom:0}
+.meme .txt{padding:14px 16px;font-weight:800;font-size:17px;line-height:1.3}
+.meme .pic{font-size:52px;text-align:center;align-self:stretch;display:grid;place-items:center;border-left:3px solid var(--ink)}
+.meme .row:nth-child(1) .pic{background:var(--pink-soft)}
+.meme .row:nth-child(2) .pic{background:var(--lime-soft)}
+.meme .label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--pink-deep);margin-bottom:2px}
+.meme-cap{text-align:center;font-family:var(--f-hand);font-size:21px;color:var(--muted);margin-top:-18px;margin-bottom:24px}
+@media (prefers-reduced-motion:reduce){.meme{transform:none}}
+
+/* paths */
+.path{border-radius:22px;padding:22px 22px 8px;margin:18px 0;border:2px solid var(--line);background:#fff}
+.path .pnum{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.path h3{margin-top:4px}
+.path.p1{border-color:#e7dce3}
+.path.p3{border-color:var(--pink);background:var(--pink-soft)}
+
+/* offer */
+.offer{background:var(--ink);color:#fff;border-radius:28px;padding:28px 22px 14px;margin:30px 0}
+.offer h2{color:#fff;margin-top:0}
+.offer h2 span{color:var(--lime)}
+.offer h3{color:var(--lime)}
+.offer ul.ticks li::before{background:var(--lime)}
+.gift{background:var(--pink);border-radius:16px;padding:14px 16px;font-weight:800;margin:16px 0}
+ol.flow{counter-reset:f;list-style:none;padding:0;margin:0 0 1em}
+ol.flow li{counter-increment:f;position:relative;padding:0 0 14px 46px;border-left:2px dashed var(--pink);margin-left:15px}
+ol.flow li:last-child{border-left-color:transparent}
+ol.flow li::before{content:counter(f);position:absolute;left:-16px;top:-2px;width:30px;height:30px;border-radius:50%;background:var(--lime);color:var(--ink);font-weight:900;display:grid;place-items:center;font-size:15px}
+ol.flow b{color:var(--lime)}
+.term{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.term div{background:#2e2230;border-radius:16px;padding:14px;min-width:0}
+.term .v{font-size:30px;font-weight:900;color:var(--lime);line-height:1.1}
+.term .k{font-size:14px;color:#d9c8d6}
+
+/* scarcity + cta */
+.cta-box{border:3px solid var(--ink);border-radius:28px;padding:24px 20px;margin:32px 0;background:var(--lime-soft);text-align:center}
+.cta-box p{text-align:left}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:800;font-size:15px;margin-bottom:14px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--pink);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+.btn{display:inline-block;background:var(--pink);color:#fff;text-decoration:none;font-weight:900;font-size:19px;text-transform:uppercase;letter-spacing:.03em;padding:18px 30px;border-radius:999px;box-shadow:0 6px 0 var(--pink-deep);transition:transform .12s,box-shadow .12s;margin:8px 0 6px;text-align:center}
+.btn:hover{transform:translateY(2px);box-shadow:0 4px 0 var(--pink-deep)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.btn-note{font-size:14px;color:var(--muted);text-align:center!important;margin-top:8px}
+
+/* objections */
+details{border-bottom:2px solid var(--line);padding:4px 0}
+details summary{cursor:pointer;list-style:none;font-weight:800;font-size:19px;padding:14px 40px 14px 0;position:relative}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";position:absolute;right:4px;top:8px;width:30px;height:30px;border-radius:50%;background:var(--lime);display:grid;place-items:center;font-weight:900}
+details[open] summary::after{content:"–";background:var(--pink);color:#fff}
+details p{margin-bottom:1em}
+
+.ps{margin:30px 0;padding-top:6px}
+.ps h3{font-family:var(--f-hand);font-size:32px;color:var(--pink-deep);margin:1.2em 0 .2em}
+
+hr.sep{border:0;height:24px;margin:34px 0;background:radial-gradient(circle,var(--pink) 3px,transparent 4px) center/28px 24px repeat-x}
+
+footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
+
+/* ===== v2: обучение «Просмотры + деньги» ===== */
+.lead-num{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 28px}
+.lead-num div{background:#fff;border:2px solid var(--ink);border-radius:18px;padding:14px 12px;min-width:0}
+.lead-num .v{font-size:clamp(20px,5vw,28px);font-weight:900;color:var(--pink-deep);line-height:1.1;font-variant-numeric:tabular-nums}
+.lead-num .k{font-size:13px;line-height:1.35;color:var(--muted);margin-top:4px}
+@media (max-width:520px){.lead-num{grid-template-columns:1fr}}
+
+/* монетизация */
+.methods{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0 28px}
+.method{background:#fff;border:2px solid var(--line);border-radius:20px;padding:16px 16px 12px;min-width:0}
+.method h4{margin:0 0 10px;font-size:19px;font-weight:900;color:var(--ink);line-height:1.2}
+.method .meter{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.method .meter span:first-child{width:74px;flex:none}
+.dots{display:flex;gap:4px}
+.dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--ink);background:#fff}
+.dots i.on{background:var(--pink)}
+.method p{font-size:15px;line-height:1.5;margin:8px 0 0}
+.method .plus{color:var(--lime-deep);font-weight:900}
+.method .minus{color:var(--pink-deep);font-weight:900}
+.method.win{grid-column:1/-1;background:var(--lime-soft);border:3px solid var(--ink);position:relative}
+.method.win .dots i.on{background:var(--lime);}
+.method.win .crown{position:absolute;top:-16px;right:16px;background:var(--ink);color:var(--lime);font-weight:900;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:999px;transform:rotate(3deg)}
+@media (max-width:560px){.methods{grid-template-columns:1fr}}
+
+/* 5 шагов */
+.funnel{margin:26px 0 30px;background:#fff;border:3px solid var(--ink);border-radius:28px;padding:20px 14px 8px}
+.funnel-title{font-family:var(--f-hand);font-size:30px;color:var(--pink-deep);text-align:center;margin:0 0 6px;line-height:1.1}
+.fstep{display:grid;grid-template-columns:108px 1fr;gap:12px;align-items:center}
+.fstep > div{min-width:0}
+.fstep svg{width:108px;height:auto;display:block}
+.fstep .fn{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--pink);color:#fff;font-weight:900;font-size:15px;margin-bottom:6px}
+.fstep h4{margin:0 0 4px;font-size:17px;hyphens:auto;font-weight:900;color:var(--ink);line-height:1.25}
+.fstep p{margin:0;font-size:15px;line-height:1.5}
+.farrow{display:block;margin:2px 0 2px 32px;width:46px;height:40px}
+.ink{stroke:var(--ink);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.fill-w{fill:#fff}.fill-p{fill:var(--pink)}.fill-ps{fill:var(--pink-soft)}.fill-l{fill:var(--lime)}.fill-ls{fill:var(--lime-soft)}.fill-i{fill:var(--ink)}.fill-y{fill:#ffd84d}
+.svgtxt{font-family:var(--f-body);font-weight:900}
+@keyframes floatUp{0%{transform:translateY(8px);opacity:0}30%{opacity:1}100%{transform:translateY(-14px);opacity:0}}
+@keyframes popIn{0%,10%{transform:scale(.6);opacity:0}25%,100%{transform:scale(1);opacity:1}}
+@keyframes tap{0%,100%{transform:translate(0,0)}50%{transform:translate(-4px,-6px)}}
+@keyframes drop{0%{transform:translateY(-26px);opacity:0}25%{opacity:1}60%,100%{transform:translateY(0);opacity:1}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.a-float{animation:floatUp 2.4s ease-in-out infinite;transform-box:fill-box}
+.a-float.d2{animation-delay:1.2s}
+.a-pop{animation:popIn 3.6s ease-out infinite;transform-box:fill-box;transform-origin:left center}
+.a-pop.d2{animation-delay:.35s}.a-pop.d3{animation-delay:.7s}
+.a-tap{animation:tap 1.4s ease-in-out infinite;transform-box:fill-box}
+.a-drop{animation:drop 2.4s ease-out infinite;transform-box:fill-box}
+.a-drop.d2{animation-delay:.4s}.a-drop.d3{animation-delay:.8s}
+.a-blink{animation:blink 1.2s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.a-float,.a-pop,.a-tap,.a-drop,.a-blink{animation:none}}
+
+/* нужно / не нужно */
+.need{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0 28px}
+.need > div{border-radius:22px;padding:18px 16px 8px;min-width:0}
+.need .yes{background:var(--lime-soft);border:3px solid var(--ink)}
+.need .no{background:#f4eef2;border:2px dashed var(--muted)}
+.need h4{margin:0 0 12px;font-size:16px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--ink)}
+.need ul{list-style:none;padding:0;margin:0}
+.need li{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;font-size:16px;line-height:1.4}
+.need li .ic{font-size:24px;line-height:1;flex:none}
+.need .no li{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--pink);text-decoration-thickness:2px}
+@media (max-width:560px){.need{grid-template-columns:1fr}}
+
+/* разрешение */
+.cert{position:relative;max-width:420px;margin:28px auto 8px;background:#fffdf5;border:3px double var(--ink);border-radius:6px;padding:22px 20px 18px;transform:rotate(-1.5deg);box-shadow:6px 6px 0 var(--pink-soft)}
+.cert .ct{font-weight:900;text-align:center;text-transform:uppercase;letter-spacing:.06em;font-size:15px;color:var(--ink);line-height:1.3}
+.cert .cs{text-align:center;font-size:13px;color:var(--muted);margin:4px 0 14px}
+.cert .row{display:flex;gap:8px;font-size:14px;margin-bottom:8px;color:var(--muted)}
+.cert .row span:last-child{flex:1;border-bottom:1.5px solid var(--muted)}
+.cert .stamp{position:absolute;right:12px;bottom:18px;transform:rotate(-14deg);border:4px solid var(--pink);color:var(--pink);font-weight:900;font-size:22px;padding:4px 10px;border-radius:10px;letter-spacing:.04em;background:rgba(255,255,255,.6)}
+@media (prefers-reduced-motion:reduce){.cert{transform:none}}
+
+/* до/после + таймлайн */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}
+.ba > div{border-radius:20px;padding:16px;min-width:0;text-align:center}
+.ba .b{background:#f4eef2}
+.ba .a{background:var(--pink);color:#fff}
+.ba .lab{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;opacity:.8}
+.ba .num{font-size:clamp(24px,6vw,34px);font-weight:900;line-height:1.1;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.ba .b .num{color:var(--ink)}
+.ba .a .num{color:#fff}
+.ba .cap{font-size:14px;line-height:1.35}
+.timeline{list-style:none;padding:0;margin:24px 0 28px;position:relative}
+.timeline::before{content:"";position:absolute;left:15px;top:6px;bottom:6px;border-left:3px dashed var(--pink)}
+.timeline li{position:relative;padding:0 0 18px 46px}
+.timeline li::before{content:"";position:absolute;left:5px;top:4px;width:20px;height:20px;border-radius:50%;background:var(--lime);border:3px solid var(--ink)}
+.timeline li.last::before{background:var(--pink)}
+.timeline b{display:block;font-size:17px}
+.timeline span{font-size:16px}
+
+/* кому подходит */
+.who{display:grid;gap:12px;margin:22px 0 28px}
+.who > div{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:start;background:#fff;border:2px solid var(--line);border-radius:20px;padding:16px}
+.who > div > div{min-width:0}
+.who .ic{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:28px;background:var(--pink-soft)}
+.who > div:nth-child(2) .ic{background:var(--lime-soft)}
+.who h4{margin:2px 0 4px;font-size:18px;font-weight:900;color:var(--ink);line-height:1.25}
+.who p{margin:0;font-size:15px;line-height:1.5}
+
+.program{list-style:none;padding:0;margin:0 0 1em;display:grid;gap:10px}
+.program li{background:#2e2230;border-radius:16px;padding:12px 14px;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;color:#f3e9f1;font-size:16px;line-height:1.45}
+.program li > span:first-child{font-size:22px;line-height:1.2}
+.program b{color:#fff}
+.offer .personal{border:2px dashed var(--lime);border-radius:18px;padding:16px 16px 4px;margin:18px 0}
+.offer .personal p{color:#f3e9f1}
+.offer p{color:#e9dde7}
+.placeholder{background:#fff3c4;border-radius:4px;padding:0 .3em;color:var(--ink);font-weight:800}
+
+/* карусель отзывов */
+.rv{margin:22px 0 30px}
+.rv-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.rv-tab{font:inherit;font-size:14px;font-weight:800;border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:7px 11px;cursor:pointer;line-height:1.2}
+.rv-tab span{display:inline-block;min-width:22px;padding:0 6px;border-radius:999px;background:var(--pink-soft);font-size:13px;margin-left:4px}
+.rv-tab.on{background:var(--ink);color:#fff}
+.rv-tab.on span{background:var(--lime);color:var(--ink)}
+.rv-tab:focus-visible,.rv-btn:focus-visible,.rv-track:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+.rv-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 4px;padding:4px 4px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rv-track::-webkit-scrollbar{display:none}
+.rv-card{flex:0 0 84%;max-width:420px;scroll-snap-align:start;margin:0;background:#fff;border:2px solid var(--ink);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.rv-img{background:#111;display:flex;align-items:center;justify-content:center;height:min(62vh,440px)}
+.rv-img img{max-width:100%;max-height:100%;width:auto;height:auto;display:block;object-fit:contain}
+.rv-card figcaption{padding:12px 14px 14px;font-weight:800;font-size:15px;line-height:1.35;color:var(--ink);border-top:2px solid var(--ink);background:var(--lime-soft);flex:1}
+.rv-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:4px}
+.rv-btn{width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--pink);color:#fff;font-size:20px;font-weight:900;cursor:pointer;box-shadow:0 3px 0 var(--pink-deep)}
+.rv-btn:disabled{background:#eee;color:#aaa;box-shadow:none;cursor:default}
+.rv-count{font-weight:800;font-variant-numeric:tabular-nums;min-width:64px;text-align:center}
+.rv-hint{text-align:center;font-family:var(--f-hand);font-size:22px;color:var(--muted);margin:6px 0 0}
+@media (min-width:700px){.rv-card{flex-basis:48%}}
+
+.play-hint{font-family:var(--f-hand);font-size:24px;color:var(--pink-deep);text-align:center;margin:0 0 -6px;line-height:1.2}
+.dorm{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 26px;max-width:520px;margin-inline:auto}
+.dorm figure{margin:0;min-width:0}
+.dorm img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:14px;border:2px solid var(--ink);display:block}
+.dorm figure:nth-child(1){grid-column:1/-1}
+.dorm figure:nth-child(1) img{aspect-ratio:16/9;object-position:center 70%}
+.dorm figcaption{font-family:var(--f-hand);font-size:21px;color:var(--pink-deep);text-align:center;line-height:1.1;margin-top:4px}
+.dorm figure:nth-child(2){transform:rotate(1.5deg)}
+.dorm figure:nth-child(3){transform:rotate(-1.5deg)}
+@media (prefers-reduced-motion:reduce){.dorm figure{transform:none}}
+
+/* кейсы старт/итог */
+.case{border:2px solid var(--ink);border-radius:22px;overflow:hidden;margin:26px 0 14px;background:#fff}
+.case-who{background:var(--ink);color:#fff;font-weight:900;font-size:17px;padding:12px 16px}
+.case-row{display:grid;grid-template-columns:70px 1fr;gap:12px;padding:14px 16px;align-items:start}
+.case-row > p{margin:0;min-width:0;font-size:16px;line-height:1.5}
+.case-row > span{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;border-radius:999px;padding:5px 0;text-align:center;margin-top:2px}
+.case-row.st{background:#f4eef2}
+.case-row.st > span{background:#fff;color:var(--muted);border:2px solid var(--muted)}
+.case-row.it{background:var(--lime-soft);border-top:2px dashed var(--ink)}
+.case-row.it > span{background:var(--lime);color:var(--ink);border:2px solid var(--ink)}
+.behind{background:var(--ink);color:#f3e9f1;border-radius:28px;padding:24px 18px 10px;margin:34px 0 20px}
+.behind h2{color:#fff;margin-top:4px}
+.behind p{color:#e9dde7}
+.behind-eyebrow{display:inline-block;background:var(--lime);color:var(--ink)!important;font-weight:900;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin:0}
+.behind .case{border-color:var(--lime)}
+.behind .case-who{background:var(--pink)}
+.behind .case-row p{color:var(--text)}
+.behind .case-row.it p b,.behind .case-row p b{color:var(--ink)}
+.tickline{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;font-weight:700}
+.tickline .tk{width:26px;height:26px;border-radius:50%;background:var(--lime);border:2px solid var(--ink);display:grid;place-items:center;font-weight:900;font-size:14px;color:var(--ink);margin-top:2px}
+.callout-mini{background:var(--lime-soft);border:2px dashed var(--ink);border-radius:18px;padding:14px 16px}
+.cta-scarcity{display:inline-block;background:#fff;border:2px solid var(--ink);border-radius:16px;padding:10px 14px;font-weight:700;font-size:15px;line-height:1.4;text-align:center!important}
+
+.mark,.mark-pink{-webkit-box-decoration-break:clone;box-decoration-break:clone}
+
+.program .sublist{list-style:none;padding:6px 0 0;margin:0;display:grid;gap:4px}
+.program .sublist li{display:block;background:none;padding:0 0 0 18px;position:relative;font-size:15px;color:#e9dde7}
+.program .sublist li::before{content:"→";position:absolute;left:0;color:var(--lime);font-weight:900}
+.tree{margin:10px auto 6px;max-width:420px;text-align:center}
+.tree-cloud{position:relative;width:240px;max-width:80%;margin:0 auto}
+.tree-cloud svg{display:block;width:100%;height:auto}
+.tree-cloud span{position:absolute;inset:18% 0 0 0;display:grid;place-items:center;font-weight:900;font-size:18px;line-height:1.15;color:#1f1420}
+.tree-lines{display:block;width:100%;height:46px}
+.tree-heads{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tree-heads div{background:var(--pink);color:#fff;font-weight:900;border-radius:16px;padding:10px 4px;font-size:14px;line-height:1.2;min-width:0;border:2px solid #fff}
+.tree-heads span{display:block;font-size:24px;margin-bottom:4px}
+.tree-cards{display:grid;gap:8px;margin:14px 0 16px}
+.tree-cards div{background:#2e2230;border-left:4px solid var(--lime);border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.5;color:#f3e9f1}
+.tree-cards b{color:#fff}
+
+.shots.three{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:8px;scrollbar-width:none}
+.shots.three::-webkit-scrollbar{display:none}
+.shots.three .shot{flex:0 0 72%;max-width:300px;scroll-snap-align:start}
+.shots.three .shot img{aspect-ratio:auto;object-fit:contain}
+.behind .shot figcaption{color:var(--lime)}
+.swipe-hint{font-family:var(--f-hand);font-size:20px;color:var(--lime);text-align:center;margin:0}
+
+.toc{background:#fff;border:3px solid var(--ink);border-radius:22px;padding:18px 18px 4px;margin:6px 0 30px;box-shadow:6px 6px 0 var(--lime)}
+.toc-title{font-weight:900;font-size:19px;color:var(--ink);margin:0 0 12px}
+.toc ul.ticks li{font-size:16px;line-height:1.45;margin-bottom:.6em}
+.laser-row{display:grid;grid-template-columns:130px 1fr;gap:16px;align-items:center;margin:22px 0 14px}
+.laser-row > div{min-width:0}
+.laser-row img{width:130px;border-radius:14px;border:2px solid var(--ink);display:block}
+.laser-row p{margin:0 0 .6em;font-size:16px;line-height:1.45}
+.laser-res{font-weight:900;font-size:22px!important;line-height:1.2!important;color:var(--lime-deep)}
+
+.toc{background:var(--ink);border:0;box-shadow:6px 6px 0 var(--pink);padding:22px 18px 14px}
+.toc-title{color:#fff;font-size:clamp(22px,6vw,28px);text-transform:uppercase;letter-spacing:.01em;line-height:1.15;display:flex;align-items:center;gap:10px}
+.toc-fire{font-size:40px;line-height:1}
+.toc-list{list-style:none;counter-reset:t;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.toc-list li{counter-increment:t;display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:center;background:var(--lime);color:var(--ink);font-weight:800;font-size:17px;line-height:1.3;border-radius:16px;padding:12px 14px}
+.toc-list li::before{content:counter(t);width:36px;height:36px;border-radius:50%;background:var(--pink);color:#fff;display:grid;place-items:center;font-weight:900;font-size:17px}
+
+.methods .method:nth-child(5){grid-column:1/-1}
+.hero h1{font-size:clamp(34px,9vw,54px);line-height:1.1}
+.mods{display:grid;gap:10px;margin:18px 0 6px}
+.mod{background:#fff;border:2px solid var(--ink);border-radius:20px;padding:0 16px;border-bottom:2px solid var(--ink)}
+.mod summary{display:grid;grid-template-columns:40px 1fr 30px;gap:12px;align-items:center;padding:14px 0;font-size:17px;font-weight:900;color:var(--ink);line-height:1.3}
+.mod summary::after{position:static;top:auto;right:auto}
+.mod .mn{width:40px;height:40px;border-radius:12px;background:var(--pink);color:#fff;display:grid;place-items:center;font-weight:900;font-size:18px}
+.mod.bonus{background:var(--lime-soft)}
+.mod.bonus .mn{background:var(--lime);font-size:20px}
+.mod ul.ticks li{font-size:16px;line-height:1.45}
+.mod p{font-size:16px}
+.fmt{display:grid;grid-template-columns:1fr 40px 1fr;gap:8px;align-items:stretch;margin:18px 0 22px}
+.fmt-card{background:#fff;border:2px solid var(--ink);border-radius:22px;padding:16px;min-width:0}
+.fmt-card.hot{background:var(--pink-soft);border-width:3px}
+.fmt-card h4{margin:6px 0 8px;font-size:18px;font-weight:900;color:var(--ink)}
+.fmt-card p{font-size:15px;line-height:1.5;margin:0 0 .7em}
+.fmt-ic{font-size:30px}
+.fmt-plus{display:grid;place-items:center;font-size:34px;font-weight:900;color:var(--pink-deep)}
+@media (max-width:600px){.fmt{grid-template-columns:1fr}.fmt-plus{height:20px}}
+.center-cap{text-align:center;font-family:var(--f-hand);font-size:24px;color:var(--pink-deep);margin:0 0 8px}
+.loop{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:0;counter-reset:l}
+.loop li{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;position:relative;padding:8px 0}
+.loop li span{width:48px;height:48px;border-radius:50%;background:var(--lime);border:2px solid var(--ink);display:grid;place-items:center;font-size:22px;position:relative;z-index:1}
+.loop li b{font-size:17px;color:var(--ink)}
+.loop li:not(:last-child)::after{content:"";position:absolute;left:23px;top:52px;height:24px;border-left:3px dashed var(--pink)}
+.loop li:last-child span{background:var(--pink)}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 22px}
+.res-grid div{background:#fff;border:2px solid var(--line);border-radius:16px;padding:12px;font-size:15px;line-height:1.4;font-weight:600;color:var(--ink);min-width:0}
+.res-grid span{display:block;font-size:24px;margin-bottom:4px}
+@media (max-width:420px){.res-grid{grid-template-columns:1fr}}
+.price{border:3px solid var(--ink);border-radius:28px;overflow:hidden;margin:18px 0 26px;box-shadow:8px 8px 0 var(--lime)}
+.price-top{background:var(--ink);color:#fff;padding:20px 18px 10px}
+.price-top h3{color:#fff;margin:10px 0 10px;font-size:24px}
+.price-tag{display:inline-block;background:var(--lime);color:var(--ink);font-weight:900;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+.price-inc{list-style:none;padding:0;margin:0 0 6px}
+.price-inc li{position:relative;padding-left:26px;margin-bottom:6px;font-size:16px;color:#f3e9f1}
+.price-inc li::before{content:"✔";position:absolute;left:0;color:var(--lime);font-weight:900}
+.price-main{background:#fff;text-align:center;padding:22px 16px}
+.price-old{font-size:24px;font-weight:800;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--pink);text-decoration-thickness:3px}
+.price-now{font-size:clamp(46px,13vw,64px);font-weight:900;color:var(--pink-deep);line-height:1.05;margin:4px 0 10px;font-variant-numeric:tabular-nums}
+.price-cond{display:inline-block;background:var(--lime);border:2px solid var(--ink);border-radius:999px;padding:8px 16px;font-weight:900;font-size:15px;color:var(--ink)}
+.pay{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 26px}
+.pay > div{background:var(--lime-soft);border:2px solid var(--ink);border-radius:20px;padding:16px;min-width:0}
+.pay-n{font-size:24px;font-weight:900;color:var(--ink);margin-bottom:8px}
+.pay p{font-size:15px;line-height:1.5;margin:0}
+@media (max-width:560px){.pay{grid-template-columns:1fr}}
+.term .v{font-size:clamp(20px,6vw,28px);white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">Программа обучения</span>
+  <h1>«Просмотры <span class="money">+ деньги</span>»</h1>
+  <p class="sub">Обучение, где ты научишься делать залетающие рилсы, создашь свой продукт и настроишь автоворонку, которая продаёт за тебя каждый день.</p>
+</header>
+
+<h2>Это обучение — 3 в 1</h2>
+<div class="offer">
+  <div class="tree" role="img" aria-label="Схема: обучение включает рилсы, создание своих ботов и маркетинг">
+    <div class="tree-cloud"><svg viewBox="0 0 300 120" aria-hidden="true"><path d="M70 104 C30 104 18 72 44 60 C36 30 74 16 96 34 C108 6 168 4 180 34 C204 14 250 26 244 60 C278 66 276 104 236 104 Z" fill="#fff" stroke="#b8f25a" stroke-width="4" stroke-linejoin="round"/></svg><span>«Просмотры<br>+ деньги»</span></div>
+    <svg class="tree-lines" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M150 0 C150 30 50 20 50 60" fill="none" stroke="#b8f25a" stroke-width="3" stroke-dasharray="6 6"/>
+      <path d="M150 0 L150 60" fill="none" stroke="#b8f25a" stroke-width="3" stroke-dasharray="6 6"/>
+      <path d="M150 0 C150 30 250 20 250 60" fill="none" stroke="#b8f25a" stroke-width="3" stroke-dasharray="6 6"/>
+    </svg>
+    <div class="tree-heads"><div><span>🔥</span>Рилсы</div><div><span>🤖</span>Свои боты</div><div><span>💸</span>Маркетинг</div></div>
+  </div>
+  <div class="tree-cards">
+    <div><b>1. Рилсы.</b> Как делать залетающие рилсы и набирать аудиторию с нуля.</div>
+    <div><b>2. Создание своих ботов.</b> Как настраивать ботов, подключать платёжки в инстаграме и в телеграме.</div>
+    <div><b>3. Маркетинг.</b> Как создавать свои онлайн-продукты и писать автопрогревы и продающие цепочки сообщений, которые будут продавать за тебя.</div>
+  </div>
+</div>
+
+<h2>Кому подойдёт</h2>
+<div class="who">
+  <div><div class="ic">💼</div><div><h4>Эксперту и специалисту</h4><p>Который продаёт свои услуги и хочет получать больше клиентов с инстаграма.</p></div></div>
+  <div><div class="ic">📦</div><div><h4>Тому, кто хочет свой продукт</h4><p>Создать свой онлайн-продукт и зарабатывать на нём каждый день. В том числе новичкам и тем, кто в найме.</p></div></div>
+  <div><div class="ic">🎬</div><div><h4>Рилсмейкеру и СММ-специалисту</h4><p>Который хочет давать клиентам сильные результаты в охватах и продажах и брать другой чек.</p></div></div>
+</div>
+
+<div class="callout">
+  <p><b>Этот курс для тебя, если:</b></p>
+  <ul class="ticks">
+    <li>ты уже пробовала снимать рилсы, но оплат либо нет, либо они случайные</li>
+    <li>не понимаешь, какие рилсы приводят деньги, а не просто просмотры</li>
+    <li>тебе сложно придумать, что снимать именно тебе, и ты выкладываешь контент хаотично</li>
+    <li>устала «заставлять себя» снимать и хочешь делать контент легко, регулярно и без выгорания</li>
+    <li>не знаешь, какой продукт создать и как сделать воронку</li>
+    <li>хочешь продавать скрытно, чтоб оплаты капали каждый день, а клиенты сами к тебе записывались</li>
+    <li>хочешь получать мою личную обратную связь по каждому шагу</li>
+  </ul>
+</div>
+
+<hr class="sep">
+
+<h2>🚀 Что ты получишь по модулям</h2>
+
+<div class="mods">
+  <details class="mod" open>
+    <summary><span class="mn">1</span><span>📹 А что мне снимать? Быстрые рилсы в твоей нише с высокими просмотрами</span></summary>
+    <ul class="ticks">
+      <li><b>Вступление для новичков:</b> как определиться с тематикой блога и грамотно упаковать его, чтоб на тебя подписывались</li>
+      <li>Механика залётных рилс: что влияет на просмотры</li>
+      <li>Как понять, <b>какие рилсы будут заходить именно в твоей нише</b></li>
+      <li>Найден <b>свой формат</b>, а не хаотичные тесты</li>
+      <li>Месячная стратегия рилс за 1 час с помощью моей таблицы анализа и ChatGPT. Вопрос «Что снимать?» закрыт раз и навсегда</li>
+      <li><b>300+ готовых идей на каждый месяц</b> конкретно под твой блог</li>
+      <li>Спокойствие: у тебя всегда есть куча контента на недели вперёд</li>
+    </ul>
+  </details>
+  <details class="mod">
+    <summary><span class="mn">2</span><span>💣 Ролики-миллионники</span></summary>
+    <ul class="ticks">
+      <li>Мой самый быстрый инструмент получения <b>миллионников</b></li>
+      <li>Разбор роликов-миллионников</li>
+      <li>Формула залётного рилса <b>для любых ниш</b></li>
+      <li>Съёмка и монтаж без выгорания и навыков: мой метод <b>очень быстрого создания рилс</b></li>
+      <li>Как получить свои первые <b>миллионные просмотры</b> без удачи и случайностей</li>
+    </ul>
+  </details>
+  <details class="mod">
+    <summary><span class="mn">3</span><span>📦 Продукты и автопродажи</span></summary>
+    <ul class="ticks">
+      <li>Что такое <b>автоворонки</b> в инстаграме и как они работают: все виды с шаблонами и наглядными примерами</li>
+      <li>Как подготовить блог к продажам и без ошибок упаковать его</li>
+      <li>Как понять, чем ты полезна людям и какой продукт тебе создать</li>
+      <li>Как создать и упаковать свой онлайн-продукт и начать продавать его</li>
+      <li>Как сделать продукт высокого качества, чтоб его рекомендовали</li>
+      <li>Как выстроить <b>повторные продажи</b> (это до 40% всей выручки)</li>
+      <li>Что такое автопрогрев. Пишем <b>автопрогрев в инстаграм и телеграм за 1 день</b>, который продаёт незаметно 24/7</li>
+    </ul>
+  </details>
+  <details class="mod">
+    <summary><span class="mn">4</span><span>🛠️ Техническая часть: свои боты</span></summary>
+    <ul class="ticks">
+      <li>Как создать бота в инстаграм</li>
+      <li>Как создать собственного телеграм-бота</li>
+      <li>Как настроить автоответ на комментарии в инсте</li>
+      <li>Как подключить платёжную систему и настроить автоматическую выдачу продукта</li>
+      <li><b>Бонус:</b> как сделать платный канал, чат или клуб с подпиской и автосписаниями</li>
+    </ul>
+  </details>
+  <details class="mod">
+    <summary><span class="mn">5</span><span>💸 Рилсы, которые продают</span></summary>
+    <ul class="ticks">
+      <li>Готовые промпты для создания <b>продающих роликов</b></li>
+      <li>Умение писать интересные тексты без «впаривающего» кринжа</li>
+      <li>Сколько и каких рилс выкладывать, чтобы <b>они приносили прибыль и подписчиков</b></li>
+      <li><b>Бонус: как зарабатывать на блоге без лица.</b> Какие форматы работают, как продавать без личного бренда, через что выстраивается доверие и когда это даже выгоднее, чем личный блог</li>
+    </ul>
+  </details>
+  <details class="mod">
+    <summary><span class="mn">6</span><span>🧲 Воронка на услуги</span></summary>
+    <ul class="ticks">
+      <li>Как продавать <b>не только продукты, но и услуги</b></li>
+      <li>Воронка, которая <b>приводит горячие заявки</b> без прямых продаж в блоге</li>
+      <li>Рилсы и посты, после которых <b>люди хотят работать именно с тобой</b></li>
+      <li>Заявки не «когда повезёт», а <b>на регулярной основе</b></li>
+    </ul>
+  </details>
+  <details class="mod bonus">
+    <summary><span class="mn">🎁</span><span>Бонус: карусели</span></summary>
+    <p>Отдельный блок про карусели, которые регулярно залетают, приносят подписчиков и продают. У меня с каруселей приходит <b>до 6 000 подписчиков в месяц и 50% всех оплат.</b></p>
+    <p>Покажу форматы, структуру и логику каруселей, которые можно внедрить сразу и использовать месяцами.</p>
+  </details>
+</div>
+<p class="meme-cap" style="margin-top:4px">жми на модуль, чтобы раскрыть 👆</p>
+
+<hr class="sep">
+
+<h2>Формат обучения</h2>
+
+<div class="fmt">
+  <div class="fmt-card">
+    <div class="fmt-ic">🎬</div>
+    <h4>Записанные уроки</h4>
+    <p>По шагам: какие рилсы снимать, как создать продукт, как написать автопрогрев, как настроить бота, как подключить платёжку. Техническую часть показываю на записи экрана, куда тыкнуть. Разберётся даже новичок.</p>
+    <p>Плюс текстовые презентации-шпаргалки, таблички аналитики, шаблоны, мои промпты для ChatGPT и Claude. <b>Доступ навсегда.</b></p>
+  </div>
+  <div class="fmt-plus">+</div>
+  <div class="fmt-card hot">
+    <div class="fmt-ic">💬</div>
+    <h4>Моя личная обратная связь</h4>
+    <p>Я работаю лично с каждым. Говорю, какие рилсы снимать, как это делать, какой продукт лучше создать.</p>
+  </div>
+</div>
+
+<p class="center-cap">Как это выглядит 👇</p>
+<ol class="loop">
+  <li><span>📚</span><b>Смотришь урок</b></li>
+  <li><span>✍️</span><b>Делаешь домашку</b></li>
+  <li><span>📤</span><b>Скидываешь мне</b></li>
+  <li><span>✅</span><b>Я проверяю и даю обратную связь</b></li>
+  <li><span>🚀</span><b>Строим твой проект вместе</b></li>
+</ol>
+
+<div class="callout dark">
+  <p class="shout">По сути, мы с тобой совместно строим твой проект.</p>
+  <p>Я беру эту ответственность на себя, потому что мне интересно сделать вам сильные кейсы. <span class="mark">И долблю вас до тех пор, пока не пойдут первые оплаты с инстаграма. Прямо во время обучения.</span></p>
+</div>
+
+<div class="term" style="margin:22px 0">
+  <div><div class="v">1,5 месяца</div><div class="k">обучение</div></div>
+  <div><div class="v">+2 недели</div><div class="k">после обучения я на связи</div></div>
+</div>
+
+<hr class="sep">
+
+<h2>🎯 Результат</h2>
+<p><b>Ты будешь уметь делать залетающие ролики и выстраивать для себя или для своих клиентов воронки на заявки и автооплаты.</b></p>
+<p>После обучения ты:</p>
+<div class="res-grid">
+  <div><span>🎯</span>знаешь, что снимать себе или клиенту</div>
+  <div><span>🎞️</span>выбрала свои форматы рилс</div>
+  <div><span>⚡</span>снимаешь быстро и стабильно</div>
+  <div><span>🤖</span>умеешь пользоваться ChatGPT</div>
+  <div><span>📦</span>имеешь продукт за 499 ₽ и продукт подороже (1 500–5 000 ₽)</div>
+  <div><span>🧲</span>выстроила воронку на продукты и воронку на услуги</div>
+  <div><span>🛠️</span>технически всё настроила: бот, оплаты, подписки</div>
+  <div><span>✍️</span>прописала маркетинговые автопрогревы</div>
+  <div><span>💸</span>регулярно получаешь автооплаты с продуктов и заявки на услуги</div>
+  <div><span>🔥</span>делаешь по несколько рилс в день с азартом и без выгорания</div>
+</div>
+<p>И главное: у тебя будет не только готовая автоворонка, но и <span class="mark">навык создавать такие воронки в каком угодно количестве, в любом проекте и нише.</span></p>
+
+<hr class="sep">
+
+<h2 id="price">Стоимость</h2>
+
+<div class="price">
+  <div class="price-top">
+    <span class="price-tag">Один тариф · всё включено</span>
+    <h3>«Просмотры + деньги»</h3>
+    <ul class="price-inc">
+      <li>6 модулей + бонусы</li>
+      <li>записанные уроки, доступ навсегда</li>
+      <li>моя личная обратная связь по каждой домашке</li>
+      <li>1,5 месяца обучения + 2 недели на связи</li>
+    </ul>
+  </div>
+  <div class="price-main">
+    <div class="price-old">150 000 ₽</div>
+    <div class="price-now">120 000 ₽</div>
+    <div class="price-cond">🔥 при оплате в день консультации</div>
+  </div>
+</div>
+
+<h3>Варианты оплаты</h3>
+<div class="pay">
+  <div>
+    <div class="pay-n">50 / 50</div>
+    <p>Чтобы забронировать место и закрепить за собой скидочную стоимость: <b>50% вносишь сейчас как бронь</b> и 50% через 2 недели.</p>
+  </div>
+  <div>
+    <div class="pay-n">Рассрочка 0%</div>
+    <p><b>Беспроцентная.</b> Сумма просто разбивается на удобное тебе количество месяцев. <b>Первый платёж только через месяц</b>, в первый месяц ничего не платишь.</p>
+  </div>
+</div>
+
+<div class="cta-box">
+  <p class="cta-scarcity">Т.к. я работаю <b>ЛИЧНО С КАЖДЫМ</b>, мест очень мало, успей попасть на обучение</p>
+  <p>Напиши мне, чтобы забронировать место, выбрать удобный вариант оплаты или задать вопрос ❤️</p>
+  <a class="btn" href="https://t.me/m/_iyJ-8s5Yzdi" target="_blank" rel="noopener">Забронировать место</a>
+</div>
+
+<footer>Барашкова Анастасия · маркетолог, рилсы и автоворонки</footer>
+</div>
+
+</body>
+</html>
