@@ -3,6 +3,7 @@
 <title>Миллионные рилсы и проекты от 150к</title>
 <meta name="description" content="Авторский метод Барашковой: как делать миллионные рилсы в любой нише и быть востребованным специалистом с проектами от 150 000 ₽">
 <meta name="theme-color" content="#050306">
+<script>document.documentElement.classList.add('js')</script>
 <link rel="preload" href="../fonts/unbounded-cyrillic-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face{font-family:"Unbounded";font-weight:700;font-display:swap;src:url(../fonts/unbounded-cyrillic-700-normal.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
@@ -259,6 +260,66 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
 .because li::before{content:"0" counter(bc);position:absolute;left:0;top:16px;font-family:var(--f-head);font-weight:800;font-size:26px;line-height:1;background:linear-gradient(180deg,#fff,#9b9ba6);-webkit-background-clip:text;background-clip:text;color:transparent}
 .c-part,.strip{min-width:0}
 
+/* акцентные фразы */
+.punch{font-family:var(--f-head);font-weight:700;font-size:17px;line-height:1.45;color:#fff;padding:14px 16px;border-left:3px solid var(--pink);background:linear-gradient(90deg,rgba(255,46,147,.16),rgba(255,46,147,0));border-radius:0 14px 14px 0;margin:14px 0 4px!important}
+.punch.c{border-left:0;border-radius:16px;background:radial-gradient(100% 140% at 50% 0%,rgba(255,46,147,.18),rgba(255,46,147,0) 70%)}
+
+/* карусель кейсов */
+.cz-box{margin:18px -18px 10px}
+.cz-tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 18px 14px;scrollbar-width:none}
+.cz-tabs::-webkit-scrollbar{display:none}
+.cz-tab{flex:none;font:inherit;font-size:14px;font-weight:800;border:1px solid var(--card-b);background:var(--card);color:var(--text);border-radius:999px;padding:9px 14px;cursor:pointer;white-space:nowrap}
+.cz-tab.on{background:var(--pink);border-color:var(--pink);color:#fff;box-shadow:var(--glow)}
+.cz-track{display:flex;align-items:flex-start;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 18px;padding:4px 18px 16px;scrollbar-width:none}
+.cz-track::-webkit-scrollbar{display:none}
+.cz{flex:0 0 90%;max-width:480px;scroll-snap-align:start;min-width:0;background:var(--bg2);border:1px solid rgba(255,46,147,.35);border-radius:28px;padding:20px 14px 14px;box-shadow:0 0 40px -18px rgba(255,46,147,.7)}
+.cz-niche{display:block;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pink2);margin:0 0 10px}
+.cz-hook{font-size:clamp(19px,5.4vw,24px);line-height:1.22;margin:0 0 16px}
+.cz-before,.cz-after{border-radius:20px;padding:14px 12px 4px;min-width:0}
+.cz-before{background:rgba(255,255,255,.035);border:1px dashed rgba(255,255,255,.2)}
+.cz-after{background:radial-gradient(120% 60% at 50% 0%,rgba(255,46,147,.22),rgba(255,46,147,.04) 70%);border:1px solid rgba(255,46,147,.6);box-shadow:0 0 34px -10px rgba(255,46,147,.7)}
+.cz-before p,.cz-after p{font-size:16px}
+.cz-bang{font-family:var(--f-head);font-weight:800;font-size:18px;line-height:1.3;color:#fff;text-align:center;margin:16px 0!important}
+.cz-after .cz-big{font-family:var(--f-head);font-weight:800;font-size:clamp(30px,9.4vw,54px);line-height:1;text-align:center;margin:6px 0 12px!important;white-space:nowrap}
+.views{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 14px}
+.views span{font-family:var(--f-head);font-weight:800;border-radius:12px;padding:7px 10px;line-height:1;white-space:nowrap}
+.views.dim span{font-size:14px;color:#9a909b;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);position:relative}
+.views.dim span::after{content:"👁";font-size:11px;margin-left:5px;opacity:.6}
+.views.hot{justify-content:center}
+.views.hot span{font-size:clamp(17px,5vw,22px);color:#fff;background:linear-gradient(180deg,#ff4ea3,#c8106b);box-shadow:0 0 16px rgba(255,46,147,.55)}
+.views.hot span:first-child{font-size:clamp(24px,7.4vw,32px);padding:9px 14px}
+.ph-wrap{margin:4px -12px 8px}
+.ph{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 12px 6px;scrollbar-width:none;overscroll-behavior-x:contain;align-items:center}
+.ph::-webkit-scrollbar{display:none}
+.ph img{flex:none;height:min(54vh,400px);width:auto;max-width:88%;object-fit:contain;border-radius:16px;border:1px solid var(--card-b);scroll-snap-align:center;background:#000}
+.ph img.wide{height:auto;width:88%}
+.ph.one{display:block;padding:0;margin:4px 0 10px;overflow:visible}
+.ph.one img{display:block;margin:0 auto;max-width:100%;width:auto;height:auto;max-height:440px}
+.ph-nav{display:flex;align-items:center;justify-content:space-between;padding:4px 12px 6px}
+.ph-dots{display:flex;gap:5px}
+.ph-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.22);transition:all .25s}
+.ph-dots i.on{background:var(--pink);width:20px;border-radius:6px;box-shadow:0 0 8px var(--pink)}
+.ph-hint{font-size:12.5px;color:var(--muted)}
+.cz-nav{margin-top:2px}
+
+/* анимации */
+.js .rvl{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .rvl.in{opacity:1;transform:none}
+.views.hot span{animation:none}
+.in .views.hot span,.cz.seen .views.hot span{animation:pop .5s cubic-bezier(.2,1.4,.4,1) both}
+.views.hot span:nth-child(2){animation-delay:.07s}.views.hot span:nth-child(3){animation-delay:.14s}.views.hot span:nth-child(4){animation-delay:.21s}.views.hot span:nth-child(5){animation-delay:.28s}.views.hot span:nth-child(6){animation-delay:.35s}.views.hot span:nth-child(7){animation-delay:.42s}.views.hot span:nth-child(8){animation-delay:.49s}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+.hero h1 .chrome{background-size:100% 200%;animation:sheen 5s ease-in-out infinite}
+@keyframes sheen{0%,100%{background-position:0 0}50%{background-position:0 100%}}
+.btn{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 22px rgba(255,46,147,.5),inset 0 1px 0 rgba(255,255,255,.35)}50%{box-shadow:0 0 42px rgba(255,46,147,.9),inset 0 1px 0 rgba(255,255,255,.35)}}
+.neon{animation:flick 6s infinite}
+@keyframes flick{0%,92%,100%{opacity:1}93%{opacity:.55}94%{opacity:1}96%{opacity:.7}97%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.js .rvl{opacity:1;transform:none;transition:none}.btn,.neon,.hero h1 .chrome,.views.hot span,.ring{animation:none!important}}
+
+.views.noeye span::after{content:none}
+.cz-after .cz-big + .views.hot span:first-child{font-size:clamp(17px,5vw,22px);padding:7px 10px}
+
 </style>
 </head>
 <body>
@@ -275,7 +336,7 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
 <section>
   <p class="lead c">Я знаю, как многим больно работать за <span class="hl">15–⁠20 тысяч</span> за проект.</p>
   <p class="lead c">И главное, соглашаться на эти копейки лишь потому, что ты <span class="hl">боишься не дать результат.</span></p>
-  <p class="c">Именно это и останавливает тебя брать большие деньги.</p>
+  <p class="punch c">Именно это и останавливает тебя брать большие деньги.</p>
 
   <div class="swap" aria-label="Было 15–20 тысяч за проект, хочется от 150 тысяч">
     <div class="from"><span class="v">15–⁠20к</span><span class="k">сейчас за проект</span></div>
@@ -295,11 +356,11 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
   <h2>5 шагов, чтобы стать дорогим спецом</h2>
 
   <div class="steps">
-    <div class="st"><div class="n">1</div><h3>Наращивай свой профессионализм</h3><p>Ты должен чувствовать себя в алгоритмах как рыба в воде) Уже заранее знать, что сработает, а что, скорее всего, нет. Как усилить ролик, как через него продать, как привлечь клиента.</p><p>Ты должен <b>ЧЁТКО</b> понимать, что происходит <b>ПО ТУ</b> сторону алгоритмов.</p><p>Пока ты не понимаешь, почему твои ролики не заходят и что конкретно менять, ты будешь продолжать бояться поднять чек.</p></div>
-    <div class="st"><div class="n">2</div><h3>Поработай / поживи с человеком, у кого сильные кейсы В РАЗНЫХ нишах</h3><p>Чтобы понять, как он мыслит, создавая ролики. Как он выбирает стратегию, как он докручивает сценарии, как он генерит хуки.</p><p>Заплати ему, и пусть <b>ОН</b> тебе поможет сделать результаты уже в твоих существующих проектах. Нырнёт в них сам.</p><p>Одна ты так далеко не уедешь.</p></div>
-    <div class="st"><div class="n">3</div><h3>Сделать кейсы в проектах, которые уже есть</h3><p>Новых клиентов для старта искать не нужно. Сначала результат тем, кто есть сейчас.</p></div>
-    <div class="st hot"><div class="n">4</div><h3>Совершить первую продажу на новый чек</h3><p>Самый страшный и самый важный шаг. Дальше всё пойдёт сильно легче, обещаю 😉</p></div>
-    <div class="st"><div class="n">5</div><h3>Продавать себя на своих кейсах</h3><p>Находить новых клиентов, в том числе за рубежом, и не бояться называть свою цену.</p></div>
+    <div class="st"><div class="n">1</div><h3>Наращивай свой профессионализм</h3><p>Ты должен чувствовать себя в алгоритмах <span class="hl">как рыба в воде)</span> Уже заранее знать, что сработает, а что, скорее всего, нет. Как усилить ролик, как через него продать, как привлечь клиента.</p><p>Ты должен <b>ЧЁТКО</b> понимать, что происходит <b>ПО ТУ</b> сторону алгоритмов.</p><p class="punch">Пока ты не понимаешь, почему твои ролики не заходят и что конкретно менять — ты будешь продолжать <span class="neon">бояться поднять чек.</span></p></div>
+    <div class="st"><div class="n">2</div><h3>Поработай / поживи с человеком, у кого сильные кейсы В РАЗНЫХ нишах</h3><p>Чтобы понять, как он мыслит, создавая ролики. Как он выбирает стратегию, как он докручивает сценарии, как он генерит хуки.</p><p>Заплати ему, и пусть <b>ОН</b> тебе поможет сделать результаты уже в твоих существующих проектах. Нырнёт в них сам.</p><p class="punch">Одна ты так далеко <span class="neon">не уедешь.</span></p></div>
+    <div class="st"><div class="n">3</div><h3>Сделать кейсы в проектах, которые уже есть</h3><p>Новых клиентов для старта искать не нужно. <span class="hl">Сначала результат тем, кто есть сейчас.</span></p></div>
+    <div class="st hot"><div class="n">4</div><h3>Совершить первую продажу на новый чек</h3><p>Самый страшный и самый важный шаг.</p><p class="punch">Дальше всё пойдёт <span class="neon">сильно легче</span>, обещаю 😉</p></div>
+    <div class="st"><div class="n">5</div><h3>Продавать себя на своих кейсах</h3><p>Находить новых клиентов, в том числе за рубежом, и <span class="hl">не бояться называть свою цену.</span></p></div>
   </div>
   <p class="big-say c"><span class="chrome">Тебе всё равно придётся</span><br><span class="neon">через это пройти.</span></p>
   <div class="div"></div>
@@ -308,23 +369,52 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
 <section>
   <span class="kicker">Почему меня нужно слушать</span>
   <h2>У нас не бывает сложных ниш</h2>
-  <p>Я в сфере уже более 4 лет.</p>
-  <p>Я знаю, как работает система, а механика везде одна. <span class="hl">Важно её знать.</span></p>
+  <p class="c">Я знаю, как работает система.<br><span class="hl">А механика везде одна</span> — важно её знать.</p>
 
   <div class="stats">
-    <div><b class="chrome">4+ года</b><span>в рилсах</span></div>
-    <div><b class="chrome">3 года</b><span>обучаю рилсмейкеров</span></div>
-    <div><b class="chrome">1 млн</b><span>подписчиков у клиента за год</span></div>
+    <div><b class="chrome"><span class="cnt" data-to="4">4</span>+</b><span>года работаю с проектами</span></div>
+    <div><b class="chrome"><span class="cnt" data-to="3">3</span></b><span>года обучаю рилсмейкеров</span></div>
+    <div><b class="chrome"><span class="cnt" data-to="30">30</span>+</b><span>отзывов учениц</span></div>
   </div>
 
-  <p class="c">Вот мои кейсы. До и после 👇</p>
+  <p class="big-say c"><span class="chrome">Смотри, что бывает,</span><br><span class="neon">когда за проект берусь я</span> 👇</p>
+  <p class="c" style="color:var(--muted);font-size:15px">листай кейсы или жми на вкладки</p>
 
-<div class="cases2">
-<article class="case2"><span class="cc-niche">🏝️ Элитная недвижимость · Пхукет</span><h3 class="c-title chrome">Вилла за ~45 млн ₽ с одного ролика</h3><div class="c-part bad"><span class="tag">ДО</span><p>Клиент сменил кучу команд, перепробовал разных специалистов и слил кучу денег. Никто не смог набрать ему даже <b>10 тысяч просмотров</b>. Лидов не было вообще, хотя контент выходил качественный.</p><div class="strip one"><img loading="lazy" width="900" height="295" src="../img/phuket-before.jpg" alt="Просмотры до: 1373, 1624, 2258, 1379, 2862, 1035"></div><div class="strip one"><img loading="lazy" width="552" height="996" src="../img/behind-4.jpg" alt="Ролики других команд: 1–2 тысячи просмотров"></div></div><div class="c-part good"><span class="tag">ПОСЛЕ</span><p>Через месяц работы <b>каждый третий ролик стабильно в рекомендациях на 100–⁠300к</b>. Валеру начали узнавать на Пхукете, в директе посыпались заявки, а на второй месяц он продал виллу холодному клиенту с одного ролика.</p><div class="strip one"><img loading="lazy" width="850" height="497" src="../img/phuket-after-top.jpg" alt="369 тыс., 329 тыс., 322 тыс. просмотров"></div><div class="strip"><img loading="lazy" width="720" height="1141" src="../img/behind-6.jpg" alt="148 тыс., 315 тыс., 187 тыс. просмотров"><img loading="lazy" width="724" height="980" src="../img/phuket-after-grid.jpg" alt="Остальные ролики: от 10 до 80 тысяч"><img loading="lazy" width="720" height="1263" src="../img/behind-5.jpg" alt="Вилла за 16,5 млн бат, проданная с одного ролика"></div><p class="strip-hint">листай 👉 3 фото</p></div></article>
-<article class="case2"><span class="cc-niche">💆‍♀️ Студия лазерной эпиляции</span><h3 class="c-title chrome">1 млн просмотров и +130 заявок</h3><div class="c-part bad"><span class="tag">ДО</span><p>Ролики в духе «почему наша студия лучшая»: по <b>1–⁠2 тысячи просмотров</b> и ноль заявок.</p><div class="strip one"><img loading="lazy" width="589" height="1280" src="../img/laser-before.jpg" alt="Просмотры студии до: около 1–2 тысяч на ролик"></div></div><div class="c-part good"><span class="tag">ПОСЛЕ</span><p>Начали снимать про страхи и желания клиенток. Ролик «Почему ходить на лазер ОПАСНО, пока ты не знаешь ЭТОГО» набрал <b>1 млн просмотров и +130 заявок</b>, а за ним пошли десятки роликов на 10–⁠200 тысяч.</p><div class="strip"><img loading="lazy" width="589" height="1280" src="../img/laser-after5.jpg" alt="Ролик на 1 млн просмотров"><img loading="lazy" width="430" height="773" src="../img/laser-reel.jpg" alt="Рилс «Почему ходить на лазер ОПАСНО»"><img loading="lazy" width="800" height="1089" src="../img/laser-desc1.jpg" alt="Описание с шуточными «опасностями»"><img loading="lazy" width="589" height="1280" src="../img/laser-after3.jpg" alt="183 тыс., 43,8 тыс., 52,5 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after7.jpg" alt="71 тыс., 102 тыс., 35,3 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after1.jpg" alt="229 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after2.jpg" alt="19,9 тыс., 28,2 тыс., 119 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after4.jpg" alt="50,3 тыс., 19 тыс., 27,6 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after6.jpg" alt="36,8 тыс., 46,2 тыс., 28,6 тыс."><img loading="lazy" width="900" height="1356" src="../img/laser-dasha.jpg" alt="«Хочу поблагодарить, ты супер умница. Смотри просмотры»: 5,1 млн, 568 тыс."></div><p class="strip-hint">листай 👉 10 фото</p></div></article>
-<article class="case2"><span class="cc-niche">🙋‍♀️ Мои аккаунты</span><h3 class="c-title chrome">Десятки роликов-миллионников</h3><div class="c-part bad"><span class="tag">ДО</span><p>800 подписчиков (друзья и знакомые), репетиторство и <b>8 тысяч в месяц</b>.</p><div class="strip one"><img loading="lazy" width="700" height="1242" src="../img/dorm-mirror.jpg" alt="Та самая общага"></div></div><div class="c-part good"><span class="tag">ПОСЛЕ</span><p>Ролики по 1–⁠17 миллионов просмотров, 47 тысяч подписчиков, а после подключения автопродаж <b>+315 000 ₽ за 3 недели просто с просмотров</b>.</p><div class="strip one"><img loading="lazy" width="900" height="246" src="../img/acc-47k.jpg" alt="47,4 тыс. подписчиков"></div><div class="strip"><img loading="lazy" width="720" height="1280" src="../img/my-reels-2months.jpg" alt="Мои результаты за 2 месяца: 9,2 млн, 9 млн, 6,1 млн и ещё 315 000 ₽ с автопродаж"><img loading="lazy" width="783" height="1280" src="../img/my-reels-17m.jpg" alt="17,2 млн, 1,1 млн, 768 тыс., 436 тыс."><img loading="lazy" width="900" height="1056" src="../img/my-reels-4m.jpg" alt="4,6 млн, 4 млн, 3,9 млн, 3,2 млн, 2,7 млн"></div><p class="strip-hint">листай 👉 3 фото</p></div></article>
-<article class="case2"><span class="cc-niche">🚗 Личный бренд · автомобили · Испания</span><h3 class="c-title chrome">2 тыс. → 1 млн подписчиков за год</h3><div class="c-part bad"><span class="tag">ДО</span><p>2 тысячи подписчиков, ни ниши, ни аудитории, ни понимания формата. Запрос: «хочу просто популярный паблик».</p></div><div class="c-part good"><span class="tag">ПОСЛЕ</span><p>Нашли формат, который с первого месяца начал набирать миллионы. +10 тысяч подписчиков за первый месяц, <b>1 млн за год и 0 ₽ на рекламу</b>.</p><div class="strip one"><img loading="lazy" width="800" height="520" src="../img/behind-3.jpg" alt="1 млн подписчиков"></div></div></article>
-<article class="case2"><span class="cc-niche">🏋️ Фитнес-тренер Илья</span><h3 class="c-title chrome">0 → 291 000 просмотров за 4 дня</h3><div class="c-part bad"><span class="tag">ДО</span><p>Нет даже инстаграма и непонятно, что продавать.</p></div><div class="c-part good"><span class="tag">ПОСЛЕ</span><p>Сделали продукт, завели страницу с нуля: за 4 дня рилсов <b>до 291 тысячи просмотров и 6 500 ₽</b> за первые два дня.</p><div class="strip"><img loading="lazy" width="900" height="1499" src="../img/ilya-reels.jpg" alt="От 1428 до 291 тысячи просмотров"><img loading="lazy" width="900" height="1089" src="../img/ilya-payments.jpg" alt="Первые оплаты"></div><p class="strip-hint">листай 👉 2 фото</p></div></article>
+<div class="cz-box">
+  <div class="cz-tabs" role="tablist"><button type="button" class="cz-tab on" data-i="0">🏝️ Пхукет</button><button type="button" class="cz-tab" data-i="1">💆‍♀️ Лазер</button><button type="button" class="cz-tab" data-i="2">🙋‍♀️ Мой аккаунт</button><button type="button" class="cz-tab" data-i="3">🚗 1 млн подписчиков</button><button type="button" class="cz-tab" data-i="4">🏋️ Нулевой акк</button></div>
+  <div class="cz-track" tabindex="0" aria-label="Кейсы, листай вбок">
+    <article class="cz" data-tab="🏝️ Пхукет">
+      <span class="cz-niche">Элитная недвижимость · Пхукет</span>
+      <h3 class="cz-hook">Ни одна команда не могла набрать ему даже 10 тысяч. А потом пришла я 😏</h3>
+      <div class="cz-before"><span class="tag">ДО</span><p>Клиент сменил кучу команд, перепробовал разных специалистов и слил кучу денег. <b>Ни один СММщик не смог дать ему результат:</b> ролики по 1–⁠2 тысячи, заявок ноль, хотя контент выходил качественный.</p><div class="views dim"><span>1 373</span><span>1 624</span><span>2 258</span><span>1 035</span></div><div class="ph one"><img loading="lazy" class="wide" width="900" height="295" src="../img/phuket-before.jpg" alt="Просмотры до: 1373, 1624, 2258, 1379, 2862, 1035"></div></div>
+      <p class="cz-bang">💥 БАЦ. Я подключаюсь к работе 👇</p>
+      <div class="cz-after"><span class="tag">ПОСЛЕ</span><div class="views hot"><span>369к</span><span>329к</span><span>322к</span><span>315к</span><span>187к</span><span>148к</span></div><p>Уже через месяц <b>каждый третий ролик в рекомендациях</b>. Валеру начали узнавать на Пхукете, в директе посыпались заявки, а на второй месяц он продал <span class="hl">виллу за ~45 млн ₽ холодному клиенту с ОДНОГО ролика</span> 🤯</p><div class="ph-wrap"><div class="ph"><img loading="lazy" class="wide" width="850" height="497" src="../img/phuket-after-top.jpg" alt="369 тыс., 329 тыс., 322 тыс."><img loading="lazy" width="720" height="1141" src="../img/behind-6.jpg" alt="148 тыс., 315 тыс., 187 тыс."><img loading="lazy" width="724" height="980" src="../img/phuket-after-grid.jpg" alt="Ролики от 10 до 80 тысяч"><img loading="lazy" width="720" height="1263" src="../img/behind-5.jpg" alt="Вилла, проданная с одного ролика"></div><div class="ph-nav"><span class="ph-dots"><i></i><i></i><i></i><i></i></span><span class="ph-hint">листай скрины →</span></div></div></div>
+    </article><article class="cz" data-tab="💆‍♀️ Лазер">
+      <span class="cz-niche">Студия лазерной эпиляции</span>
+      <h3 class="cz-hook">Ни один СММщик не дал им результата. А с первых же моих рилс — МИЛЛИОН 😳</h3>
+      <div class="cz-before"><span class="tag">ДО</span><p>Студия пробовала и то, и сё: нанимала разных СММщиков, снимала «наши преимущества» и «почему мы лучшие». <b>Никто не дал результата.</b> Все просмотры были вот такие 👇</p><div class="views dim"><span>1 068</span><span>1 732</span><span>2 053</span><span>1 220</span></div><div class="ph one"><img loading="lazy" width="589" height="1280" src="../img/laser-before.jpg" alt="Просмотры студии до: по 1–2 тысячи"></div></div>
+      <p class="cz-bang">💥 БАЦ. Студия приходит ко мне 👇</p>
+      <div class="cz-after"><span class="tag">ПОСЛЕ</span><div class="views hot"><span>1 млн</span><span>229к</span><span>183к</span><span>119к</span><span>102к</span><span>71к</span></div><p>Просмотры <b>сразу же с первых рилс.</b> Один ролик — <span class="hl">1 млн просмотров и +130 заявок</span>, а за ним десятки роликов на 10–⁠200 тысяч. А потом клиентка сама прислала «смотри просмотры», и там уже 5,1 млн 🔥</p><div class="ph-wrap"><div class="ph"><img loading="lazy" width="589" height="1280" src="../img/laser-after5.jpg" alt="1 млн просмотров"><img loading="lazy" width="589" height="1280" src="../img/laser-after1.jpg" alt="229 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after3.jpg" alt="183 тыс., 43,8 тыс., 52,5 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after7.jpg" alt="71 тыс., 102 тыс., 35,3 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after2.jpg" alt="19,9 тыс., 28,2 тыс., 119 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after4.jpg" alt="50,3 тыс., 19 тыс., 27,6 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after6.jpg" alt="36,8 тыс., 46,2 тыс., 28,6 тыс."><img loading="lazy" width="900" height="1356" src="../img/laser-dasha.jpg" alt="«Смотри просмотры»: 5,1 млн и 568 тыс."></div><div class="ph-nav"><span class="ph-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="ph-hint">листай скрины →</span></div></div></div>
+    </article><article class="cz" data-tab="🙋‍♀️ Мой аккаунт">
+      <span class="cz-niche">Мой аккаунт</span>
+      <h3 class="cz-hook">Сама себе кейс 😎 Десятки роликов-миллионников</h3>
+      
+      <div class="cz-after"><span class="tag">ПОСЛЕ</span><p class="cz-big chrome">17,2 МЛН</p><div class="views hot"><span>9,2 млн</span><span>9 млн</span><span>6,1 млн</span><span>4,6 млн</span><span>4 млн</span><span>3,9 млн</span><span>3,2 млн</span><span>2,7 млн</span></div><p>Это не один случайный залёт, а <b>десятки миллионников подряд</b> на моих аккаунтах. А когда я подключила к ним автопродажи, пришло <span class="hl">+315 000 ₽ за 3 недели</span> просто с просмотров.</p><div class="ph-wrap"><div class="ph"><img loading="lazy" width="720" height="1280" src="../img/my-reels-2months.jpg" alt="Мои результаты за 2 месяца: 9,2 млн, 9 млн, 6,1 млн и +315 000 ₽"><img loading="lazy" width="783" height="1280" src="../img/my-reels-17m.jpg" alt="17,2 млн, 1,1 млн, 768 тыс., 436 тыс."><img loading="lazy" width="900" height="1056" src="../img/my-reels-4m.jpg" alt="4,6 млн, 4 млн, 3,9 млн, 3,2 млн, 2,7 млн"></div><div class="ph-nav"><span class="ph-dots"><i></i><i></i><i></i></span><span class="ph-hint">листай скрины →</span></div></div></div>
+    </article><article class="cz" data-tab="🚗 1 млн подписчиков">
+      <span class="cz-niche">Личный бренд · автомобили · Испания</span>
+      <h3 class="cz-hook">1 000 000 ПОДПИСЧИКОВ ЗА ГОД. Да, миллион</h3>
+      <div class="cz-before"><span class="tag">ДО</span><p>До нас ролики этого блога <b>выше 2000 просмотров вообще ничего не набирали.</b> Ни ниши, ни аудитории, ни понимания формата.</p><div class="views dim"><span>до 2 000</span></div></div>
+      <p class="cz-bang">💥 БАЦ. Мы придумываем им формат 👇</p>
+      <div class="cz-after"><span class="tag">ПОСЛЕ</span><p class="cz-big chrome"><span class="cnt" data-to="1000000">1 000 000</span></p><div class="views hot"><span>подписчиков</span><span>за 1 год</span><span>0 ₽ на рекламу</span></div><p>Формат с первого месяца начал набирать миллионы. Люди <b>1000 подписчиков за год</b> набрать не могут, а мы сделали <span class="hl">МИЛЛИОН</span>. Даже Вика Боня на них подписалась 😏</p><div class="ph one"><img loading="lazy" class="wide" width="800" height="520" src="../img/behind-3.jpg" alt="1 млн подписчиков, среди подписчиков victoriabonya"></div></div>
+    </article><article class="cz" data-tab="🏋️ Нулевой акк">
+      <span class="cz-niche">Фитнес-тренер Илья · нулевой аккаунт</span>
+      <h3 class="cz-hook">9 из 10 первых рилс — сразу в залёт. Вы где такое видели?</h3>
+      <div class="cz-before"><span class="tag">ДО</span><p>Аккаунт, созданный вчера. <b>Ноль подписчиков, ноль роликов.</b> Все вокруг говорят, что нулевые аккаунты раскачиваются месяцами, а то и годами.</p><div class="views dim noeye noeye"><span>0 подписчиков</span><span>0 роликов</span></div></div>
+      <p class="cz-bang">💥 БАЦ. Мы запускаем рилсы 👇</p>
+      <div class="cz-after"><span class="tag">ПОСЛЕ</span><p class="cz-big chrome">9 из 10</p><div class="views hot"><span>291к</span><span>35,1к</span><span>31,5к</span><span>21к</span><span>15,1к</span><span>12,5к</span><span>11,1к</span></div><p>Мы эту теорию опровергли: <span class="hl">9 из 10 первых роликов сразу в залёте</span>, до 291 тысячи просмотров за 4 дня. Покажите мне, кто ещё так делает? Это только мы так умеем 😎</p><div class="ph-wrap"><div class="ph"><img loading="lazy" width="900" height="1499" src="../img/ilya-reels.jpg" alt="Рилсы Ильи: 291 тыс., 35,1 тыс., 31,5 тыс., 21 тыс., 15,1 тыс., 12,5 тыс."><img loading="lazy" width="900" height="1089" src="../img/ilya-payments.jpg" alt="Первые оплаты Ильи"></div><div class="ph-nav"><span class="ph-dots"><i></i><i></i></span><span class="ph-hint">листай скрины →</span></div></div></div>
+    </article>
+  </div>
+  <div class="rv-nav cz-nav"><button type="button" class="rv-btn cz-prev" aria-label="Предыдущий кейс">←</button><span class="rv-count"><b>1</b> / 5</span><button type="button" class="rv-btn cz-next" aria-label="Следующий кейс">→</button></div>
 </div>
 
   <div class="because">
@@ -370,7 +460,7 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
   <div class="glowcard">
     <div class="emo">🤯</div>
     <span class="kicker">Школа балета</span>
-    <div class="big-num"><span class="a">1–⁠2 тыс.</span><span class="arr">→</span><span class="b chrome">4,2 МЛН</span></div>
+    <div class="big-num"><span class="a">1–⁠2 тыс.</span><span class="arr">→</span><span class="b chrome"><span class="cnt" data-to="4.2" data-dec="1">4,2</span> МЛН</span></div>
     <p>Только представь, это вообще сумасшествие.<br><b>Кто ещё на рынке делает такие результаты?</b></p>
     <div class="strip"><img loading="lazy" width="800" height="1423" src="../img/reviews/r29.jpg" alt="Школа балета: было 1–2 тыс., стало 1 млн, 1,3 млн и 4,2 млн"><img loading="lazy" width="800" height="1022" src="../img/reviews/r28.jpg" alt="«Нихрена себе апдейт»: 1,2 млн"><img loading="lazy" width="800" height="896" src="../img/reviews/r27.jpg" alt="«+150 баллов за новый рилс»: 978 тыс."></div><p class="strip-hint">листай 👉 3 фото</p>
   </div>
@@ -388,7 +478,7 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
 
   <div class="glowcard">
     <div class="emo">💸</div>
-    <p class="money-num chrome">216 000 ₽</p>
+    <p class="money-num chrome"><span class="cnt" data-to="216000">216 000</span> ₽</p>
     <p class="money-t">за один месяц!!!!</p>
     <p>Ещё одна ученица за ноябрь заработала 216 тысяч и «пробила свой потолок».<br><b>Такое даже в найме не зарабатывают )))</b></p>
     <p>2 постоянных клиента на полном сопровождении, свой ассистент и монтажёр, залетевшие рилсы, лид-магнит и воронка. Руководитель, на минуточку 😎</p>
@@ -416,7 +506,7 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
       <li>и самое главное, <b>сделаешь кейсы в своих проектах</b>, чтобы дальше на них продавать</li>
     </ul>
 
-    <p>Мы с тобой 1,5 месяца плотно работаем над проектами, которые есть у тебя сейчас.</p>
+    <p class="punch c">Мы с тобой 1,5 месяца плотно работаем над проектами, которые есть у тебя <span class="neon">сейчас.</span></p>
     <p class="brain"><span class="chrome">Ты по факту арендуешь мои мозги</span> 🧠</p>
     <p>В теории узнаешь, как работают алгоритмы и психология зрителя, как приводить клиенту заявки и деньги, как строятся воронки в инстаграме.</p>
     <p>А на практике мы сделаем кейсы и найдём тебе один или несколько <b>новых проектов на высокий чек.</b> Успеем — сразу поработаем в них над стратегией и первыми рилсами.</p>
@@ -434,7 +524,7 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
 <section class="final">
   <p class="big-say c"><span class="chrome">Всё.</span></p>
   <p class="lead c">Переставай быть дешёвым специалистом, которых и так навалом (ну, будем честны).</p>
-  <p class="c">Выходи на новый уровень проектов. Становись дорогим и востребованным спецом с результатами, которые говорят сами за себя.</p>
+  <p class="c">Выходи на <span class="hl">новый уровень проектов.</span> Становись дорогим и востребованным спецом с результатами, которые говорят сами за себя.</p>
   <p class="big-say" style="font-size:clamp(24px,7vw,34px)"><span class="neon">А это возможно.</span></p>
 
 <section class="anketa" id="anketa">
@@ -527,4 +617,46 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
 })();
 </script>
 <script src="../anketa.js"></script>
+<script>
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // появление при прокрутке
+  var els=document.querySelectorAll('section > *:not(.div), .st, .because li, .checks li, .glowcard, .offer > *');
+  if('IntersectionObserver' in window && !reduce){
+    els.forEach(function(e){e.classList.add('rvl')});
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(e){io.observe(e)});
+  }
+  // набегающие цифры
+  function fmt(v,dec){return dec?v.toFixed(dec).replace('.',','):Math.round(v).toLocaleString('ru-RU').replace(/,/g,' ')}
+  function run(el){var to=parseFloat(el.dataset.to),dec=+el.dataset.dec||0,t0=null,d=1400;
+    function f(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,3);el.textContent=fmt(to*e,dec);if(k<1)requestAnimationFrame(f)} requestAnimationFrame(f)}
+  var cn=document.querySelectorAll('.cnt');
+  if('IntersectionObserver' in window && !reduce){
+    var io2=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){run(x.target);io2.unobserve(x.target)}})},{threshold:.6});
+    cn.forEach(function(e){io2.observe(e)});
+  }
+  // карусель кейсов
+  var box=document.querySelector('.cz-box');
+  if(box){
+    var tr=box.querySelector('.cz-track'),cards=tr.querySelectorAll('.cz'),tabs=box.querySelectorAll('.cz-tab'),prev=box.querySelector('.cz-prev'),next=box.querySelector('.cz-next'),cnt=box.querySelector('.rv-count b');
+    function idx(){var l=tr.scrollLeft,b=0,d=1e9;cards.forEach(function(c,i){var dd=Math.abs(c.offsetLeft-tr.offsetLeft-18-l);if(dd<d){d=dd;b=i}});return b}
+    function go(i){i=Math.max(0,Math.min(cards.length-1,i));tr.scrollTo({left:cards[i].offsetLeft-tr.offsetLeft-18,behavior:reduce?'auto':'smooth'})}
+    function upd(){var i=idx();cnt.textContent=i+1;prev.disabled=i===0;next.disabled=i===cards.length-1;
+      tabs.forEach(function(t,j){t.classList.toggle('on',j===i);if(j===i){var tb=t.parentNode;tb.scrollTo({left:t.offsetLeft-tb.offsetLeft-18,behavior:'smooth'})}});
+      cards[i].classList.add('seen')}
+    tabs.forEach(function(t,j){t.addEventListener('click',function(){go(j)})});
+    prev.addEventListener('click',function(){go(idx()-1)});next.addEventListener('click',function(){go(idx()+1)});
+    var raf;tr.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(upd)},{passive:true});
+    tr.addEventListener('keydown',function(e){if(e.target!==tr)return;if(e.key==='ArrowRight'){e.preventDefault();go(idx()+1)}if(e.key==='ArrowLeft'){e.preventDefault();go(idx()-1)}});
+    upd();
+  }
+  // мини-карусели скринов внутри кейса
+  document.querySelectorAll('.ph-wrap').forEach(function(w){
+    var ph=w.querySelector('.ph'),ims=ph.querySelectorAll('img'),dots=w.querySelectorAll('.ph-dots i');
+    function u(){var c=ph.scrollLeft+ph.clientWidth/2,b=0,d=1e9;ims.forEach(function(im,i){var m=im.offsetLeft-ph.offsetLeft+im.offsetWidth/2,dd=Math.abs(m-c);if(dd<d){d=dd;b=i}});dots.forEach(function(x,i){x.classList.toggle('on',i===b)})}
+    ph.addEventListener('scroll',function(){requestAnimationFrame(u)},{passive:true}); u();
+  });
+})();
+</script>
 </body></html>
