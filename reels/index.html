@@ -406,6 +406,41 @@ fieldset.af-q{padding-top:10px}
 .loop-t{font-family:var(--f-hand);font-size:30px;color:var(--pink-deep);text-align:center;margin:28px 0 -6px;line-height:1.1}
 .loop .node{position:absolute;transform:translate(-50%,-50%);width:30%;background:#fff;border:2px solid var(--ink);border-radius:14px;padding:6px 5px;font-weight:800;font-size:clamp(11.5px,3.4vw,14px);line-height:1.2;text-align:center;color:var(--ink);box-shadow:3px 3px 0 var(--pink)}
 .proj{font-size:clamp(20px,5.2vw,24px);margin:1.8em 0 .5em;padding-top:4px}
+/* кейсы-карусели */
+.cases .rv-card{flex-basis:88%}
+.cc-img{background:#111;display:flex;align-items:center;justify-content:center;height:min(52vh,360px);gap:4px}
+.cc-img img{max-width:100%;max-height:100%;width:auto;height:auto;display:block;object-fit:contain;min-width:0}
+.cc-img.two img{max-width:50%}
+.cc-body{padding:14px 14px 16px;border-top:2px solid var(--ink);background:#fff;flex:1}
+.cc-niche{display:table;margin-bottom:10px;background:var(--ink);color:#fff;font-weight:800;font-size:13px;border-radius:999px;padding:5px 11px;line-height:1.3}
+.cc-big{font-weight:900;font-size:22px;line-height:1.2;color:var(--ink);margin:10px 0 8px;background:linear-gradient(transparent 55%,var(--lime) 55%);display:inline}
+.cc dl{margin:12px 0 0;display:grid;grid-template-columns:76px 1fr;gap:8px 10px;font-size:15.5px;line-height:1.4}
+.cc dt{font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#fff;background:var(--pink);border-radius:8px;padding:3px 7px;align-self:start;margin-top:1px;text-align:center}
+.cc dt:nth-of-type(2){background:#8a7f89}
+.cc dt:nth-of-type(3){background:var(--ink);color:var(--lime)}
+.cc dd{margin:0;color:var(--text)}
+/* до/после штампы */
+figure.shot{position:relative}
+.stamp{position:absolute;top:-12px;left:10px;z-index:2;font-weight:900;font-size:15px;letter-spacing:.05em;padding:4px 12px;border-radius:10px;border:2px solid var(--ink);transform:rotate(-4deg)}
+.stamp.bad{background:#fff;color:var(--ink)}
+.stamp.good{background:var(--lime);color:var(--ink)}
+.note-pink{background:var(--pink-soft);border:2px dashed var(--pink);border-radius:18px;padding:14px 16px;font-weight:700;color:var(--ink);margin:18px 0}
+/* ученицы: ярко */
+.boom{background:var(--ink);color:#fff;border-radius:28px;padding:22px 16px 10px;margin:22px 0 26px;text-align:center;box-shadow:6px 6px 0 var(--pink)}
+.boom p{color:#f3e9f1}
+.boom b{color:var(--lime)}
+.boom-emo{font-size:38px;margin:0;line-height:1}
+.boom-t{font-weight:900;font-size:clamp(24px,6.6vw,32px);line-height:1.1;color:var(--lime)!important;margin:10px 0 12px;text-transform:uppercase}
+.boom figure.shot figcaption{color:var(--lime)}
+h2.loud{font-size:clamp(30px,8.4vw,42px);text-align:center;color:var(--pink-deep);transform:rotate(-1.5deg)}
+.wow{position:relative;background:var(--pink);border:3px solid var(--ink);border-radius:26px;padding:20px 16px 16px;margin:30px 0;box-shadow:6px 6px 0 var(--ink);color:#fff}
+.wow.lime{background:var(--lime);color:var(--ink)}
+.wow p{color:inherit;margin:.4em 0}
+.wow-emo{position:absolute;top:-22px;right:12px;font-size:44px;transform:rotate(12deg);line-height:1}
+.wow-num{font-weight:900;font-size:clamp(44px,13vw,64px);line-height:1;margin:0!important;letter-spacing:-.02em}
+.wow-t{font-weight:900;font-size:clamp(18px,5vw,22px);line-height:1.15;text-transform:uppercase;margin:4px 0 10px!important}
+.wow img{display:block;width:100%;height:auto;border-radius:14px;border:2px solid var(--ink);margin-top:12px}
+.brain{font-family:var(--f-hand);font-size:clamp(28px,8vw,36px);color:var(--lime);text-align:center;line-height:1.1;margin:.2em 0 .6em}
 </style>
 </head>
 <body>
@@ -414,7 +449,7 @@ fieldset.af-q{padding-top:10px}
 <header class="hero">
   <span class="eyebrow">Для рилсмейкеров и СММщиков</span>
   <h1>Как делать клиентам рилсы на <span class="money">100+ тысяч просмотров</span> в любой нише и брать <span class="money">от 150 000 ₽</span> за проект в месяц. <em>Даже если</em> сейчас твои ролики набирают по 500 просмотров</h1>
-  <p class="sub">И всё это без трендов, дорогого продакшна и вечного «ну алгоритмы опять порезали» 🙃 Рассказываю на своих проектах и кейсах учениц, почему кто-то берёт один проект от 150 тысяч в месяц, а кто-то сидит на 20 тысячах, берёт кучу проектов, монтирует ночами, выгорает (и при этом ещё думает, что это с ним что-то не так).</p>
+  <p class="sub">И всё это без трендов, дорогого продакшна и вечного «ну алгоритмы опять порезали» 🙃 Рассказываю на своих проектах и кейсах учениц, почему кто-то берёт один проект от 150 тысяч в месяц, а кто-то сидит на 20 тысячах, берёт кучу проектов, выгорает, монтирует ночами (и ещё думают, что это они плохие специалисты).</p>
 </header>
 
 <div class="toc">
@@ -466,43 +501,77 @@ fieldset.af-q{padding-top:10px}
 
 <h3 class="proj">🏝️ Элитная недвижимость на Пхукете</h3>
 
-<p>До меня клиент сменил кучу команд, перепробовал разных специалистов, слил кучу денег, и никто не смог набрать ему даже 10 тысяч просмотров. Лидов с инсты не было вообще, хотя контент выходил.</p>
+<p>Сначала посмотри, какие просмотры были у клиента <b>ДО</b> меня 👇</p>
 
-<p>Потом ему порекомендовали меня. Спустя месяц каждый третий ролик стабильно был в рекомендациях: 315к, 187к, 148к. Но главное даже не просмотры, а то, что Валеру начали узнавать на Пхукете, и все, кому нужна недвижимость, благодаря прокачанному личному бренду стали обращаться именно К НЕМУ. Заявки с инсты падают ежедневно, причём качественные. А на второй месяц нашей работы Валера продал <b>виллу примерно за 45 млн рублей холодному клиенту с нашего ролика.</b> С одного 😳</p>
+<figure class="shot wide before"><span class="stamp bad">ДО</span><img width="900" height="295" src="../img/phuket-before.jpg" alt="Просмотры клиента до: 1373, 1624, 2258, 1379, 2862, 1035"><figcaption>1–2 тысячи. После кучи команд и кучи слитых денег 🥲</figcaption></figure>
 
-<p class="swipe-hint" style="color:var(--pink-deep)">листай вбок 👉 3 фото</p>
-<div class="shots three">
-  <figure class="shot"><img width="552" height="996" src="../img/behind-4.jpg" alt="Другие команды делали этому клиенту ролики на 1–2 тысячи просмотров"><figcaption>как было у других команд</figcaption></figure>
-  <figure class="shot"><img width="720" height="1141" src="../img/behind-6.jpg" alt="Рилсы для клиента на Пхукете: 148 тыс., 315 тыс., 187 тыс. просмотров"><figcaption>как стало со мной</figcaption></figure>
-  <figure class="shot"><img width="720" height="1263" src="../img/behind-5.jpg" alt="Вилла за 16,5 млн бат, проданная холодному клиенту с одного ролика"><figcaption>та самая вилла за ~45 млн ₽</figcaption></figure>
-</div>
+<p>До меня он сменил кучу команд, перепробовал разных специалистов, и никто не смог набрать ему даже 10 тысяч. Лидов, соответственно, тоже не было (хотя контент выходил качественный).</p>
+
+<p>А потом ему порекомендовали меня, и меня позвали прямо на Пхукет 🌴 Оплатили билеты, проживание, ещё и зарплату предложили такую, что я минуты три делала вид, что подумаю 😅</p>
+
+<div class="note-pink">Это я к тому, что рилсмейкером можно реально много зарабатывать. Если ты крутой спец, тебя будут готовы даже перевезти в другую страну, оплатить визу и всё остальное, а не торговаться с тобой за каждую тысячу.</div>
+
+<p>Итог: спустя <b>месяц</b> работы каждый третий ролик стабильно в рекомендациях на 100–300к просмотров 👇</p>
+
+<figure class="shot wide"><span class="stamp good">ПОСЛЕ</span><img width="850" height="497" src="../img/phuket-after-top.jpg" alt="Рилсы клиента после: 369 тыс., 329 тыс., 322 тыс. просмотров"><figcaption>369к, 329к, 322к 🔥</figcaption></figure>
+
+<figure class="shot wide"><img width="724" height="980" src="../img/phuket-after-grid.jpg" alt="Остальные рилсы клиента: от 10 до 80 тысяч просмотров"><figcaption>а это «проходные» ролики. Сравни ещё раз с ДО 👆</figcaption></figure>
+
+<p>Валеру начали узнавать на Пхукете, все, кому нужна недвижимость, стали обращаться К НЕМУ, и в директе посыпались заявки. А на второй месяц он продал <b>виллу примерно за 45 млн ₽</b> холодному клиенту с одного ролика. С одного 😳</p>
+
+<figure class="shot"><img width="720" height="1263" src="../img/behind-5.jpg" alt="Вилла за 16,5 млн бат, проданная холодному клиенту с одного ролика"><figcaption>та самая вилла 🏡</figcaption></figure>
 
 <p>Как думаешь, этот клиент ещё скажет «ролики красивые, но пользы-то от них»? 🙃</p>
 
-<h3 class="proj">🚗 Личный бренд в Испании: 1 млн подписчиков за год</h3>
+<h3 class="proj">И Пхукет не единственный 😏</h3>
+<p>Вот ещё мои проекты, листай 👉</p>
 
-<p>Личный бренд про автомобили. Пришёл ко мне с 2 тысячами подписчиков, без ниши, без аудитории и без понимания формата (хотел «просто популярный паблик»). Мы нашли формат, который уже с первого месяца начал набирать миллионы просмотров: за первый месяц пришло +10 тысяч подписчиков, а через год там был уже <b>1 млн. И ноль рублей на рекламу.</b></p>
-<figure class="shot wide"><img width="800" height="520" src="../img/behind-3.jpg" alt="Профиль клиента: 1 млн подписчиков"><figcaption>с 2 тысяч до 1 млн за год</figcaption></figure>
-
-<h3 class="proj">💆‍♀️ Студия лазера: 1 млн просмотров и +130 заявок</h3>
-
-<p>Ролик «Почему ходить на лазер ОПАСНО, пока ты не знаешь ЭТОГО». Взяли реальный страх аудитории, а в описании с юмором расписали шуточные «опасности» 😏 В итоге миллион просмотров и 130 новых заявок с одного ролика.</p>
-
-<div class="laser-row">
-  <img width="430" height="773" src="../img/laser-reel.jpg" alt="Рилс «Почему ходить на лазер ОПАСНО», 1 млн просмотров">
-  <div>
-    <p class="laser-res">1 млн просмотров<br>+130 заявок</p>
-    <p>Снят за 2 минуты, без продакшна и без трендов, просто правильный смысл 🤷‍♀️</p>
+<div class="rv cases">
+  <div class="rv-group">
+    <div class="rv-track" tabindex="0" aria-label="Кейсы, листай вбок">
+      <article class="rv-card cc">
+        <div class="cc-img"><img width="800" height="520" src="../img/behind-3.jpg" alt="Профиль клиента: 1 млн подписчиков"></div>
+        <div class="cc-body">
+          <span class="cc-niche">🚗 Личный бренд · автомобили · Испания</span>
+          <p class="cc-big">2 тыс. → 1 млн подписчиков за год</p>
+          <dl>
+            <dt>Запрос</dt><dd>«Хочу просто популярный паблик»</dd>
+            <dt>До</dt><dd>2 тысячи подписчиков, ни ниши, ни аудитории, ни понимания формата</dd>
+            <dt>После</dt><dd>Миллионы просмотров с первого месяца, +10 тысяч подписчиков за первый месяц, <b>1 млн за год. И 0 ₽ на рекламу</b></dd>
+          </dl>
+        </div>
+      </article>
+      <article class="rv-card cc">
+        <div class="cc-img two"><img width="430" height="773" src="../img/laser-reel.jpg" alt="Рилс «Почему ходить на лазер ОПАСНО», 1 млн просмотров"><img width="800" height="1089" src="../img/laser-desc1.jpg" alt="Описание к рилсу: шуточные «опасности» лазера"></div>
+        <div class="cc-body">
+          <span class="cc-niche">💆‍♀️ Студия лазерной эпиляции</span>
+          <p class="cc-big">1 млн просмотров и +130 заявок</p>
+          <dl>
+            <dt>Запрос</dt><dd>Заявки из инсты</dd>
+            <dt>До</dt><dd>Ролики «почему наша студия лучшая»: 1300 просмотров и 0 заявок</dd>
+            <dt>После</dt><dd>Ролик «Почему ходить на лазер ОПАСНО, пока ты не знаешь ЭТОГО», а в описании шуточные «опасности» 😏 Снят за 2 минуты: <b>1 млн просмотров и +130 заявок</b></dd>
+          </dl>
+        </div>
+      </article>
+      <article class="rv-card cc">
+        <div class="cc-img"><img width="900" height="1499" src="../img/ilya-reels.jpg" alt="Рилсы Ильи с нулевого аккаунта: от 1428 до 291 тысячи просмотров"></div>
+        <div class="cc-body">
+          <span class="cc-niche">🏋️ Фитнес-тренер Илья</span>
+          <p class="cc-big">0 → 291 000 просмотров за 4 дня</p>
+          <dl>
+            <dt>Запрос</dt><dd>Нет даже инстаграма, непонятно, что продавать (зато форма отличная 😅)</dd>
+            <dt>До</dt><dd>Нулевой аккаунт</dd>
+            <dt>После</dt><dd>Сделали продукт, завели страницу с нуля, 4 дня рилсов: <b>до 291 тысячи просмотров и 6 500 ₽ за первые два дня</b> просто с рилсов</dd>
+          </dl>
+        </div>
+      </article>
+    </div>
+    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 3</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
   </div>
 </div>
 
-<h3 class="proj">🏋️ Фитнес-тренер с нуля: 291 тысяча за 4 дня</h3>
-
-<p>Илья пришёл вообще без инстаграма и без понимания, что продавать (зато в отличной форме 😅). Мы сделали продукт, завели страницу с нуля, и за 4 дня рилсов просмотры дошли до 291 тысячи, а в первые два дня просто с рилсов пришло 6 500 ₽.</p>
-
-<figure class="shot"><img width="900" height="1499" src="../img/ilya-reels.jpg" alt="Рилсы Ильи с нулевого аккаунта: от 1428 до 291 тысячи просмотров"><figcaption>нулевой аккаунт, 4 дня рилсов</figcaption></figure>
-
 <p>И это не «повезло один раз», а одна и та же система в совершенно разных нишах.</p>
+
 
 <hr class="sep">
 
@@ -511,6 +580,10 @@ fieldset.af-q{padding-top:10px}
 <p>Скажу неприятное, но, может, хоть после этого ты начнёшь двигаться в ту сторону, куда раньше вообще не смотрела.</p>
 
 <p>Красиво снять и смонтировать сейчас умеют все, рилсами уже никого не удивишь. Но дело в том, что клиенту, если честно, плевать на красоту твоих роликов. Ему нужны заявки и деньги. И тех, кто умеет их приводить, ценят, им платят и их не отпускают. А если не умеешь, тебя так и будут менять на того, кто умеет (неприятно, но это так).</p>
+
+<p>И знаешь, ты так и продолжишь работать за 30к, делать всё за всех и закапываться в проектах, пока не вырастешь как спец. То есть пока не научишься давать клиентам результат в виде высоких охватов и заявок, а не просто красивых рилсов, пока не поставишь себе нормальный ценник (а он как раз вытекает из первого пункта) и пока не начнёшь работать на нормальных проектах, где делаешь ключевые стратегические задачи, а не всё руками за всех.</p>
+
+<p>Зато как научишься, сможешь брать не 5 проектов за 30к, а 2–3 за 150к. Ниже покажу, как это выглядит у учениц 😉</p>
 
 <p>И вот тут как раз ответ, почему кто-то берёт один проект от 150 тысяч в месяц, а кто-то сидит на 20 и тащит пять 👇</p>
 
@@ -574,144 +647,137 @@ fieldset.af-q{padding-top:10px}
 
 <hr class="sep">
 
-<h2>Что получается у моих учениц</h2>
+<h2>Что получается у моих учениц 🤯</h2>
 
-<p class="pain-q">«Ну это ты. А у моего клиента сложная ниша»</p>
+<p>Окей, Пхукет — это я, у меня опыт. «А у моего клиента сложная ниша», «а у меня маленький город»… Ну смотри 👇</p>
 
-<p>Окей, тогда вот проекты учениц. Не Москва, не миллионники и не какие-то «модные» ниши, а кафе в Альметьевске, магазин техники, кондитерская и детская школа балета:</p>
-
-<div class="shots">
-  <figure class="shot"><img width="800" height="1022" src="../img/reviews/r28.jpg" alt="Школа танцев: рилс на 1,2 млн просмотров"><figcaption>школа балета: 1,2 млн</figcaption></figure>
-  <figure class="shot"><img width="800" height="991" src="../img/reviews/r09.jpg" alt="Магазин техники: рилс на 47 тыс. просмотров"><figcaption>магазин техники: 47 тыс.</figcaption></figure>
-  <figure class="shot"><img width="800" height="1097" src="../img/reviews/r10.jpg" alt="Кафе: рилс на 13,5 тыс. просмотров"><figcaption>кафе: 13,5 тыс.</figcaption></figure>
-  <figure class="shot"><img width="800" height="865" src="../img/reviews/r12.jpg" alt="Кондитерская: рилс на 10 тыс. просмотров"><figcaption>кондитерская: 10 тыс.</figcaption></figure>
+<div class="boom">
+  <p class="boom-emo">🤯🤯🤯</p>
+  <p class="boom-t">РОЛИК УЧЕНИЦЫ ПЕРЕСНЯЛ ДАЖЕ ПЛЮЩЕНКО</p>
+  <p>Детская школа балета. Было 1–2 тысячи просмотров на ролик, а стало <b>1 млн, 1,3 млн и 4,2 МЛН</b>. Я когда увидела, сама орала 😭</p>
+  <figure class="shot"><img width="800" height="1423" src="../img/reviews/r29.jpg" alt="Школа балета: было 1–2 тыс., стало 1 млн, 1,3 млн и 4,2 млн. Ролик повторил Плющенко"><figcaption>«нихрена себе апдейт» © ученица</figcaption></figure>
 </div>
 
-<p>Посмотри, сколько набирают соседние ролики на этих же аккаунтах, и сразу видно, где поработал человек, который понимает, что делает 😉</p>
+<p>И это не Москва и не «модная» ниша. У учениц кафе в Альметьевске, магазин техники, кондитерская, и везде одна и та же история: соседние ролики на аккаунте по 1–2 тысячи, а потом приходит человек, который понимает, что делает 😉 <span class="mark">Сложных ниш вообще не бывает</span>, бывают ниши, в которых никто ещё не нашёл правильные смыслы.</p>
 
-<p><span class="mark">Сложных ниш вообще не бывает</span>, бывают ниши, в которых никто ещё не нашёл правильные смыслы. И это, кстати, твой плюс: конкуренты там снимают скучно, поэтому первый нормальный ролик выстреливает сильнее, чем в любой модной нише.</p>
+<p>Листай залёты учениц и что они пишут 👇</p>
 
-<p>Вот школа балета, например: было 1–2 тысячи просмотров на ролик, а стало 1 млн, 1,3 млн и 4,2 млн. Один ролик даже Плющенко повторил 😅</p>
-
-<figure class="shot"><img width="800" height="1423" src="../img/reviews/r29.jpg" alt="Школа балета: было 1–2 тыс., стало 1 млн, 1,3 млн и 4,2 млн"><figcaption>«нихрена себе апдейт» © ученица</figcaption></figure>
-
-<p class="pain-q">«Я тащу 3–4 проекта за копейки и уже не вывожу»</p>
-
-<p>Знаешь, ты так и продолжишь работать за 30к, делать всё за всех и закапываться в проектах, пока не вырастешь как спец. То есть пока не научишься давать клиентам результат в виде высоких охватов и заявок, а не просто красивых рилсов, пока не поставишь себе нормальный ценник (а он как раз вытекает из первого пункта) и пока не начнёшь работать на нормальных проектах, где делаешь ключевые стратегические задачи, а не всё руками за всех.</p>
-
-<p>Зато как научишься, сможешь брать не 5 проектов за 30к, а 2–3 за 150к. Вот как это выглядит у моей ученицы:</p>
-
-<div class="ba">
-  <div class="b"><div class="lab">месяц назад</div><div class="num">4 проекта</div><div class="cap">по СММ, на всех вместе 60 000 ₽</div></div>
-  <div class="a"><div class="lab">сейчас</div><div class="num">1 проект</div><div class="cap">за те же 60 000 ₽</div></div>
-</div>
-<figure class="shot wide"><img width="800" height="241" src="../img/reviews/r21.jpg" alt="«А я месяц назад вела 4 проекта по СММ за 60к, а сейчас взяла 1 за такую стоимость»"><figcaption>в 4 раза меньше работы за те же деньги</figcaption></figure>
-
-<p>То есть не в 4 раза больше пахоты, а <b>в 4 раза меньше</b>, и за те же деньги. Вот так и выглядит выход из этого замкнутого круга 🌀</p>
-
-<p class="pain-q">«Боюсь поднимать чек. А вдруг не сработает?»</p>
-
-<p>Поднять цены? Страшно. В голове сразу: <i>«А если клиент заплатит больше, а рилсы снова не сработают? Я же буду выглядеть обманщицей»</i>. И ты снова соглашаешься на дешёвый проект, потому что он хотя бы даёт стабильность. Ну да, стабильность на уровне выживания, но всё же.</p>
-
-<p>Чек страшно поднимать, когда тебе нечем его обосновать, это понятно. Но представь, что на созвоне с новым клиентом ты говоришь не «я красиво монтирую», а вот так:</p>
-
-<blockquote>«Вот мой кейс: 315 тысяч просмотров и вилла, проданная с одного ролика. Давайте посмотрим, что можно сделать у вас»</blockquote>
-
-<p>После такого ты уже не просишь больше денег, ты просто показываешь цифры. Потому что тот, кто умеет не просто снимать, а собирать путь клиента от рилса до заявки, уже не исполнитель за 20к, а нужный компании человек, который отвечает за результат. Таких не меняют на тех, кто подешевле, <b>таким поднимают чек</b> 💸 (и в этом, кстати, твоя реализация).</p>
-
-<div class="ba words">
-  <div class="b"><div class="lab">исполнитель</div><div class="num">«делаю рилсы»</div><div class="cap">20к, правки до бесконечности, клиенты уходят</div></div>
-  <div class="a"><div class="lab">нужный человек</div><div class="num">«приношу заявки»</div><div class="cap">от 150к за проект, клиент доверяет и держится за тебя</div></div>
-</div>
-
-<p>А вот что закрыли мои ученицы:</p>
-
-<div class="shots">
-  <figure class="shot"><img width="800" height="444" src="../img/reviews/r03.jpg" alt="Подписан договор: 30 рилсов, недвижка, 70 000 ₽"><figcaption>недвижка: 70 000 ₽</figcaption></figure>
-  <figure class="shot"><img width="800" height="809" src="../img/reviews/r04.jpg" alt="Закрыла клиента на 125 000 ₽ в месяц"><figcaption>ресторан: 125 000 ₽ в месяц</figcaption></figure>
-</div>
-
-<figure class="shot wide"><img width="800" height="975" src="../img/reviews/r01.jpg" alt="100 000 ₽ за день: две рабочие встречи, два проекта по 50 000 ₽"><figcaption>две встречи = 100 000 ₽ за один день</figcaption></figure>
-
-<p>Две встречи, два проекта по 50 тысяч, и <b>100 000 ₽ за один день.</b> «Я впервые пробила свой потолок по заработку» — ради таких сообщений я и делаю свою работу, честно 🥹</p>
-
-<p class="pain-q">«Я уже разочаровалась в себе как в специалисте»</p>
-
-<p>Это, наверное, самое частое, с чем ко мне приходят. И самое приятное, что потом пишут:</p>
-
-<div class="shots">
-  <figure class="shot"><img width="800" height="440" src="../img/reviews/r19.jpg" alt="«Если бы не ты, я бы не решилась 100%»"></figure>
-  <figure class="shot"><img width="800" height="301" src="../img/reviews/r15.jpg" alt="«Это было лучшее решение пойти на обучение»"></figure>
-</div>
-
-<div class="case">
-  <div class="case-who">🎬 Окупила обучение, пока ещё училась</div>
-  <div class="case-row st"><span>Цель</span><p>Просто окупить обучение, без всяких наполеоновских планов.</p></div>
-  <div class="case-row it"><span>Итог</span><p>Получила <b>ровно 100 000 ₽</b> (и ещё будет доплата 50 000), плюс крутой кейс в портфолио и, по её словам, самую большую зарплату на данный момент.</p></div>
-</div>
-
-<div class="case">
-  <div class="case-who">📈 Своя команда и 216к за месяц</div>
-  <div class="case-row it"><span>Итог</span><p><b>2 постоянных клиента на полном сопровождении</b>, взяла себе ассистента и монтажёра, залетел рилс и у клиентки, и на её собственном аккаунте. А за ноябрь 216 000 ₽ и «тоже пробила свой потолок» ❤️</p></div>
+<div class="rv" id="reviews">
+  <div class="rv-tabs" role="tablist">
+    <button type="button" class="rv-tab on" data-g="reels" role="tab" aria-selected="true">🔥 Залёты <span>9</span></button>
+    <button type="button" class="rv-tab" data-g="words" role="tab" aria-selected="false">💬 Отзывы <span>8</span></button>
+  </div>
+  <div class="rv-group" data-g="reels">
+    <div class="rv-track" tabindex="0" aria-label="Листай вбок">
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="1022" src="../img/reviews/r28.jpg" alt="1,2 млн просмотров у школы танцев: «Нихрена себе апдейт»"></div><figcaption>1,2 млн просмотров у школы танцев: «Нихрена себе апдейт»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="896" src="../img/reviews/r27.jpg" alt="978 тыс. просмотров за новый рилс"></div><figcaption>978 тыс. просмотров за новый рилс</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="991" src="../img/reviews/r09.jpg" alt="47 тыс. просмотров у клиента"></div><figcaption>47 тыс. просмотров у клиента</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="285" src="../img/reviews/r23.jpg" alt="Рилс клиента снова улетел больше 17 тыс."></div><figcaption>Рилс клиента снова улетел больше 17 тыс.</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="1097" src="../img/reviews/r10.jpg" alt="13,5 тыс. просмотров у кафе"></div><figcaption>13,5 тыс. просмотров у кафе</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="1063" src="../img/reviews/r11.jpg" alt="11,3 тыс. просмотров у кафе"></div><figcaption>11,3 тыс. просмотров у кафе</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="865" src="../img/reviews/r12.jpg" alt="10 тыс. просмотров у кондитерской"></div><figcaption>10 тыс. просмотров у кондитерской</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="894" src="../img/reviews/r13.jpg" alt="10,1 тыс. просмотров у кафе"></div><figcaption>10,1 тыс. просмотров у кафе</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="392" src="../img/reviews/r14.jpg" alt="Загнали трафик в платный тг-канал"></div><figcaption>Загнали трафик в платный тг-канал</figcaption></figure>
+    </div>
+    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 9</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
+  </div>
+  <div class="rv-group" data-g="words" hidden>
+    <div class="rv-track" tabindex="0" aria-label="Листай вбок">
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="301" src="../img/reviews/r15.jpg" alt="«Это было лучшее решение пойти на обучение»"></div><figcaption>«Это было лучшее решение пойти на обучение»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="440" src="../img/reviews/r19.jpg" alt="«Если бы не ты, я бы не решилась 100%»"></div><figcaption>«Если бы не ты, я бы не решилась 100%»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="129" src="../img/reviews/r08.jpg" alt="«Идут лиды, перевела все твои рекомендации»"></div><figcaption>«Идут лиды, перевела все твои рекомендации»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="257" src="../img/reviews/r16.jpg" alt="«Целый курс прошла, а мысли по рилсам расширила только с тобой»"></div><figcaption>«Целый курс прошла, а мысли по рилсам расширила только с тобой»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="200" src="../img/reviews/r30.jpg" alt="«Я уже получила многое всего лишь с двух созвонов»" loading="lazy"></div><figcaption>«Я уже получила многое всего лишь с двух созвонов»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="529" src="../img/reviews/r17.jpg" alt="«Самое лучшее вложение в свои знания»"></div><figcaption>«Самое лучшее вложение в свои знания»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="493" src="../img/reviews/r18.jpg" alt="«Ни от кого такую обратную связь не чувствовала»"></div><figcaption>«Ни от кого такую обратную связь не чувствовала»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="212" src="../img/reviews/r20.jpg" alt="«Спасибо за обучение и твою лёгкость в общении»"></div><figcaption>«Спасибо за обучение и твою лёгкость в общении»</figcaption></figure>
+    </div>
+    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 8</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
+  </div>
 </div>
 
 <hr class="sep">
 
-<h2>Все результаты учениц</h2>
+<h2 class="loud">«А ЧЁ ПО ДЕНЬГАМ?» 💸</h2>
 
-<p>А тут вообще всё подряд: деньги, залетевшие рилсы, и просто тёплые слова. Листай 👇</p>
+<p>«Окей, просмотры, круто. Но я хочу ещё и чек повысить, <b>НО БОЮСЬ</b>». В голове сразу: <i>«А если клиент заплатит больше, а рилсы снова не сработают? Я же буду выглядеть обманщицей»</i>. Знакомо? 🙈</p>
 
-<div class="rv" id="reviews">
-  <div class="rv-tabs" role="tablist">
-    <button type="button" class="rv-tab on" data-g="money" role="tab" aria-selected="true">💸 Деньги <span>11</span></button>
-    <button type="button" class="rv-tab" data-g="reels" role="tab" aria-selected="false">🔥 Рилсы <span>10</span></button>
-    <button type="button" class="rv-tab" data-g="words" role="tab" aria-selected="false">💬 Отзывы <span>8</span></button>
-  </div>
+<p>Чек страшно поднимать, когда тебе нечем его обосновать. Но представь, что на созвоне с новым клиентом ты говоришь не «я красиво монтирую», а вот так:</p>
+
+<blockquote>«Вот мой кейс: 369 тысяч просмотров и вилла, проданная с одного ролика. Давайте посмотрим, что можно сделать у вас»</blockquote>
+
+<p>После такого ты уже не просишь больше денег, ты просто показываешь цифры. А теперь смотри, что было у учениц, когда они перестали бояться 👇</p>
+
+<div class="wow">
+  <span class="wow-emo">🤯</span>
+  <p class="wow-num">216 000 ₽</p>
+  <p class="wow-t">ЗА ОДИН МЕСЯЦ!!!!</p>
+  <p>Она заработала, ВНИМАНИЕ… 216к за ноябрь!!! Такое даже в найме не зарабатывают ))) А ещё у неё 2 постоянных клиента на полном сопровождении, свой ассистент и монтажёр. Руководитель, на минуточку 😎</p>
+  <img width="800" height="350" src="../img/reviews/r02.jpg" alt="«Тоже пробила свой потолок, пока что за ноябрь заработала 216к»">
+</div>
+
+<div class="wow lime">
+  <span class="wow-emo">😱</span>
+  <p class="wow-num">100 000 ₽</p>
+  <p class="wow-t">ЗА ОДИН ДЕНЬ. ПРИКИНЬ!!!!</p>
+  <p>Две рабочие встречи, два проекта по 50 тысяч, и сотка за день. «Я впервые пробила свой потолок по заработку. Что блин? 100к за день?!?!» Я плакала, честно 🥹</p>
+  <img width="800" height="975" src="../img/reviews/r01.jpg" alt="100 000 ₽ за день: две встречи, два проекта по 50 000 ₽">
+</div>
+
+<div class="wow">
+  <span class="wow-emo">🔥</span>
+  <p class="wow-num">125 000 ₽</p>
+  <p class="wow-t">В МЕСЯЦ С ОДНОГО РЕСТОРАНА</p>
+  <p>С ОДНОГО. Не с пяти проектов, а с одного ресторана. Первый месяц договорились на 100к, и половину уже скинули 💸</p>
+  <img width="800" height="809" src="../img/reviews/r04.jpg" alt="Закрыла клиента на 125 000 ₽ в месяц">
+</div>
+
+<div class="wow lime">
+  <span class="wow-emo">😮‍💨</span>
+  <p class="wow-num">4 → 1</p>
+  <p class="wow-t">ПРОЕКТ ЗА ТЕ ЖЕ ДЕНЬГИ</p>
+  <p>Месяц назад вела 4 проекта по СММ за 60к, а сейчас ОДИН проект за ту же стоимость. Работы в 4 раза меньше, денег столько же. Ну скажи, кайф? Вот так и выглядит выход из замкнутого круга 🌀</p>
+  <img width="800" height="241" src="../img/reviews/r21.jpg" alt="«А я месяц назад вела 4 проекта по СММ за 60к, а сейчас взяла 1 за такую стоимость»">
+</div>
+
+<div class="wow">
+  <span class="wow-emo">🥳</span>
+  <p class="wow-num">70 000 ₽</p>
+  <p class="wow-t">ПОДПИСАНО ✅</p>
+  <p>30 рилсов, недвижка, 70 000. Три эмоджи с дудками в конце сообщения говорят сами за себя 🎉</p>
+  <img width="800" height="444" src="../img/reviews/r03.jpg" alt="Подписан договор: 30 рилсов, недвижка, 70 000 ₽">
+</div>
+
+<div class="wow lime">
+  <span class="wow-emo">💰</span>
+  <p class="wow-num">+150 000 ₽</p>
+  <p class="wow-t">ОКУПИЛА ОБУЧЕНИЕ, ПОКА ЕЩЁ УЧИЛАСЬ</p>
+  <p>Цель была просто окупить обучение. Итог: ровно 100к, ещё 50к доплаты, крутой кейс в портфолио и самая большая зарплата на данный момент. «Это вообще прикол» © 😂</p>
+  <img width="800" height="274" src="../img/reviews/r25.jpg" alt="«Получила уже ровно 100, цель окупить. Ну ещё будет доплата 50 тыс»">
+</div>
+
+<p class="shout" style="text-align:center">И это ещё не всё 👇</p>
+
+<div class="rv">
   <div class="rv-group" data-g="money">
-    <div class="rv-track" tabindex="0" aria-label="Отзывы, листай вбок">
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="975" src="../img/reviews/r01.jpg" alt="100 000 ₽ за день: «впервые пробила свой потолок»"></div><figcaption>100 000 ₽ за день: «впервые пробила свой потолок»</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="274" src="../img/reviews/r25.jpg" alt="Окупила обучение: ровно 100 000 ₽, и ещё будет доплата 50 000"></div><figcaption>Окупила обучение: ровно 100 000 ₽, и ещё будет доплата 50 000</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="241" src="../img/reviews/r21.jpg" alt="Было 4 проекта по СММ за 60к, стало 1 проект за ту же стоимость"></div><figcaption>Было 4 проекта по СММ за 60к, стало 1 проект за ту же стоимость</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="350" src="../img/reviews/r02.jpg" alt="216 000 ₽ за ноябрь"></div><figcaption>216 000 ₽ за ноябрь</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="444" src="../img/reviews/r03.jpg" alt="Подписан договор: 30 рилсов, недвижка, 70 000 ₽"></div><figcaption>Подписан договор: 30 рилсов, недвижка, 70 000 ₽</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="809" src="../img/reviews/r04.jpg" alt="Закрыла клиента на 125 000 ₽ в месяц"></div><figcaption>Закрыла клиента на 125 000 ₽ в месяц</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="736" src="../img/reviews/r05.jpg" alt="50 000 ₽ за сценарии к 12 рилсам"></div><figcaption>50 000 ₽ за сценарии к 12 рилсам</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="914" src="../img/reviews/r06.jpg" alt="45 000 ₽: продала пак из 3 консультаций"></div><figcaption>45 000 ₽: продала пак из 3 консультаций</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="432" src="../img/reviews/r07.jpg" alt="2 постоянных клиента, свой ассистент и монтажёр"></div><figcaption>2 постоянных клиента, свой ассистент и монтажёр</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="660" src="../img/reviews/r24.jpg" alt="«Готово»: +50 000 ₽ на карту"></div><figcaption>«Готово»: +50 000 ₽ на карту</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="412" src="../img/reviews/r22.jpg" alt="Закрыла клиента на 30 000 ₽"></div><figcaption>Закрыла клиента на 30 000 ₽</figcaption></figure>
+    <div class="rv-track" tabindex="0" aria-label="Листай вбок">
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="493" src="../img/reviews/r26.jpg" alt="«В декабре хочу побить рекорд в 180 000 ₽. Пересматриваю уроки и работаю по любви»"></div><figcaption>«В декабре хочу побить рекорд в 180 000 ₽. Пересматриваю уроки и работаю по любви»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="419" src="../img/reviews/r31.jpg" alt="«Получила знания, крутой кейс в портфолио, самую большую зп и ещё 50к за старания»" loading="lazy"></div><figcaption>«Получила знания, крутой кейс в портфолио, самую большую зп и ещё 50к за старания»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="736" src="../img/reviews/r05.jpg" alt="50 000 ₽ за сценарии к 12 рилсам"></div><figcaption>50 000 ₽ за сценарии к 12 рилсам</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="914" src="../img/reviews/r06.jpg" alt="45 000 ₽: продала пак из 3 консультаций"></div><figcaption>45 000 ₽: продала пак из 3 консультаций</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="660" src="../img/reviews/r24.jpg" alt="«Готово»: +50 000 ₽ на карту"></div><figcaption>«Готово»: +50 000 ₽ на карту</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="412" src="../img/reviews/r22.jpg" alt="Закрыла клиента на 30 000 ₽"></div><figcaption>Закрыла клиента на 30 000 ₽</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="432" src="../img/reviews/r07.jpg" alt="2 постоянных клиента, свой ассистент и монтажёр"></div><figcaption>2 постоянных клиента, свой ассистент и монтажёр</figcaption></figure>
     </div>
-    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 11</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
+    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 7</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
   </div>
-  <div class="rv-group" data-g="reels" hidden>
-    <div class="rv-track" tabindex="0" aria-label="Отзывы, листай вбок">
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="1423" src="../img/reviews/r29.jpg" alt="Школа балета: было 1–2 тыс., стало 1 млн, 1,3 млн и 4,2 млн. Ролик повторил Плющенко"></div><figcaption>Школа балета: было 1–2 тыс., стало 1 млн, 1,3 млн и 4,2 млн. Ролик повторил Плющенко</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="1022" src="../img/reviews/r28.jpg" alt="1,2 млн просмотров у школы танцев: «Нихрена себе апдейт»"></div><figcaption>1,2 млн просмотров у школы танцев: «Нихрена себе апдейт»</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="896" src="../img/reviews/r27.jpg" alt="978 тыс. просмотров за новый рилс"></div><figcaption>978 тыс. просмотров за новый рилс</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="991" src="../img/reviews/r09.jpg" alt="47 тыс. просмотров у клиента"></div><figcaption>47 тыс. просмотров у клиента</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="285" src="../img/reviews/r23.jpg" alt="Рилс клиента снова улетел больше 17 тыс."></div><figcaption>Рилс клиента снова улетел больше 17 тыс.</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="1097" src="../img/reviews/r10.jpg" alt="13,5 тыс. просмотров у кафе"></div><figcaption>13,5 тыс. просмотров у кафе</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="1063" src="../img/reviews/r11.jpg" alt="11,3 тыс. просмотров у кафе"></div><figcaption>11,3 тыс. просмотров у кафе</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="865" src="../img/reviews/r12.jpg" alt="10 тыс. просмотров у кондитерской"></div><figcaption>10 тыс. просмотров у кондитерской</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="894" src="../img/reviews/r13.jpg" alt="10,1 тыс. просмотров у кафе"></div><figcaption>10,1 тыс. просмотров у кафе</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="392" src="../img/reviews/r14.jpg" alt="Загнали трафик в платный тг-канал"></div><figcaption>Загнали трафик в платный тг-канал</figcaption></figure>
-    </div>
-    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 10</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
-  </div>
-  <div class="rv-group" data-g="words" hidden>
-    <div class="rv-track" tabindex="0" aria-label="Отзывы, листай вбок">
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="301" src="../img/reviews/r15.jpg" alt="«Это было лучшее решение пойти на обучение»"></div><figcaption>«Это было лучшее решение пойти на обучение»</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="129" src="../img/reviews/r08.jpg" alt="«Идут лиды, перевела все твои рекомендации»"></div><figcaption>«Идут лиды, перевела все твои рекомендации»</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="257" src="../img/reviews/r16.jpg" alt="«Целый курс прошла, а мысли по рилсам расширила только с тобой»"></div><figcaption>«Целый курс прошла, а мысли по рилсам расширила только с тобой»</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="529" src="../img/reviews/r17.jpg" alt="«Самое лучшее вложение в свои знания»"></div><figcaption>«Самое лучшее вложение в свои знания»</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="493" src="../img/reviews/r18.jpg" alt="«Ни от кого такую обратную связь не чувствовала»"></div><figcaption>«Ни от кого такую обратную связь не чувствовала»</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="440" src="../img/reviews/r19.jpg" alt="«Если бы не ты, я бы не решилась 100%»"></div><figcaption>«Если бы не ты, я бы не решилась 100%»</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="212" src="../img/reviews/r20.jpg" alt="«Спасибо за обучение и твою лёгкость в общении»"></div><figcaption>«Спасибо за обучение и твою лёгкость в общении»</figcaption></figure>
-      <figure class="rv-card"><div class="rv-img"><img width="800" height="493" src="../img/reviews/r26.jpg" alt="«В декабре хочу побить рекорд в 180 000 ₽. Пересматриваю уроки и работаю по любви»"></div><figcaption>«В декабре хочу побить рекорд в 180 000 ₽. Пересматриваю уроки и работаю по любви»</figcaption></figure>
-    </div>
-    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 8</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
-  </div>
-  <p class="rv-hint">листай вбок 👉 всего 29 отзывов</p>
+</div>
+
+<p>Тот, кто умеет не просто снимать, а собирать путь клиента от рилса до заявки, уже не исполнитель за 20к, а нужный компании человек, который отвечает за результат. Таких не меняют на тех, кто подешевле, <b>таким поднимают чек</b> 💸 (и в этом, кстати, твоя реализация).</p>
+
+<div class="ba words">
+  <div class="b"><div class="lab">исполнитель</div><div class="num">«делаю рилсы»</div><div class="cap">20к, правки до бесконечности, клиенты уходят</div></div>
+  <div class="a"><div class="lab">нужный человек</div><div class="num">«приношу заявки»</div><div class="cap">от 150к за проект, клиент доверяет и держится за тебя</div></div>
 </div>
 
 
@@ -723,7 +789,9 @@ fieldset.af-q{padding-top:10px}
 </div>
 
 <section class="offer">
-  <h2>Наставничество 1 на 1: <span>высокие просмотры в твоих проектах</span></h2>
+  <h2>Обучающая программа <span>с личной работой со мной 1 на 1</span></h2>
+
+  <p class="brain">Я на 2 месяца отдаю тебе свои мозги 🧠</p>
 
   <p>Это не очередной курс в духе «вот тебе 40 уроков, разбирайся сама». Я работаю с тобой лично, один на один: вникаю в твои проекты, докручиваю систему вместе с тобой и учу тебя этому, чтобы дальше ты сама так же делала с каждым новым клиентом.</p>
 
@@ -740,6 +808,7 @@ fieldset.af-q{padding-top:10px}
 
   <h3>Как мы работаем</h3>
   <ul class="program">
+    <li><span>🗓</span><span><b>2 месяца.</b> За это время мы делаем результат в твоих проектах, а не просто проходим уроки.</span></li>
     <li><span>🧠</span><span><b>Лично со мной, 1 на 1.</b> Я вникаю в твои проекты и докручиваю систему под каждого твоего клиента.</span></li>
     <li><span>🎬</span><span><b>Записанные уроки и материалы.</b> Теорию проходишь в своём темпе, когда тебе удобно.</span></li>
     <li><span>✍️</span><span><b>Домашки под моим контролем.</b> Чтобы не «посмотрела и забыла», а реально внедрила в проекты.</span></li>
@@ -795,11 +864,11 @@ fieldset.af-q{padding-top:10px}
 </details>
 <details>
   <summary>«У меня нет времени»</summary>
-  <p>Времени нет как раз потому, что ты тащишь 4 проекта за копейки 🙃 Ученица после обучения ведёт 1 проект за те же деньги, так что наставничество время не забирает, а наоборот освобождает.</p>
+  <p>Времени нет как раз потому, что ты тащишь 4 проекта за копейки 🙃 Ученица после обучения ведёт 1 проект за те же деньги, так что обучение время не забирает, а наоборот освобождает.</p>
 </details>
 <details>
   <summary>«Через сколько будет результат?»</summary>
-  <p>Сроки у всех разные, но моя задача, чтобы результат пошёл прямо во время наставничества. Одна ученица окупила обучение, пока ещё училась: ровно 100 000 ₽ и ещё 50 000 доплаты.</p>
+  <p>Сроки у всех разные, но моя задача, чтобы результат пошёл прямо во время обучения. Одна ученица окупила обучение, пока ещё училась: ровно 100 000 ₽ и ещё 50 000 доплаты.</p>
 </details>
 
 <section class="anketa" id="anketa">
@@ -852,7 +921,7 @@ fieldset.af-q{padding-top:10px}
 
 <div class="ps">
   <h3>P.S.</h3>
-  <p>Если коротко: это наставничество 1 на 1, где я вникаю в твои проекты, и мы вместе делаем твоим клиентам высокие просмотры и заявки, а ты получаешь кейсы и чек, за который не стыдно.</p>
+  <p>Если коротко: это обучающая программа с личной работой со мной 1 на 1, где я вникаю в твои проекты, и мы вместе делаем твоим клиентам высокие просмотры и заявки, а ты получаешь кейсы и чек, за который не стыдно.</p>
   <h3>P.P.S.</h3>
   <p>Можно, конечно, ещё месяц монтировать до двух ночи за 20 тысяч, гадать, залетит или нет, и вздрагивать от каждого «давай пока приостановим». Вопрос только в том, сколько таких месяцев ты ещё готова прожить. Тебе всё равно придётся через это пройти (и нет, ещё не поздно).</p>
   <h3>P.P.P.S.</h3>
@@ -866,7 +935,7 @@ fieldset.af-q{padding-top:10px}
 
 <script>
 (function(){
-  var root=document.getElementById('reviews'); if(!root) return;
+  document.querySelectorAll('.rv').forEach(function(root){
   var tabs=root.querySelectorAll('.rv-tab'), groups=root.querySelectorAll('.rv-group');
   tabs.forEach(function(t){t.addEventListener('click',function(){
     tabs.forEach(function(x){x.classList.toggle('on',x===t);x.setAttribute('aria-selected',x===t)});
@@ -881,6 +950,7 @@ fieldset.af-q{padding-top:10px}
     tr.addEventListener('scroll',function(){window.requestAnimationFrame(upd)},{passive:true});
     tr.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();go(1)} if(e.key==='ArrowLeft'){e.preventDefault();go(-1)}});
     g._upd=upd; upd();
+  });
   });
 })();
 </script>
