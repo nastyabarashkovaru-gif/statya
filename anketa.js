@@ -3,7 +3,7 @@
    Сегмент берётся из скрытого поля segment в форме конкретного лендинга. */
 (function () {
   // Сюда вставляется ссылка на развёрнутый Google Apps Script (см. apps-script/ИНСТРУКЦИЯ.md)
-  var ENDPOINT = '';
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxKoqzrEWBQJOcPePfNyPCRbviyjFXMJm3F2ChJ9ozHh1pWplikvHF3ev_iAE8iqshD/exec';
 
   var form = document.getElementById('af');
   if (!form) return;
