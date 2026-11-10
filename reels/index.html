@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Просмотры по системе</title>
+<meta name="description" content="Как делать клиентам рилсы на 100+ тысяч просмотров в любой нише и брать от 70 000 ₽ за проект">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800;900&family=Caveat:wght@600;700&display=swap">
+<style>
+/* Лонгрид в колонку, как у Корытина: белый лист, жирная гротескная типографика, розовые и салатовые маркеры-выделения, скрины как «вклейки» */
+:root{
+  --paper:#fffafc;
+  --ink:#1f1420;
+  --text:#4a3d4b;
+  --muted:#6f5a6c;
+  --pink:#ff4fa3;
+  --pink-soft:#ffe0ef;
+  --pink-deep:#d6267a;
+  --lime:#b8f25a;
+  --lime-soft:#efffd6;
+  --lime-deep:#4f8a00;
+  --line:#f1d3e2;
+  --f-body:"Onest","TildaSans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --f-hand:"Caveat","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--text);font-family:var(--f-body);font-size:18px;line-height:1.7;padding-inline:16px;padding-block:0 48px}
+h1,h2,h3,b,strong,.shout,.big{color:var(--ink)}
+.wrap{max-width:680px;margin:0 auto}
+p{margin:0 0 1.3em}
+b,strong{font-weight:800}
+s{color:var(--muted)}
+h2{font-size:clamp(26px,6vw,36px);line-height:1.15;font-weight:900;letter-spacing:-.02em;margin:1.6em 0 .6em;text-wrap:balance}
+h3{font-size:22px;line-height:1.25;font-weight:800;margin:1.4em 0 .5em;text-wrap:balance}
+.mark{background:linear-gradient(transparent 55%,var(--lime) 55%);padding:0 .1em}
+.mark-pink{background:linear-gradient(transparent 55%,var(--pink-soft) 55%);padding:0 .1em}
+.caps{text-transform:uppercase;letter-spacing:.02em}
+
+/* hero */
+.hero{padding-block:40px 24px}
+.eyebrow{display:inline-block;background:var(--ink);color:var(--lime);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:999px;line-height:1.35}
+.hero h1{font-size:clamp(25px,6.2vw,38px);line-height:1.28;font-weight:800;letter-spacing:-.005em;margin:24px 0 20px;text-wrap:pretty;color:var(--ink)}
+.hero h1 em{font-style:normal;color:var(--pink-deep)}
+.hero h1 .money{background:var(--lime);padding:0 .2em;border-radius:6px;white-space:nowrap;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hero h1 .caps-acc{color:var(--pink-deep)}
+.sub{font-size:20px;font-weight:500;color:var(--muted);border-left:4px solid var(--pink);padding-left:16px}
+
+/* dialog */
+.dialog{display:flex;flex-direction:column;gap:6px;margin:18px 0 22px}
+.msg{max-width:78%;padding:9px 14px;border-radius:18px;font-size:17px;line-height:1.35}
+.msg.in{background:#fff;border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:6px}
+.msg.out{background:var(--pink);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
+
+/* big number */
+.big{font-size:clamp(44px,12vw,76px);font-weight:900;letter-spacing:-.03em;line-height:1;color:var(--pink-deep);margin:10px 0 6px;font-variant-numeric:tabular-nums}
+.stack-lines p{margin:0 0 .25em}
+
+/* screenshots */
+figure.shot{margin:22px auto 26px;max-width:420px}
+figure.shot.wide{max-width:560px}
+figure.shot img{display:block;width:100%;border-radius:18px;border:1px solid var(--line);box-shadow:0 10px 30px -14px rgba(214,38,122,.35)}
+figure.shot figcaption{font-family:var(--f-hand);font-size:22px;color:var(--pink-deep);text-align:center;margin-top:8px;line-height:1.2}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0 26px}
+.shots figure.shot{margin:0;max-width:none}
+@media (max-width:520px){.shots{grid-template-columns:1fr}}
+.todo{border:2px dashed var(--pink);border-radius:18px;padding:22px 18px;text-align:center;color:var(--pink-deep);font-weight:700;background:var(--pink-soft);margin:22px 0;font-size:15px}
+
+/* callouts */
+.callout{background:var(--pink-soft);border-radius:22px;padding:22px 22px 10px;margin:26px 0}
+.callout.lime{background:var(--lime-soft)}
+.callout.dark{background:var(--ink);color:#fff}
+.callout.dark{color:#f3e9f1}
+.callout.dark .shout{color:#fff}
+.callout.dark .mark{background:none;color:var(--lime);padding:0}
+.shout{font-size:clamp(22px,5.6vw,30px);font-weight:900;line-height:1.15;letter-spacing:-.01em;text-transform:uppercase;margin:0 0 .5em}
+.shout .pink{color:var(--pink)}
+
+/* lists */
+ul.ticks,ul.cross,ul.chips{list-style:none;padding:0;margin:0 0 1em}
+ul.ticks li,ul.cross li{position:relative;padding-left:34px;margin-bottom:.55em}
+ul.ticks li::before{content:"✔";position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--lime);color:var(--ink);font-size:13px;font-weight:900;display:grid;place-items:center;margin-top:3px}
+ul.cross li::before{content:"✕";position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--pink);color:#fff;font-size:13px;font-weight:900;display:grid;place-items:center;margin-top:3px}
+ul.chips{display:flex;flex-wrap:wrap;gap:8px}
+ul.chips li{background:#fff;border:2px solid var(--lime);border-radius:999px;padding:6px 14px;font-weight:700;font-size:16px}
+
+/* method steps */
+.step{display:grid;grid-template-columns:56px 1fr;gap:14px;margin:26px 0}
+.step .n{width:56px;height:56px;border-radius:16px;background:var(--pink);color:#fff;font-weight:900;font-size:28px;display:grid;place-items:center}
+.step > div{min-width:0}
+.step h3{margin-top:10px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.vs > div{border-radius:16px;padding:14px;font-size:16px;line-height:1.4;min-width:0}
+.vs .bad{background:#f4eef2;color:var(--muted)}
+.vs .good{background:var(--lime-soft);border:2px solid var(--lime)}
+.vs .tag{display:block;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.vs .res{display:block;margin-top:12px;padding-top:10px;border-top:1px dashed currentColor;font-size:15px;font-weight:900;text-transform:uppercase;letter-spacing:.05em}
+.vs .good .res{color:var(--lime-deep)}
+figure.shot video{display:block;width:100%;border-radius:18px;border:1px solid var(--line);background:#000}
+@media (max-width:520px){.vs{grid-template-columns:1fr}}
+
+/* quotes */
+blockquote{margin:22px 0;padding:18px 20px;border-radius:20px;background:#fff;border:2px solid var(--pink);font-size:20px;font-weight:600;line-height:1.4;position:relative}
+blockquote::before{content:"“";position:absolute;top:-22px;left:14px;font-size:64px;color:var(--pink);font-weight:900;line-height:1}
+
+/* memes */
+.meme{margin:30px auto;max-width:440px;border-radius:20px;overflow:hidden;border:3px solid var(--ink);background:#fff;transform:rotate(-1.2deg)}
+.meme.r{transform:rotate(1.2deg)}
+.meme .row{display:grid;grid-template-columns:1fr 92px;align-items:center;border-bottom:3px solid var(--ink)}
+.meme .row:last-child{border-bottom:0}
+.meme .txt{padding:14px 16px;font-weight:800;font-size:17px;line-height:1.3}
+.meme .pic{font-size:52px;text-align:center;align-self:stretch;display:grid;place-items:center;border-left:3px solid var(--ink)}
+.meme .row:nth-child(1) .pic{background:var(--pink-soft)}
+.meme .row:nth-child(2) .pic{background:var(--lime-soft)}
+.meme .label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--pink-deep);margin-bottom:2px}
+.meme-cap{text-align:center;font-family:var(--f-hand);font-size:21px;color:var(--muted);margin-top:-18px;margin-bottom:24px}
+@media (prefers-reduced-motion:reduce){.meme{transform:none}}
+
+/* paths */
+.path{border-radius:22px;padding:22px 22px 8px;margin:18px 0;border:2px solid var(--line);background:#fff}
+.path .pnum{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.path h3{margin-top:4px}
+.path.p1{border-color:#e7dce3}
+.path.p3{border-color:var(--pink);background:var(--pink-soft)}
+
+/* offer */
+.offer{background:var(--ink);color:#fff;border-radius:28px;padding:28px 22px 14px;margin:30px 0}
+.offer h2{color:#fff;margin-top:0}
+.offer h2 span{color:var(--lime)}
+.offer h3{color:var(--lime)}
+.offer ul.ticks li::before{background:var(--lime)}
+.gift{background:var(--pink);border-radius:16px;padding:14px 16px;font-weight:800;margin:16px 0}
+ol.flow{counter-reset:f;list-style:none;padding:0;margin:0 0 1em}
+ol.flow li{counter-increment:f;position:relative;padding:0 0 14px 46px;border-left:2px dashed var(--pink);margin-left:15px}
+ol.flow li:last-child{border-left-color:transparent}
+ol.flow li::before{content:counter(f);position:absolute;left:-16px;top:-2px;width:30px;height:30px;border-radius:50%;background:var(--lime);color:var(--ink);font-weight:900;display:grid;place-items:center;font-size:15px}
+ol.flow b{color:var(--lime)}
+.term{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.term div{background:#2e2230;border-radius:16px;padding:14px;min-width:0}
+.term .v{font-size:30px;font-weight:900;color:var(--lime);line-height:1.1}
+.term .k{font-size:14px;color:#d9c8d6}
+
+/* scarcity + cta */
+.cta-box{border:3px solid var(--ink);border-radius:28px;padding:24px 20px;margin:32px 0;background:var(--lime-soft);text-align:center}
+.cta-box p{text-align:left}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:800;font-size:15px;margin-bottom:14px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--pink);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+.btn{display:inline-block;background:var(--pink);color:#fff;text-decoration:none;font-weight:900;font-size:19px;text-transform:uppercase;letter-spacing:.03em;padding:18px 30px;border-radius:999px;box-shadow:0 6px 0 var(--pink-deep);transition:transform .12s,box-shadow .12s;margin:8px 0 6px;text-align:center}
+.btn:hover{transform:translateY(2px);box-shadow:0 4px 0 var(--pink-deep)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.btn-note{font-size:14px;color:var(--muted);text-align:center!important;margin-top:8px}
+
+/* objections */
+details{border-bottom:2px solid var(--line);padding:4px 0}
+details summary{cursor:pointer;list-style:none;font-weight:800;font-size:19px;padding:14px 40px 14px 0;position:relative}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";position:absolute;right:4px;top:8px;width:30px;height:30px;border-radius:50%;background:var(--lime);display:grid;place-items:center;font-weight:900}
+details[open] summary::after{content:"–";background:var(--pink);color:#fff}
+details p{margin-bottom:1em}
+
+.ps{margin:30px 0;padding-top:6px}
+.ps h3{font-family:var(--f-hand);font-size:32px;color:var(--pink-deep);margin:1.2em 0 .2em}
+
+hr.sep{border:0;height:24px;margin:34px 0;background:radial-gradient(circle,var(--pink) 3px,transparent 4px) center/28px 24px repeat-x}
+
+footer{font-size:14px;color:var(--muted);text-align:center;margin-top:40px}
+
+/* ===== v2: обучение «Просмотры + деньги» ===== */
+.lead-num{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 28px}
+.lead-num div{background:#fff;border:2px solid var(--ink);border-radius:18px;padding:14px 12px;min-width:0}
+.lead-num .v{font-size:clamp(20px,5vw,28px);font-weight:900;color:var(--pink-deep);line-height:1.1;font-variant-numeric:tabular-nums}
+.lead-num .k{font-size:13px;line-height:1.35;color:var(--muted);margin-top:4px}
+@media (max-width:520px){.lead-num{grid-template-columns:1fr}}
+
+/* монетизация */
+.methods{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0 28px}
+.method{background:#fff;border:2px solid var(--line);border-radius:20px;padding:16px 16px 12px;min-width:0}
+.method h4{margin:0 0 10px;font-size:19px;font-weight:900;color:var(--ink);line-height:1.2}
+.method .meter{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.method .meter span:first-child{width:74px;flex:none}
+.dots{display:flex;gap:4px}
+.dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--ink);background:#fff}
+.dots i.on{background:var(--pink)}
+.method p{font-size:15px;line-height:1.5;margin:8px 0 0}
+.method .plus{color:var(--lime-deep);font-weight:900}
+.method .minus{color:var(--pink-deep);font-weight:900}
+.method.win{grid-column:1/-1;background:var(--lime-soft);border:3px solid var(--ink);position:relative}
+.method.win .dots i.on{background:var(--lime);}
+.method.win .crown{position:absolute;top:-16px;right:16px;background:var(--ink);color:var(--lime);font-weight:900;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:999px;transform:rotate(3deg)}
+@media (max-width:560px){.methods{grid-template-columns:1fr}}
+
+/* 5 шагов */
+.funnel{margin:26px 0 30px;background:#fff;border:3px solid var(--ink);border-radius:28px;padding:20px 14px 8px}
+.funnel-title{font-family:var(--f-hand);font-size:30px;color:var(--pink-deep);text-align:center;margin:0 0 6px;line-height:1.1}
+.fstep{display:grid;grid-template-columns:108px 1fr;gap:12px;align-items:center}
+.fstep > div{min-width:0}
+.fstep svg{width:108px;height:auto;display:block}
+.fstep .fn{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--pink);color:#fff;font-weight:900;font-size:15px;margin-bottom:6px}
+.fstep h4{margin:0 0 4px;font-size:17px;hyphens:auto;font-weight:900;color:var(--ink);line-height:1.25}
+.fstep p{margin:0;font-size:15px;line-height:1.5}
+.farrow{display:block;margin:2px 0 2px 32px;width:46px;height:40px}
+.ink{stroke:var(--ink);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.fill-w{fill:#fff}.fill-p{fill:var(--pink)}.fill-ps{fill:var(--pink-soft)}.fill-l{fill:var(--lime)}.fill-ls{fill:var(--lime-soft)}.fill-i{fill:var(--ink)}.fill-y{fill:#ffd84d}
+.svgtxt{font-family:var(--f-body);font-weight:900}
+@keyframes floatUp{0%{transform:translateY(8px);opacity:0}30%{opacity:1}100%{transform:translateY(-14px);opacity:0}}
+@keyframes popIn{0%,10%{transform:scale(.6);opacity:0}25%,100%{transform:scale(1);opacity:1}}
+@keyframes tap{0%,100%{transform:translate(0,0)}50%{transform:translate(-4px,-6px)}}
+@keyframes drop{0%{transform:translateY(-26px);opacity:0}25%{opacity:1}60%,100%{transform:translateY(0);opacity:1}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.a-float{animation:floatUp 2.4s ease-in-out infinite;transform-box:fill-box}
+.a-float.d2{animation-delay:1.2s}
+.a-pop{animation:popIn 3.6s ease-out infinite;transform-box:fill-box;transform-origin:left center}
+.a-pop.d2{animation-delay:.35s}.a-pop.d3{animation-delay:.7s}
+.a-tap{animation:tap 1.4s ease-in-out infinite;transform-box:fill-box}
+.a-drop{animation:drop 2.4s ease-out infinite;transform-box:fill-box}
+.a-drop.d2{animation-delay:.4s}.a-drop.d3{animation-delay:.8s}
+.a-blink{animation:blink 1.2s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.a-float,.a-pop,.a-tap,.a-drop,.a-blink{animation:none}}
+
+/* нужно / не нужно */
+.need{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0 28px}
+.need > div{border-radius:22px;padding:18px 16px 8px;min-width:0}
+.need .yes{background:var(--lime-soft);border:3px solid var(--ink)}
+.need .no{background:#f4eef2;border:2px dashed var(--muted)}
+.need h4{margin:0 0 12px;font-size:16px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--ink)}
+.need ul{list-style:none;padding:0;margin:0}
+.need li{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;font-size:16px;line-height:1.4}
+.need li .ic{font-size:24px;line-height:1;flex:none}
+.need .no li{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--pink);text-decoration-thickness:2px}
+@media (max-width:560px){.need{grid-template-columns:1fr}}
+
+/* разрешение */
+.cert{position:relative;max-width:420px;margin:28px auto 8px;background:#fffdf5;border:3px double var(--ink);border-radius:6px;padding:22px 20px 18px;transform:rotate(-1.5deg);box-shadow:6px 6px 0 var(--pink-soft)}
+.cert .ct{font-weight:900;text-align:center;text-transform:uppercase;letter-spacing:.06em;font-size:15px;color:var(--ink);line-height:1.3}
+.cert .cs{text-align:center;font-size:13px;color:var(--muted);margin:4px 0 14px}
+.cert .row{display:flex;gap:8px;font-size:14px;margin-bottom:8px;color:var(--muted)}
+.cert .row span:last-child{flex:1;border-bottom:1.5px solid var(--muted)}
+.cert .stamp{position:absolute;right:12px;bottom:18px;transform:rotate(-14deg);border:4px solid var(--pink);color:var(--pink);font-weight:900;font-size:22px;padding:4px 10px;border-radius:10px;letter-spacing:.04em;background:rgba(255,255,255,.6)}
+@media (prefers-reduced-motion:reduce){.cert{transform:none}}
+
+/* до/после + таймлайн */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}
+.ba > div{border-radius:20px;padding:16px;min-width:0;text-align:center}
+.ba .b{background:#f4eef2}
+.ba .a{background:var(--pink);color:#fff}
+.ba .lab{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;opacity:.8}
+.ba .num{font-size:clamp(24px,6vw,34px);font-weight:900;line-height:1.1;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.ba .b .num{color:var(--ink)}
+.ba .a .num{color:#fff}
+.ba .cap{font-size:14px;line-height:1.35}
+.timeline{list-style:none;padding:0;margin:24px 0 28px;position:relative}
+.timeline::before{content:"";position:absolute;left:15px;top:6px;bottom:6px;border-left:3px dashed var(--pink)}
+.timeline li{position:relative;padding:0 0 18px 46px}
+.timeline li::before{content:"";position:absolute;left:5px;top:4px;width:20px;height:20px;border-radius:50%;background:var(--lime);border:3px solid var(--ink)}
+.timeline li.last::before{background:var(--pink)}
+.timeline b{display:block;font-size:17px}
+.timeline span{font-size:16px}
+
+/* кому подходит */
+.who{display:grid;gap:12px;margin:22px 0 28px}
+.who > div{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:start;background:#fff;border:2px solid var(--line);border-radius:20px;padding:16px}
+.who > div > div{min-width:0}
+.who .ic{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:28px;background:var(--pink-soft)}
+.who > div:nth-child(2) .ic{background:var(--lime-soft)}
+.who h4{margin:2px 0 4px;font-size:18px;font-weight:900;color:var(--ink);line-height:1.25}
+.who p{margin:0;font-size:15px;line-height:1.5}
+
+.program{list-style:none;padding:0;margin:0 0 1em;display:grid;gap:10px}
+.program li{background:#2e2230;border-radius:16px;padding:12px 14px;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;color:#f3e9f1;font-size:16px;line-height:1.45}
+.program li > span:first-child{font-size:22px;line-height:1.2}
+.program b{color:#fff}
+.offer .personal{border:2px dashed var(--lime);border-radius:18px;padding:16px 16px 4px;margin:18px 0}
+.offer .personal p{color:#f3e9f1}
+.offer p{color:#e9dde7}
+.placeholder{background:#fff3c4;border-radius:4px;padding:0 .3em;color:var(--ink);font-weight:800}
+
+/* карусель отзывов */
+.rv{margin:22px 0 30px}
+.rv-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.rv-tab{font:inherit;font-size:14px;font-weight:800;border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:7px 11px;cursor:pointer;line-height:1.2}
+.rv-tab span{display:inline-block;min-width:22px;padding:0 6px;border-radius:999px;background:var(--pink-soft);font-size:13px;margin-left:4px}
+.rv-tab.on{background:var(--ink);color:#fff}
+.rv-tab.on span{background:var(--lime);color:var(--ink)}
+.rv-tab:focus-visible,.rv-btn:focus-visible,.rv-track:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+.rv-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 4px;padding:4px 4px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rv-track::-webkit-scrollbar{display:none}
+.rv-card{flex:0 0 84%;max-width:420px;scroll-snap-align:start;margin:0;background:#fff;border:2px solid var(--ink);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.rv-img{background:#111;display:flex;align-items:center;justify-content:center;height:min(62vh,440px)}
+.rv-img img{max-width:100%;max-height:100%;width:auto;height:auto;display:block;object-fit:contain}
+.rv-card figcaption{padding:12px 14px 14px;font-weight:800;font-size:15px;line-height:1.35;color:var(--ink);border-top:2px solid var(--ink);background:var(--lime-soft);flex:1}
+.rv-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:4px}
+.rv-btn{width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--pink);color:#fff;font-size:20px;font-weight:900;cursor:pointer;box-shadow:0 3px 0 var(--pink-deep)}
+.rv-btn:disabled{background:#eee;color:#aaa;box-shadow:none;cursor:default}
+.rv-count{font-weight:800;font-variant-numeric:tabular-nums;min-width:64px;text-align:center}
+.rv-hint{text-align:center;font-family:var(--f-hand);font-size:22px;color:var(--muted);margin:6px 0 0}
+@media (min-width:700px){.rv-card{flex-basis:48%}}
+
+.play-hint{font-family:var(--f-hand);font-size:24px;color:var(--pink-deep);text-align:center;margin:0 0 -6px;line-height:1.2}
+.dorm{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 26px;max-width:520px;margin-inline:auto}
+.dorm figure{margin:0;min-width:0}
+.dorm img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:14px;border:2px solid var(--ink);display:block}
+.dorm figure:nth-child(1){grid-column:1/-1}
+.dorm figure:nth-child(1) img{aspect-ratio:16/9;object-position:center 70%}
+.dorm figcaption{font-family:var(--f-hand);font-size:21px;color:var(--pink-deep);text-align:center;line-height:1.1;margin-top:4px}
+.dorm figure:nth-child(2){transform:rotate(1.5deg)}
+.dorm figure:nth-child(3){transform:rotate(-1.5deg)}
+@media (prefers-reduced-motion:reduce){.dorm figure{transform:none}}
+
+/* кейсы старт/итог */
+.case{border:2px solid var(--ink);border-radius:22px;overflow:hidden;margin:26px 0 14px;background:#fff}
+.case-who{background:var(--ink);color:#fff;font-weight:900;font-size:17px;padding:12px 16px}
+.case-row{display:grid;grid-template-columns:70px 1fr;gap:12px;padding:14px 16px;align-items:start}
+.case-row > p{margin:0;min-width:0;font-size:16px;line-height:1.5}
+.case-row > span{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;border-radius:999px;padding:5px 0;text-align:center;margin-top:2px}
+.case-row.st{background:#f4eef2}
+.case-row.st > span{background:#fff;color:var(--muted);border:2px solid var(--muted)}
+.case-row.it{background:var(--lime-soft);border-top:2px dashed var(--ink)}
+.case-row.it > span{background:var(--lime);color:var(--ink);border:2px solid var(--ink)}
+.behind{background:var(--ink);color:#f3e9f1;border-radius:28px;padding:24px 18px 10px;margin:34px 0 20px}
+.behind h2{color:#fff;margin-top:4px}
+.behind p{color:#e9dde7}
+.behind-eyebrow{display:inline-block;background:var(--lime);color:var(--ink)!important;font-weight:900;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin:0}
+.behind .case{border-color:var(--lime)}
+.behind .case-who{background:var(--pink)}
+.behind .case-row p{color:var(--text)}
+.behind .case-row.it p b,.behind .case-row p b{color:var(--ink)}
+.tickline{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;font-weight:700}
+.tickline .tk{width:26px;height:26px;border-radius:50%;background:var(--lime);border:2px solid var(--ink);display:grid;place-items:center;font-weight:900;font-size:14px;color:var(--ink);margin-top:2px}
+.callout-mini{background:var(--lime-soft);border:2px dashed var(--ink);border-radius:18px;padding:14px 16px}
+.cta-scarcity{display:inline-block;background:#fff;border:2px solid var(--ink);border-radius:16px;padding:10px 14px;font-weight:700;font-size:15px;line-height:1.4;text-align:center!important}
+
+.mark,.mark-pink{-webkit-box-decoration-break:clone;box-decoration-break:clone}
+
+.program .sublist{list-style:none;padding:6px 0 0;margin:0;display:grid;gap:4px}
+.program .sublist li{display:block;background:none;padding:0 0 0 18px;position:relative;font-size:15px;color:#e9dde7}
+.program .sublist li::before{content:"→";position:absolute;left:0;color:var(--lime);font-weight:900}
+.tree{margin:10px auto 6px;max-width:420px;text-align:center}
+.tree-cloud{position:relative;width:240px;max-width:80%;margin:0 auto}
+.tree-cloud svg{display:block;width:100%;height:auto}
+.tree-cloud span{position:absolute;inset:18% 0 0 0;display:grid;place-items:center;font-weight:900;font-size:18px;line-height:1.15;color:#1f1420}
+.tree-lines{display:block;width:100%;height:46px}
+.tree-heads{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tree-heads div{background:var(--pink);color:#fff;font-weight:900;border-radius:16px;padding:10px 4px;font-size:14px;line-height:1.2;min-width:0;border:2px solid #fff}
+.tree-heads span{display:block;font-size:24px;margin-bottom:4px}
+.tree-cards{display:grid;gap:8px;margin:14px 0 16px}
+.tree-cards div{background:#2e2230;border-left:4px solid var(--lime);border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.5;color:#f3e9f1}
+.tree-cards b{color:#fff}
+
+.shots.three{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:8px;scrollbar-width:none}
+.shots.three::-webkit-scrollbar{display:none}
+.shots.three .shot{flex:0 0 72%;max-width:300px;scroll-snap-align:start}
+.shots.three .shot img{aspect-ratio:auto;object-fit:contain}
+.behind .shot figcaption{color:var(--lime)}
+.swipe-hint{font-family:var(--f-hand);font-size:20px;color:var(--lime);text-align:center;margin:0}
+
+.toc{background:#fff;border:3px solid var(--ink);border-radius:22px;padding:18px 18px 4px;margin:6px 0 30px;box-shadow:6px 6px 0 var(--lime)}
+.toc-title{font-weight:900;font-size:19px;color:var(--ink);margin:0 0 12px}
+.toc ul.ticks li{font-size:16px;line-height:1.45;margin-bottom:.6em}
+.laser-row{display:grid;grid-template-columns:130px 1fr;gap:16px;align-items:center;margin:22px 0 14px}
+.laser-row > div{min-width:0}
+.laser-row img{width:130px;border-radius:14px;border:2px solid var(--ink);display:block}
+.laser-row p{margin:0 0 .6em;font-size:16px;line-height:1.45}
+.laser-res{font-weight:900;font-size:22px!important;line-height:1.2!important;color:var(--lime-deep)}
+
+.toc{background:var(--ink);border:0;box-shadow:6px 6px 0 var(--pink);padding:22px 18px 14px}
+.toc-title{color:#fff;font-size:clamp(22px,6vw,28px);text-transform:uppercase;letter-spacing:.01em;line-height:1.15;display:flex;align-items:center;gap:10px}
+.toc-fire{font-size:40px;line-height:1}
+.toc-list{list-style:none;counter-reset:t;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.toc-list li{counter-increment:t;display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:center;background:var(--lime);color:var(--ink);font-weight:800;font-size:17px;line-height:1.3;border-radius:16px;padding:12px 14px}
+.toc-list li::before{content:counter(t);width:36px;height:36px;border-radius:50%;background:var(--pink);color:#fff;display:grid;place-items:center;font-weight:900;font-size:17px}
+
+.methods .method:nth-child(5){grid-column:1/-1}
+img{height:auto}
+/* ===== reels: анкета на странице ===== */
+.anketa{border:3px solid var(--ink);border-radius:28px;padding:24px 18px 18px;margin:34px 0;background:var(--lime-soft);box-shadow:6px 6px 0 var(--pink);scroll-margin-top:16px}
+.anketa h2{margin-top:.4em}
+.anketa > .cta-scarcity{display:block}
+.af{display:grid;gap:14px;margin-top:6px}
+.af-q{display:block;background:#fff;border:2px solid var(--ink);border-radius:18px;padding:14px;margin:0;font-weight:800;color:var(--ink);font-size:17px;line-height:1.35;min-width:0}
+fieldset.af-q{padding-top:10px}
+.af-q legend{float:left;width:100%;padding:0;margin-bottom:10px}
+.af-n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--pink);color:#fff;font-size:14px;font-weight:900;margin-right:8px;vertical-align:1px}
+.af-q input[type=text],.af-q textarea{display:block;width:100%;margin-top:10px;font:inherit;font-weight:500;font-size:17px;color:var(--ink);background:var(--paper);border:2px solid var(--line);border-radius:12px;padding:12px 14px;line-height:1.4}
+.af-q textarea{resize:vertical;min-height:84px}
+.af-q input:focus,.af-q textarea:focus{outline:none;border-color:var(--pink);background:#fff}
+.af-q small{display:block;font-weight:500;font-size:14px;color:var(--muted);margin-top:6px}
+.af-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;clear:both}
+.af-opts label{position:relative;cursor:pointer}
+.af-opts input{position:absolute;opacity:0;pointer-events:none}
+.af-opts span{display:block;border:2px solid var(--line);border-radius:12px;padding:11px 10px;font-weight:700;font-size:15px;text-align:center;line-height:1.3;background:var(--paper)}
+.af-opts input:checked + span{background:var(--lime);border-color:var(--ink)}
+.af-opts input:focus-visible + span{outline:3px solid var(--pink);outline-offset:2px}
+@media (max-width:420px){.af-opts{grid-template-columns:1fr}}
+.af-btn{width:100%;border:0;cursor:pointer;font-family:inherit}
+.af-btn:disabled{opacity:.7;cursor:default}
+.af-err{background:var(--pink);color:#fff;font-weight:800;border-radius:14px;padding:12px 14px;margin:0;font-size:16px}
+.af-done{background:#fff;border:2px solid var(--ink);border-radius:18px;padding:18px 16px 4px;text-align:center}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.offer .ticks li{color:#e9dde7}
+.offer b,.offer strong{color:#fff}
+.ba.words .num{font-size:clamp(18px,4.8vw,24px);overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">Для рилсмейкеров и СММщиков</span>
+  <h1>Как делать клиентам рилсы на <span class="money">100+ тысяч просмотров</span> в любой нише и брать <span class="money">от 70 000 ₽</span> за проект. <em>Даже если</em> сейчас твои ролики набирают по 500 просмотров</h1>
+  <p class="sub">Без трендов, продакшна и молитв алгоритму. Разбираю на своих проектах и кейсах учениц, почему одним рилсмейкерам платят 125 000 ₽ в месяц, а другие сидят на 15 тысячах и вздрагивают от каждого сообщения клиента.</p>
+</header>
+
+<div class="toc">
+  <p class="toc-title"><span class="toc-fire">🔥</span>В этой статье ты узнаешь:</p>
+  <ol class="toc-list">
+    <li>Почему ролики клиентов не залетают, даже когда ты стараешься.</li>
+    <li>Как делать просмотры не по удаче, а по системе. В любой нише.</li>
+    <li>Почему одному рилсмейкеру платят 125к, а другому 15к.</li>
+    <li>Как поднять чек и перестать бояться, что клиент уйдёт.</li>
+  </ol>
+</div>
+
+<p>Сразу к делу. Без воды и без «расскажу потом».</p>
+<p>Сначала цифры.</p>
+
+<div class="case">
+  <div class="case-who">🏝️ Пхукет, недвижимость</div>
+  <div class="case-row st"><span>Старт</span><p>Клиент перепробовал кучу команд. Никто не смог набрать даже 10 тысяч просмотров. Заявок из инсты не было вообще.</p></div>
+  <div class="case-row it"><span>Итог</span><p>Каждый третий ролик стабильно выходил в рекомендации: 315к, 187к, 148к. <b>Виллу примерно за 45 млн продали холодному клиенту с одного ролика.</b> С одного.</p></div>
+</div>
+<p class="swipe-hint" style="color:var(--pink-deep)">листай вбок 👉 3 фото</p>
+<div class="shots three">
+  <figure class="shot"><img width="552" height="996" src="../img/behind-4.jpg" alt="Другие команды делали этому клиенту ролики на 1–2 тысячи просмотров"><figcaption>как было у других команд</figcaption></figure>
+  <figure class="shot"><img width="720" height="1141" src="../img/behind-6.jpg" alt="Рилсы для клиента на Пхукете: 148 тыс., 315 тыс., 187 тыс. просмотров"><figcaption>как стало со мной</figcaption></figure>
+  <figure class="shot"><img width="720" height="1263" src="../img/behind-5.jpg" alt="Вилла за 16,5 млн бат, проданная холодному клиенту с одного ролика"><figcaption>та самая вилла за ~45 млн ₽</figcaption></figure>
+</div>
+
+<p>Одна вилла. Один ролик. Как думаешь, этот клиент ещё торгуется с рилсмейкером за каждую тысячу? 🙃</p>
+
+<div class="case">
+  <div class="case-who">🚗 Личный бренд · Испания · автомобили</div>
+  <div class="case-row st"><span>Старт</span><p>2 тысячи подписчиков. Ни ниши, ни аудитории, ни понимания формата. Клиент хотел «просто популярный паблик».</p></div>
+  <div class="case-row it"><span>Итог</span><p>Нашли формат, который с первого месяца начал набирать миллионы просмотров. В первый месяц +10 тысяч подписчиков. <b>Через год — 1 млн подписчиков. И 0 ₽ на рекламу.</b></p></div>
+</div>
+<figure class="shot wide"><img width="800" height="520" src="../img/behind-3.jpg" alt="Профиль клиента: 1 млн подписчиков"><figcaption>с 2 тысяч до 1 млн за год</figcaption></figure>
+
+<p>«Ну это ты, у тебя опыт». Окей. Тогда вот проекты моих учениц. Не Москва, не миллионники, не «модные» ниши. Кафе в Альметьевске, магазин техники, кондитерская, детская школа балета:</p>
+
+<div class="shots">
+  <figure class="shot"><img width="800" height="1022" src="../img/reviews/r28.jpg" alt="Школа танцев: рилс на 1,2 млн просмотров"><figcaption>школа балета: 1,2 млн</figcaption></figure>
+  <figure class="shot"><img width="800" height="991" src="../img/reviews/r09.jpg" alt="Магазин техники: рилс на 47 тыс. просмотров"><figcaption>магазин техники: 47 тыс.</figcaption></figure>
+  <figure class="shot"><img width="800" height="1097" src="../img/reviews/r10.jpg" alt="Кафе: рилс на 13,5 тыс. просмотров"><figcaption>кафе: 13,5 тыс.</figcaption></figure>
+  <figure class="shot"><img width="800" height="865" src="../img/reviews/r12.jpg" alt="Кондитерская: рилс на 10 тыс. просмотров"><figcaption>кондитерская: 10 тыс.</figcaption></figure>
+</div>
+
+<p>Посмотри, сколько набирают соседние ролики на этих же аккаунтах. И сразу видно, где поработал человек, который понимает, что делает.</p>
+
+<p>А теперь самое вкусное. Деньги.</p>
+
+<div class="ba">
+  <div class="b"><div class="lab">месяц назад</div><div class="num">4 проекта</div><div class="cap">по СММ, на всех вместе 60 000 ₽</div></div>
+  <div class="a"><div class="lab">сейчас</div><div class="num">1 проект</div><div class="cap">за те же 60 000 ₽</div></div>
+</div>
+<figure class="shot wide"><img width="800" height="241" src="../img/reviews/r21.jpg" alt="«А я месяц назад вела 4 проекта по СММ за 60к, а сейчас взяла 1 за такую стоимость»"><figcaption>в 4 раза меньше работы за те же деньги</figcaption></figure>
+
+<p>Не в 4 раза больше пахоты. <b>В 4 раза меньше.</b> За те же деньги. И это не потолок, а только первый месяц.</p>
+
+<hr class="sep">
+
+<h2>Почему одному рилсмейкеру платят 125 000 ₽, а другому 15 000?</h2>
+
+<p>Сначала давай честно. Тебе знакомы такие сообщения?</p>
+
+<div class="dialog">
+  <div class="msg in">Что-то опять не залетело 😕</div>
+  <div class="msg in">Может, попробуем тренды? У конкурентов вон миллион</div>
+  <div class="msg in">Мы, наверное, пока возьмём паузу</div>
+  <div class="msg out">Ок, поняла 🙂</div>
+</div>
+
+<p>А за этим «ок, поняла» вот что.</p>
+<p>Ты монтируешь до двух ночи. Ищешь звуки. Пересматриваешь чужие залетевшие рилсы и пытаешься понять, что в них такого. Один ролик выстрелил, и ты не понимаешь почему. Следующие десять набрали по 300 просмотров, и ты тоже не понимаешь почему.</p>
+
+<p class="shout">Залёт превращается <span class="pink">в лотерею.</span></p>
+
+<p>А с лотереи кейс не соберёшь. Дальше по цепочке:</p>
+
+<ul class="cross">
+  <li>Нет кейсов → нечем показать результат.</li>
+  <li>Нечем показать результат → берёшь, сколько дают.</li>
+  <li>Берёшь копейки → клиент и относится к тебе как к копеечному. Правит каждый кадр, лезет в креатив, при первой просадке уходит.</li>
+  <li>И в какой-то момент ты ловишь себя на мысли: «А может, я просто плохой специалист?»</li>
+</ul>
+
+<div class="callout dark">
+  <p class="shout">Ты не плохой специалист.</p>
+  <p>Тебя просто учили не тому. Учили монтажу, переходам, свету, трендам. А клиенту не нужен красивый ролик. <span class="mark">Клиенту нужны просмотры и заявки.</span></p>
+  <p>Платят не за монтаж. Платят за результат. Вот и вся разница между 15 и 125 тысячами.</p>
+</div>
+
+<hr class="sep">
+
+<h2>3 причины, почему ролики клиентов не залетают</h2>
+
+<div class="step">
+  <div class="n">1</div>
+  <div>
+    <h3>Ты снимаешь про бизнес, а не про зрителя</h3>
+    <p>«Наша студия лучшая в городе», «у нас новое меню», «посмотрите, какой интерьер». Зрителю всё равно. Ему интересно про себя: его страхи, желания, деньги и ошибки.</p>
+    <p>Смотри, как это выглядит на одной и той же студии лазера 👇</p>
+  </div>
+</div>
+
+<div class="vs">
+  <div class="bad"><span class="tag">Ролик «про бизнес»</span>«Почему наша студия лазера лучшая в городе?» 60 секунд основатель скучным голосом рассказывает о преимуществах. Зритель не понимает, зачем ему это (он вообще не собирался на лазер).<span class="res">❌ 1300 просмотров, 0 заявок</span></div>
+  <div class="good"><span class="tag">Ролик «про зрителя»</span>«Почему ходить на лазер ОПАСНО, пока ты не знаешь ЭТОГО». Берём реальный страх ЦА, и ролик выходит ровно на тех, кто задумывается о лазере, но боится. А в описании с юмором переворачиваем всё в другую сторону.<span class="res">✅ 1 млн просмотров, +130 заявок</span></div>
+</div>
+
+<div class="laser-row">
+  <img width="430" height="773" src="../img/laser-reel.jpg" alt="Рилс «Почему ходить на лазер ОПАСНО», 1 млн просмотров">
+  <div>
+    <p class="laser-res">1 млн просмотров<br>+130 заявок</p>
+    <p>Снят за 2 минуты. Никакого продакшна, никаких трендов. Просто правильный смысл.</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="n">2</div>
+  <div>
+    <h3>Ты гонишься за трендами</h3>
+    <p>Тренд иногда даёт просмотры. Но не тем людям. Залетело 100 тысяч, а в директе тишина, и клиент разочарован ещё сильнее: «Ну просмотры есть, а толку?»</p>
+    <p>Плюс тренд умирает через неделю, и ты снова ищешь новый. Бег по кругу. <b>Смысл не умирает никогда.</b> Страх клиента лазерной студии был актуален пять лет назад и будет актуален через пять лет.</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="n">3</div>
+  <div>
+    <h3>Каждый ролик ты делаешь с нуля</h3>
+    <p>Нет системы. Сегодня повезло, завтра нет. Каждую неделю ты сидишь и думаешь: «Что бы ещё снять?»</p>
+    <p>Когда есть матрица смыслов под нишу клиента, ты точно знаешь, какие ролики дают охват, какие греют, а какие приводят заявки. Именно поэтому на Пхукете <b>каждый третий</b> ролик стабильно выходил в рекомендации. Не один случайный. Каждый третий.</p>
+  </div>
+</div>
+
+<div class="callout lime">
+  <p class="shout">Просмотры — это не удача.</p>
+  <p>Это смыслы + упаковка + система. И этому можно научиться за пару месяцев, а не за годы проб и ошибок на клиентах.</p>
+</div>
+
+<h2>«Но у меня сложная ниша»</h2>
+
+<p>Ага. Недвижка на Пхукете. Детский балет. Кафе в Альметьевске. Магазин техники. Кондитерская. Ты уже видела цифры выше.</p>
+<p><span class="mark">Сложных ниш не бывает.</span> Бывают ниши, в которых никто ещё не нашёл правильные смыслы. И это, кстати, твой плюс: конкуренты там снимают скучно, поэтому первый нормальный ролик выстреливает сильнее, чем в любой «модной» нише.</p>
+
+<p>Вот школа балета. Было 1–2 тысячи просмотров на ролик. Стало 1 млн, 1,3 млн и 4,2 млн. Один ролик повторил Плющенко 😅</p>
+
+<figure class="shot"><img width="800" height="1423" src="../img/reviews/r29.jpg" alt="Школа балета: было 1–2 тыс., стало 1 млн, 1,3 млн и 4,2 млн"><figcaption>«нихрена себе апдейт» © ученица</figcaption></figure>
+
+<hr class="sep">
+
+<h2>Рилсмейкеров много. Тех, кто приводит клиенту деньги, единицы</h2>
+
+<p>Рынок забит. Каждый второй после курса монтажа называет себя рилсмейкером. И демпингует. Конкурировать с ними ценой — прямая дорога в 15 тысяч за проект и монтаж до двух ночи.</p>
+
+<p>Но представь, что на созвоне с новым клиентом ты говоришь не «я красиво монтирую», а:</p>
+
+<blockquote>«Вот мой кейс: 315 тысяч просмотров и вилла, проданная с одного ролика. Давайте посмотрим, что можно сделать у вас»</blockquote>
+
+<p>Разговор про цену после такого идёт совсем по-другому. Ты уже не «девочка, которая монтирует». Ты специалист, который приносит бизнесу клиентов. Таких не меняют на тех, кто дешевле. <b>Таким поднимают чек.</b></p>
+
+<div class="ba words">
+  <div class="b"><div class="lab">рилсмейкер</div><div class="num">«делаю рилсы»</div><div class="cap">15–20к, правки до бесконечности, клиенты уходят</div></div>
+  <div class="a"><div class="lab">продюсер результата</div><div class="num">«приношу просмотры»</div><div class="cap">50–125к, клиент доверяет и держится за тебя</div></div>
+</div>
+
+<p>И это не теория. Вот что закрыли мои ученицы:</p>
+
+<div class="shots">
+  <figure class="shot"><img width="800" height="444" src="../img/reviews/r03.jpg" alt="Подписан договор: 30 рилсов, недвижка, 70 000 ₽"><figcaption>недвижка: 70 000 ₽</figcaption></figure>
+  <figure class="shot"><img width="800" height="809" src="../img/reviews/r04.jpg" alt="Закрыла клиента на 125 000 ₽ в месяц"><figcaption>ресторан: 125 000 ₽ в месяц</figcaption></figure>
+</div>
+
+<figure class="shot wide"><img width="800" height="975" src="../img/reviews/r01.jpg" alt="100 000 ₽ за день: две рабочие встречи, два проекта по 50 000 ₽"><figcaption>две встречи = 100 000 ₽ за один день</figcaption></figure>
+
+<p>Две встречи. Два проекта по 50 тысяч. <b>100 000 ₽ за один день.</b> «Я впервые пробила свой потолок по заработку». Вот ради таких сообщений я и делаю свою работу.</p>
+
+<hr class="sep">
+
+<h2>Кто я такая и почему мне можно верить</h2>
+
+<p>Мне 20 лет. Я репетитор по обществознанию, живу в общаге и зарабатываю <b>8 тысяч в месяц.</b> В блоге 800 подписчиков, и это мои друзья и знакомые.</p>
+
+<div class="dorm">
+  <figure><img width="700" height="393" src="../img/dorm-uni.jpg" alt="Пары в университете: тетради на столе"><figcaption>пары в универе</figcaption></figure>
+  <figure><img width="700" height="933" src="../img/dorm-pasta.jpg" alt="Настя в магазине с пачкой макарон на 4 кг"><figcaption>студенческий бюджет 😅</figcaption></figure>
+  <figure><img width="700" height="1242" src="../img/dorm-mirror.jpg" alt="Селфи в зеркале в комнате общежития"><figcaption>та самая общага</figcaption></figure>
+</div>
+
+<p>В 2023 году я решила разобраться в рилсах всерьёз. Перестала делать хаотичные действия и начала понимать, <span class="mark">почему</span> один ролик залетает, а другой нет.</p>
+
+<p>Через полгода у меня было 46 тысяч подписчиков и первый миллион с блога. Я переехала в Москву, и ко мне начали приходить проекты: недвижка на Пхукете, личные бренды, бизнесы. Сейчас ко мне обращаются топ-эксперты рынка, чтобы я выстроила им рилсы и воронки.</p>
+
+<figure class="shot wide"><img width="900" height="246" src="../img/acc-47k.jpg" alt="Аккаунт Анастасии Барашковой: 47,4 тыс. подписчиков"><figcaption>а сейчас уже 47,4 тыс. 😏</figcaption></figure>
+
+<p>Я была ровно там, где ты сейчас: смотрела на чужие миллионы и не понимала, как они это делают. Поэтому знаю, что это не талант и не удача. Это навык. И ему можно научить.</p>
+
+<hr class="sep">
+
+<h2>Результаты моих учениц</h2>
+
+<p>Они приходили с тем же, с чем, возможно, сейчас ты: ролики по 300 просмотров, клиенты за копейки, страх поднять чек. Листай 👇</p>
+
+<div class="rv" id="reviews">
+  <div class="rv-tabs" role="tablist">
+    <button type="button" class="rv-tab on" data-g="money" role="tab" aria-selected="true">💸 Деньги <span>11</span></button>
+    <button type="button" class="rv-tab" data-g="reels" role="tab" aria-selected="false">🔥 Рилсы <span>10</span></button>
+    <button type="button" class="rv-tab" data-g="words" role="tab" aria-selected="false">💬 Отзывы <span>8</span></button>
+  </div>
+  <div class="rv-group" data-g="money">
+    <div class="rv-track" tabindex="0" aria-label="Отзывы, листай вбок">
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="975" src="../img/reviews/r01.jpg" alt="100 000 ₽ за день: «впервые пробила свой потолок»"></div><figcaption>100 000 ₽ за день: «впервые пробила свой потолок»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="274" src="../img/reviews/r25.jpg" alt="Окупила обучение: ровно 100 000 ₽, и ещё будет доплата 50 000"></div><figcaption>Окупила обучение: ровно 100 000 ₽, и ещё будет доплата 50 000</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="241" src="../img/reviews/r21.jpg" alt="Было 4 проекта по СММ за 60к, стало 1 проект за ту же стоимость"></div><figcaption>Было 4 проекта по СММ за 60к, стало 1 проект за ту же стоимость</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="350" src="../img/reviews/r02.jpg" alt="216 000 ₽ за ноябрь"></div><figcaption>216 000 ₽ за ноябрь</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="444" src="../img/reviews/r03.jpg" alt="Подписан договор: 30 рилсов, недвижка, 70 000 ₽"></div><figcaption>Подписан договор: 30 рилсов, недвижка, 70 000 ₽</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="809" src="../img/reviews/r04.jpg" alt="Закрыла клиента на 125 000 ₽ в месяц"></div><figcaption>Закрыла клиента на 125 000 ₽ в месяц</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="736" src="../img/reviews/r05.jpg" alt="50 000 ₽ за сценарии к 12 рилсам"></div><figcaption>50 000 ₽ за сценарии к 12 рилсам</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="914" src="../img/reviews/r06.jpg" alt="45 000 ₽: продала пак из 3 консультаций"></div><figcaption>45 000 ₽: продала пак из 3 консультаций</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="432" src="../img/reviews/r07.jpg" alt="2 постоянных клиента, свой ассистент и монтажёр"></div><figcaption>2 постоянных клиента, свой ассистент и монтажёр</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="660" src="../img/reviews/r24.jpg" alt="«Готово»: +50 000 ₽ на карту"></div><figcaption>«Готово»: +50 000 ₽ на карту</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="412" src="../img/reviews/r22.jpg" alt="Закрыла клиента на 30 000 ₽"></div><figcaption>Закрыла клиента на 30 000 ₽</figcaption></figure>
+    </div>
+    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 11</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
+  </div>
+  <div class="rv-group" data-g="reels" hidden>
+    <div class="rv-track" tabindex="0" aria-label="Отзывы, листай вбок">
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="1423" src="../img/reviews/r29.jpg" alt="Школа балета: было 1–2 тыс., стало 1 млн, 1,3 млн и 4,2 млн. Ролик повторил Плющенко"></div><figcaption>Школа балета: было 1–2 тыс., стало 1 млн, 1,3 млн и 4,2 млн. Ролик повторил Плющенко</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="1022" src="../img/reviews/r28.jpg" alt="1,2 млн просмотров у школы танцев: «Нихрена себе апдейт»"></div><figcaption>1,2 млн просмотров у школы танцев: «Нихрена себе апдейт»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="896" src="../img/reviews/r27.jpg" alt="978 тыс. просмотров за новый рилс"></div><figcaption>978 тыс. просмотров за новый рилс</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="991" src="../img/reviews/r09.jpg" alt="47 тыс. просмотров у клиента"></div><figcaption>47 тыс. просмотров у клиента</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="285" src="../img/reviews/r23.jpg" alt="Рилс клиента снова улетел больше 17 тыс."></div><figcaption>Рилс клиента снова улетел больше 17 тыс.</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="1097" src="../img/reviews/r10.jpg" alt="13,5 тыс. просмотров у кафе"></div><figcaption>13,5 тыс. просмотров у кафе</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="1063" src="../img/reviews/r11.jpg" alt="11,3 тыс. просмотров у кафе"></div><figcaption>11,3 тыс. просмотров у кафе</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="865" src="../img/reviews/r12.jpg" alt="10 тыс. просмотров у кондитерской"></div><figcaption>10 тыс. просмотров у кондитерской</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="894" src="../img/reviews/r13.jpg" alt="10,1 тыс. просмотров у кафе"></div><figcaption>10,1 тыс. просмотров у кафе</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="392" src="../img/reviews/r14.jpg" alt="Загнали трафик в платный тг-канал"></div><figcaption>Загнали трафик в платный тг-канал</figcaption></figure>
+    </div>
+    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 10</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
+  </div>
+  <div class="rv-group" data-g="words" hidden>
+    <div class="rv-track" tabindex="0" aria-label="Отзывы, листай вбок">
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="301" src="../img/reviews/r15.jpg" alt="«Это было лучшее решение пойти на обучение»"></div><figcaption>«Это было лучшее решение пойти на обучение»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="129" src="../img/reviews/r08.jpg" alt="«Идут лиды, перевела все твои рекомендации»"></div><figcaption>«Идут лиды, перевела все твои рекомендации»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="257" src="../img/reviews/r16.jpg" alt="«Целый курс прошла, а мысли по рилсам расширила только с тобой»"></div><figcaption>«Целый курс прошла, а мысли по рилсам расширила только с тобой»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="529" src="../img/reviews/r17.jpg" alt="«Самое лучшее вложение в свои знания»"></div><figcaption>«Самое лучшее вложение в свои знания»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="493" src="../img/reviews/r18.jpg" alt="«Ни от кого такую обратную связь не чувствовала»"></div><figcaption>«Ни от кого такую обратную связь не чувствовала»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="440" src="../img/reviews/r19.jpg" alt="«Если бы не ты, я бы не решилась 100%»"></div><figcaption>«Если бы не ты, я бы не решилась 100%»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="212" src="../img/reviews/r20.jpg" alt="«Спасибо за обучение и твою лёгкость в общении»"></div><figcaption>«Спасибо за обучение и твою лёгкость в общении»</figcaption></figure>
+      <figure class="rv-card"><div class="rv-img"><img width="800" height="493" src="../img/reviews/r26.jpg" alt="«В декабре хочу побить рекорд в 180 000 ₽. Пересматриваю уроки и работаю по любви»"></div><figcaption>«В декабре хочу побить рекорд в 180 000 ₽. Пересматриваю уроки и работаю по любви»</figcaption></figure>
+    </div>
+    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 8</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
+  </div>
+  <p class="rv-hint">листай вбок 👉 всего 29 отзывов</p>
+</div>
+
+<div class="case">
+  <div class="case-who">🎬 Окупила обучение, пока ещё училась</div>
+  <div class="case-row st"><span>Цель</span><p>Просто окупить обучение.</p></div>
+  <div class="case-row it"><span>Итог</span><p>Заработала <b>ровно 100 000 ₽</b>, и ещё будет доплата 50 000. Плюс крутой кейс в портфолио и, по её словам, самая большая зарплата на данный момент.</p></div>
+</div>
+
+<div class="case">
+  <div class="case-who">📈 Своя команда и 216к за месяц</div>
+  <div class="case-row it"><span>Итог</span><p><b>2 постоянных клиента на полном сопровождении</b>, взяла ассистента и монтажёра. Залетел рилс у клиентки и на её собственном аккаунте. За ноябрь 216 000 ₽: «Тоже пробила свой потолок».</p></div>
+</div>
+
+<div class="cta-box">
+  <p class="cta-scarcity">Т.к. я работаю <b>ЛИЧНО С КАЖДЫМ</b>, мест очень мало</p>
+  <p>Ниши разные, стартовые точки разные, а работает одно и то же. <b>Хочешь так же?</b></p>
+  <a class="btn" href="#anketa">Заполнить анкету ↓</a>
+  <p class="btn-note">анкета внизу страницы, 1 минута</p>
+</div>
+
+<section class="offer">
+  <h2>Наставничество: <span>высокие просмотры в твоих проектах</span></h2>
+
+  <p>Это не очередной курс «посмотри 40 уроков и разбирайся сама». Я захожу в твои проекты как голова. Ты делаешь руками, а думаем мы вместе: какие смыслы, какие ролики снимать, что докрутить, почему не залетело и что поменять.</p>
+  <p>Плюс теория, чтобы через пару месяцев ты думала так же без меня. И с каждым новым клиентом.</p>
+
+  <h3>Что ты получишь</h3>
+  <ul class="ticks">
+    <li><b>Просмотры в проектах клиентов</b> прямо во время наставничества, а не «когда-нибудь потом».</li>
+    <li><b>Систему смыслов</b> под нишу каждого клиента, чтобы залёт перестал быть лотереей.</li>
+    <li><b>Кейсы с цифрами</b> для портфолио, по которым клиент сам понимает, сколько ты стоишь.</li>
+    <li><b>Навык поднимать чек:</b> как упаковать кейс, как говорить про цену и не бояться называть 50–70к+.</li>
+    <li><b>Рилсы, которые приводят клиенту заявки,</b> а не только просмотры. За это платят больше всего.</li>
+    <li><b>Мои промпты и шаблоны:</b> сценарии, хуки, описания, которые я наработала за 4 года.</li>
+  </ul>
+
+  <h3>Как это устроено</h3>
+  <ul class="program">
+    <li><span>🧠</span><span><b>Разборы твоих проектов.</b> Смотрю ролики твоих клиентов и говорю, что именно докрутить, чтобы они залетели.</span></li>
+    <li><span>📞</span><span><b>Созвоны со мной.</b> Одна ученица после старта: «я уже получила многое всего лишь с двух созвонов».</span></li>
+    <li><span>🎬</span><span><b>Теория:</b> смыслы, хуки, сценарии, упаковка кейсов, работа с клиентом и чеком.</span></li>
+    <li><span>💬</span><span><b>Обратная связь лично от меня.</b> Не от кураторов, не от ассистентов.</span></li>
+  </ul>
+
+  <div class="personal">
+    <p><b>Я работаю лично с каждым.</b> Я не даю уроки и не исчезаю. Я смотрю твои проекты и долблю тебя до тех пор, пока у твоих клиентов не пойдут просмотры. Мне самой интересно сделать тебе сильный кейс.</p>
+  </div>
+
+  <p>Полную программу, формат и условия расскажу лично, когда заполнишь анкету.</p>
+</section>
+
+<hr class="sep">
+
+<h2>Ой. Ты всё ещё тут? 😅</h2>
+
+<p>Значит, где-то внутри сидит маленькое «а если…». Давай разберём.</p>
+
+<details>
+  <summary>«У меня сложная или скучная ниша»</summary>
+  <p>Недвижка, детский балет, кафе в небольшом городе, магазин техники, кондитерская. Все эти ролики ты видела выше. В скучных нишах конкуренты снимают скучно, поэтому твой первый нормальный ролик залетает ещё сильнее.</p>
+</details>
+<details>
+  <summary>«У меня пока нет клиентов»</summary>
+  <p>Значит, начнём с того, чтобы они появились. Одна ученица закрыла клиента, когда мы <b>даже не дошли</b> до темы клиентов. Дословно: «мы ещё даже не перешли к клиентам, а ты уже впереди всех» 😂 Когда понимаешь, как делать просмотры, продавать себя становится сильно проще.</p>
+</details>
+<details>
+  <summary>«Я уже проходила курс по рилсам»</summary>
+  <p>Ученица до меня прошла целый курс у известного автора и уже курировала два потока. Её слова: «а мысли по рилсам расширила только с тобой». Курсы учат монтажу и трендам. Я учу смыслам и результату для клиента. Это разные вещи.</p>
+</details>
+<details>
+  <summary>«Боюсь поднимать чек»</summary>
+  <p>Чек страшно поднимать, когда нечем его обосновать. Когда у тебя есть цифры, ты не просишь больше денег, а просто показываешь кейс. 70 000 за недвижку, 125 000 в месяц за ресторан. Это не мои клиенты, это клиенты учениц.</p>
+</details>
+<details>
+  <summary>«У меня нет времени»</summary>
+  <p>У тебя нет времени, потому что ты ведёшь 4 проекта за 60 тысяч. Ученица после обучения ведёт 1 проект за те же деньги. Наставничество не забирает время, а освобождает его.</p>
+</details>
+<details>
+  <summary>«Через сколько будет результат?»</summary>
+  <p>Сроки у всех разные. Но моя задача, чтобы результат пошёл прямо во время наставничества. Ученица окупила обучение, пока ещё училась: ровно 100 000 ₽ и ещё 50 000 доплаты.</p>
+</details>
+
+<section class="anketa" id="anketa">
+  <p class="cta-scarcity">Т.к. я работаю <b>ЛИЧНО С КАЖДЫМ</b>, мест очень мало</p>
+  <h2>Хочешь так же?</h2>
+  <p>Чтобы записаться на обучение и попасть на него <span class="mark">по скидке</span>, заполни анкету, и мы с тобой свяжемся 💌</p>
+
+  <form class="af" id="af" novalidate>
+    <input type="hidden" name="segment" value="Рилсмейкеры">
+    <div class="hp" aria-hidden="true"><label>Не заполняй это поле <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+    <label class="af-q"><span class="af-n">1</span>Как тебя зовут?
+      <input type="text" name="name" required autocomplete="given-name" placeholder="Настя">
+    </label>
+
+    <label class="af-q"><span class="af-n">2</span>Твой ник в Telegram
+      <input type="text" name="telegram" required autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@nastya">
+      <small>чтобы я могла тебе написать</small>
+    </label>
+
+    <label class="af-q"><span class="af-n">3</span>Ссылка на твой Instagram
+      <input type="text" name="instagram" required autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="instagram.com/nastya или @nastya">
+    </label>
+
+    <fieldset class="af-q">
+      <legend><span class="af-n">4</span>Сколько сейчас берёшь за один проект в месяц?</legend>
+      <div class="af-opts">
+        <label><input type="radio" name="check" value="Пока нет клиентов" required><span>Пока нет клиентов</span></label>
+        <label><input type="radio" name="check" value="До 30 000 ₽"><span>До 30 000 ₽</span></label>
+        <label><input type="radio" name="check" value="30 000–70 000 ₽"><span>30 000–70 000 ₽</span></label>
+        <label><input type="radio" name="check" value="Больше 70 000 ₽"><span>Больше 70 000 ₽</span></label>
+      </div>
+    </fieldset>
+
+    <label class="af-q"><span class="af-n">5</span>Что сейчас больше всего мешает зарабатывать больше?
+      <textarea name="pain" rows="3" placeholder="Например: ролики клиентов не залетают, боюсь поднять чек…"></textarea>
+    </label>
+
+    <p class="af-err" id="af-err" role="alert" hidden></p>
+    <button class="btn af-btn" type="submit">Отправить анкету</button>
+    <p class="btn-note">Нажимая кнопку, ты соглашаешься, что я свяжусь с тобой в Telegram</p>
+  </form>
+
+  <div class="af-done" id="af-done" hidden>
+    <p class="shout">Анкета у меня 🎉</p>
+    <p>Скоро напишу тебе в Telegram. Проверь, чтобы личка была открыта 😉</p>
+  </div>
+</section>
+
+
+<div class="ps">
+  <h3>P.S.</h3>
+  <p>Коротко суть: наставничество, где я захожу в твои проекты как голова, и мы вместе делаем твоим клиентам высокие просмотры. А ты получаешь кейсы и чек, за который не стыдно.</p>
+  <h3>P.P.S.</h3>
+  <p>Ещё один месяц ты будешь монтировать до двух ночи за 15 тысяч.</p>
+  <p>Ещё один месяц гадать, залетит или нет.</p>
+  <p>Ещё один месяц вздрагивать от «давайте возьмём паузу».</p>
+  <p>Вопрос только, сколько таких месяцев ты ещё готова прожить.</p>
+  <h3>P.P.P.S.</h3>
+  <p>Пока ты читаешь эту статью, твой клиент листает рилсы. И видит залетевший ролик конкурента, который сделал другой рилсмейкер.</p>
+  <p>Возможно, он слабее тебя. <b>Но он знает, как это работает.</b> И следующий проект с нормальным чеком достанется ему.</p>
+  <p><a class="btn" href="#anketa" style="display:block">Заполнить анкету ↑</a></p>
+</div>
+
+<footer>Барашкова Анастасия · рилс-продюсер и маркетолог</footer>
+
+</div>
+
+<script>
+(function(){
+  var root=document.getElementById('reviews'); if(!root) return;
+  var tabs=root.querySelectorAll('.rv-tab'), groups=root.querySelectorAll('.rv-group');
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    tabs.forEach(function(x){x.classList.toggle('on',x===t);x.setAttribute('aria-selected',x===t)});
+    groups.forEach(function(g){g.hidden=g.dataset.g!==t.dataset.g; if(!g.hidden&&g._upd){g.querySelector('.rv-track').scrollLeft=0;g._upd()}});
+  })});
+  groups.forEach(function(g){
+    var tr=g.querySelector('.rv-track'), cards=tr.children, prev=g.querySelector('.prev'), next=g.querySelector('.next'), cnt=g.querySelector('.rv-count b');
+    function idx(){var l=tr.scrollLeft, best=0, d=1e9; for(var i=0;i<cards.length;i++){var dd=Math.abs(cards[i].offsetLeft-tr.offsetLeft-l-4); if(dd<d){d=dd;best=i}} return best}
+    function upd(){var i=idx(); cnt.textContent=i+1; prev.disabled=i===0; next.disabled=tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-4}
+    function go(n){var i=Math.max(0,Math.min(cards.length-1,idx()+n)); tr.scrollTo({left:cards[i].offsetLeft-tr.offsetLeft-4,behavior:'smooth'})}
+    prev.addEventListener('click',function(){go(-1)}); next.addEventListener('click',function(){go(1)});
+    tr.addEventListener('scroll',function(){window.requestAnimationFrame(upd)},{passive:true});
+    tr.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();go(1)} if(e.key==='ArrowLeft'){e.preventDefault();go(-1)}});
+    g._upd=upd; upd();
+  });
+})();
+</script>
+<script src="../anketa.js"></script>
+</body></html>
