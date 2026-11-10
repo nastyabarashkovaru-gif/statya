@@ -387,6 +387,7 @@ fieldset.af-q{padding-top:10px}
 .af-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;clear:both}
 .af-opts label{position:relative;cursor:pointer}
 .af-opts input{position:absolute;opacity:0;pointer-events:none}
+.af-opts.one{grid-template-columns:1fr}
 .af-opts span{display:block;border:2px solid var(--line);border-radius:12px;padding:11px 10px;font-weight:700;font-size:15px;text-align:center;line-height:1.3;background:var(--paper)}
 .af-opts input:checked + span{background:var(--lime);border-color:var(--ink)}
 .af-opts input:focus-visible + span{outline:3px solid var(--pink);outline-offset:2px}
@@ -785,7 +786,7 @@ h2.loud{font-size:clamp(30px,8.4vw,42px);text-align:center;color:var(--pink-deep
   <p class="cta-scarcity">Т.к. я работаю <b>ЛИЧНО С КАЖДЫМ</b>, мест очень мало</p>
   <p>Ниши у всех разные, стартовые точки тоже, а работает одно и то же. <b>Хочешь так же?</b></p>
   <a class="btn" href="#anketa">Заполнить анкету ↓</a>
-  <p class="btn-note">анкета внизу страницы, 1 минута</p>
+  <p class="btn-note">анкета внизу страницы, 2 минуты</p>
 </div>
 
 <section class="offer">
@@ -880,41 +881,49 @@ h2.loud{font-size:clamp(30px,8.4vw,42px);text-align:center;color:var(--pink-deep
     <input type="hidden" name="segment" value="Рилсмейкеры">
     <div class="hp" aria-hidden="true"><label>Не заполняй это поле <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
 
-    <label class="af-q"><span class="af-n">1</span>Как тебя зовут?
-      <input type="text" name="name" required autocomplete="given-name" placeholder="Настя">
+    <label class="af-q"><span class="af-n">1</span>Твоё имя, возраст и город
+      <input type="text" name="name" data-label="Имя, возраст, город" required placeholder="Настя, 23, Казань">
     </label>
 
-    <label class="af-q"><span class="af-n">2</span>Твой ник в Telegram
+    <label class="af-q"><span class="af-n">2</span>Ссылка на Instagram
+      <input type="text" name="instagram" required autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="ссылка или @ник">
+    </label>
+
+    <label class="af-q"><span class="af-n">3</span>Ник в Telegram
       <input type="text" name="telegram" required autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@nastya">
-      <small>чтобы я могла тебе написать</small>
+      <small>чтобы мы могли тебе написать</small>
     </label>
 
-    <label class="af-q"><span class="af-n">3</span>Ссылка на твой Instagram
-      <input type="text" name="instagram" required autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="instagram.com/nastya или @nastya">
+    <label class="af-q"><span class="af-n">4</span>На чём ты сейчас зарабатываешь?
+      <input type="text" name="earn" data-label="На чём зарабатывает" required placeholder="Например: 3 проекта">
+    </label>
+
+    <label class="af-q"><span class="af-n">5</span>Твой доход сейчас
+      <input type="text" name="income" data-label="Доход сейчас" required placeholder="Например: 40 000 ₽">
+    </label>
+
+    <label class="af-q"><span class="af-n">6</span>Твой запрос на обучение. К чему хочется прийти? Какой результат от обучения ты хочешь получить?
+      <textarea name="goal" data-label="Запрос и желаемый результат" rows="4" required placeholder="Например: хочу стабильно делать клиентам 100к+ просмотров и брать от 150к за проект"></textarea>
     </label>
 
     <fieldset class="af-q">
-      <legend><span class="af-n">4</span>Сколько сейчас берёшь за один проект в месяц?</legend>
-      <div class="af-opts">
-        <label><input type="radio" name="check" value="Пока нет клиентов" required><span>Пока нет клиентов</span></label>
-        <label><input type="radio" name="check" value="До 30 000 ₽"><span>До 30 000 ₽</span></label>
-        <label><input type="radio" name="check" value="30 000–70 000 ₽"><span>30 000–70 000 ₽</span></label>
-        <label><input type="radio" name="check" value="Больше 70 000 ₽"><span>Больше 70 000 ₽</span></label>
+      <legend><span class="af-n">7</span>Насколько готов(а) ворваться в обучение?</legend>
+      <div class="af-opts one">
+        <label><input type="radio" name="ready" value="Хочу сначала списаться" required><span>Хочу сначала списаться 💬</span></label>
+        <label><input type="radio" name="ready" value="Хочу сначала созвониться"><span>Хочу сначала созвониться 📞</span></label>
+        <label><input type="radio" name="ready" value="Хочу скорее занять место"><span>Хочу скорее занять место 🔥</span></label>
+        <label><input type="radio" name="ready" value="Пока просто смотрю"><span>Пока просто смотрю 👀</span></label>
       </div>
     </fieldset>
 
-    <label class="af-q"><span class="af-n">5</span>Что сейчас больше всего мешает зарабатывать больше?
-      <textarea name="pain" rows="3" placeholder="Например: ролики клиентов не залетают, боюсь поднять чек…"></textarea>
-    </label>
-
     <p class="af-err" id="af-err" role="alert" hidden></p>
     <button class="btn af-btn" type="submit">Отправить анкету</button>
-    <p class="btn-note">Нажимая кнопку, ты соглашаешься, что я свяжусь с тобой в Telegram</p>
+    <p class="btn-note">Нажимая кнопку, ты соглашаешься, что мы свяжемся с тобой в Telegram</p>
   </form>
 
   <div class="af-done" id="af-done" hidden>
-    <p class="shout">Анкета у меня 🎉</p>
-    <p>Скоро напишу тебе в Telegram. Проверь, чтобы личка была открыта 😉</p>
+    <p class="shout">Спасибо за заполнение! 🎉</p>
+    <p>Совсем скоро я или ребята из моей команды свяжемся с тобой. Проверь, чтобы личка в Telegram была открыта 😉</p>
   </div>
 </section>
 

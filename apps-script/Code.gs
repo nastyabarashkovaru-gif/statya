@@ -22,17 +22,26 @@ function doPost(e) {
 function buildMessage_(d) {
   var tg = nick_(d.telegram, /^(www\.)?(t\.me|telegram\.me)\//i);
   var ig = nick_(d.instagram, /^(www\.|m\.)?(instagram\.com|instagr\.am)\//i);
+  var hot = (d.fields || []).some(function (f) { return /занять место/i.test(f[1]); });
   var lines = [
-    '🔥 <b>Новая анкета</b>',
+    (hot ? '🔥🔥🔥 <b>Новая анкета — хочет скорее занять место!</b>' : '🔥 <b>Новая анкета</b>'),
     '📍 Лендинг: <b>' + esc_(d.segment || '—') + '</b>',
     '',
-    '👤 Имя: ' + esc_(d.name),
+    '👤 ' + esc_(d.name),
     '✈️ Telegram: ' + (tg ? '<a href="https://t.me/' + tg + '">@' + tg + '</a>' : esc_(d.telegram)),
     '📸 Instagram: ' + (ig ? '<a href="https://www.instagram.com/' + ig + '/">instagram.com/' + ig + '</a>' : esc_(d.instagram)),
-    '💰 Чек за проект: ' + esc_(d.check || '—'),
-    '😩 Что мешает: ' + esc_(d.pain || '—')
+    ''
   ];
-  if (d.utm) lines.push('🏷 Метки: ' + esc_(d.utm));
+  if (d.fields && d.fields.length) {
+    d.fields.forEach(function (f) {
+      if (f[1] === d.name) return;
+      lines.push('▫️ <b>' + esc_(f[0]) + ':</b> ' + esc_(f[1] || '—'));
+    });
+  } else {
+    lines.push('💰 Чек за проект: ' + esc_(d.check || '—'));
+    lines.push('😩 Что мешает: ' + esc_(d.pain || '—'));
+  }
+  if (d.utm) lines.push('', '🏷 Метки: ' + esc_(d.utm));
   if (d.page) lines.push('🔗 ' + esc_(d.page));
   return lines.join('\n');
 }
@@ -75,7 +84,9 @@ function getChatId() {
 /** Тест: отправит тебе в бот пробную анкету. */
 function testMessage() {
   sendToTelegram_(buildMessage_({
-    segment: 'Рилсмейкеры (тест)', name: 'Тест', telegram: '@durov',
-    instagram: 'https://www.instagram.com/instagram/?igsh=123', check: '30 000–70 000 ₽', pain: 'Проверка связи'
+    segment: 'Рилсмейкеры (тест)', name: 'Тест, 25, Москва', telegram: '@durov',
+    instagram: 'https://www.instagram.com/instagram/',
+    fields: [['Имя, возраст, город', 'Тест, 25, Москва'], ['На чём зарабатывает', 'Веду 3 проекта'], ['Доход сейчас', '40 000 ₽'],
+             ['Запрос и желаемый результат', 'Хочу брать от 150к за проект'], ['Готовность', 'Хочу скорее занять место']]
   }));
 }
