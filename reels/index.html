@@ -36,7 +36,7 @@
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:hidden}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:18px;line-height:1.6;font-weight:500;overflow-x:hidden}
-.wrap{max-width:560px;margin:0 auto;padding:0 18px 56px;text-align:center}
+.wrap{max-width:560px;margin:0 auto;padding:0 18px 56px;text-align:left}
 p{margin:0 0 1.05em;text-wrap:pretty}
 b,strong{color:var(--white);font-weight:800}
 img{max-width:100%;height:auto}
@@ -214,6 +214,51 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
   @keyframes spin{to{transform:translate(-50%,-52%) rotate(360deg)}}
 }
 
+/* выравнивание: длинный текст слева, акценты по центру */
+.c,.hero,h2,.swap,.stats,.facts,.money-num,.money-t,.big-num,.glowcard .emo,.scroll,footer,.ps .k,.big-say,.brain,.rv-count{text-align:center}
+.kicker{display:block;text-align:center}
+.st{text-align:left}
+.st .n{margin:0 0 14px}
+.st p{margin:0 0 .7em}
+.st p:last-child{margin:0}
+.glowcard{text-align:center}
+.glowcard .shot,.glowcard .strip{text-align:left}
+.ps p .btn,.ps p:last-child{text-align:center}
+.ps p:last-child{display:block}
+.anketa > h2,.anketa > p,.anketa > .cta-scarcity{text-align:center}
+.anketa > .cta-scarcity{display:block}
+.offer > p.c{text-align:center}
+.quote{text-align:left}
+
+/* кейсы ДО / ПОСЛЕ */
+.cases2{display:grid;gap:22px;margin:22px 0 10px}
+.case2{min-width:0;background:var(--bg2);border:1px solid var(--card-b);border-radius:28px;padding:22px 16px 16px}
+.case2 .cc-niche{margin:0 0 8px}
+.c-title{font-size:clamp(20px,5.8vw,26px);line-height:1.2;margin:0 0 18px}
+.c-part{border-radius:20px;padding:16px 14px 6px;margin:0 0 12px}
+.c-part.bad{background:rgba(255,255,255,.035);border:1px dashed rgba(255,255,255,.18)}
+.c-part.good{background:rgba(255,46,147,.08);border:1px solid rgba(255,46,147,.5);box-shadow:0 0 30px -12px rgba(255,46,147,.6)}
+.c-part p{font-size:16.5px}
+.tag{display:inline-block;font-family:var(--f-head);font-weight:800;font-size:12px;letter-spacing:.14em;padding:6px 12px;border-radius:999px;margin:0 0 12px}
+.bad .tag{background:rgba(255,255,255,.1);color:#ddd}
+.good .tag{background:var(--pink);color:#fff;box-shadow:var(--glow)}
+.strip{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin:4px -14px 6px;padding:0 14px 10px;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.strip{align-items:center}
+.strip img{flex:none;height:min(56vh,380px);width:auto;max-width:86%;object-fit:contain;border-radius:16px;border:1px solid var(--card-b);scroll-snap-align:start;background:#000}
+.strip.one{display:block;margin:4px 0 12px;padding:0;overflow:visible}
+.strip.one img{display:block;margin:0 auto;width:auto;max-width:100%;height:auto;max-height:460px;object-fit:contain}
+.strip-hint{font-size:12.5px!important;color:var(--muted);margin:0 0 10px!important;text-align:right}
+
+/* «именно поэтому» — другой стиль */
+.because{margin:40px 0 10px;padding:6px 0 0}
+.bc-k{font-family:var(--f-head);font-weight:800;font-size:clamp(28px,8.6vw,44px);line-height:1;text-transform:uppercase;text-align:center;color:transparent;-webkit-text-stroke:1.4px var(--pink);text-shadow:0 0 22px rgba(255,46,147,.35);margin:0 0 22px}
+.because ul{list-style:none;margin:0;padding:0;counter-reset:bc}
+.because li{counter-increment:bc;position:relative;padding:18px 0 18px 58px;font-size:18px;line-height:1.5;color:#e8e0e8;border-top:1px solid rgba(255,255,255,.1)}
+.because li:last-child{border-bottom:1px solid rgba(255,255,255,.1)}
+.because li::before{content:"0" counter(bc);position:absolute;left:0;top:16px;font-family:var(--f-head);font-weight:800;font-size:26px;line-height:1;background:linear-gradient(180deg,#fff,#9b9ba6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.c-part,.strip{min-width:0}
+
 </style>
 </head>
 <body>
@@ -228,9 +273,9 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
 </header>
 
 <section>
-  <p class="lead">Я знаю, как многим больно работать за <span class="hl">15–⁠20 тысяч</span> за проект.</p>
-  <p class="lead">И главное, соглашаться на эти копейки лишь потому, что ты <span class="hl">боишься не дать результат.</span></p>
-  <p>Именно это и останавливает тебя брать большие деньги.</p>
+  <p class="lead c">Я знаю, как многим больно работать за <span class="hl">15–⁠20 тысяч</span> за проект.</p>
+  <p class="lead c">И главное, соглашаться на эти копейки лишь потому, что ты <span class="hl">боишься не дать результат.</span></p>
+  <p class="c">Именно это и останавливает тебя брать большие деньги.</p>
 
   <div class="swap" aria-label="Было 15–20 тысяч за проект, хочется от 150 тысяч">
     <div class="from"><span class="v">15–⁠20к</span><span class="k">сейчас за проект</span></div>
@@ -238,10 +283,10 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
     <div class="to"><span class="v">от 150к</span><span class="k">то, чего ты хочешь</span></div>
   </div>
 
-  <p>Но в глубине души ты хочешь быть таким же <b>наглым, востребованным и дорогим</b> спецом, как другие, кого ты видишь на рынке.</p>
-  <p>И ты хочешь к этому прийти.</p>
+  <p class="c">Но в глубине души ты хочешь быть таким же <b>наглым, востребованным и дорогим</b> спецом, как другие, кого ты видишь на рынке.</p>
+  <p class="c">И ты хочешь к этому прийти.</p>
 
-  <p class="big-say"><span class="chrome">И главное —</span><br><span class="neon">ты можешь.</span></p>
+  <p class="big-say c"><span class="chrome">И главное —</span><br><span class="neon">ты можешь.</span></p>
   <div class="div"></div>
 </section>
 
@@ -250,18 +295,19 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
   <h2>5 шагов, чтобы стать дорогим спецом</h2>
 
   <div class="steps">
-    <div class="st"><div class="n">1</div><h3>Разобраться во внутрянке алгоритмов</h3><p>Понять, почему одни ролики залетают, а другие нет. Пока ты гадаешь, ты боишься брать деньги.</p></div>
-    <div class="st"><div class="n">2</div><h3>Найти наставника, который давно в сфере</h3><p>Того, кто поможет сделать первые шаги прямо в твоих текущих проектах. Самой на это уходят годы.</p></div>
+    <div class="st"><div class="n">1</div><h3>Наращивай свой профессионализм</h3><p>Ты должен чувствовать себя в алгоритмах как рыба в воде) Уже заранее знать, что сработает, а что, скорее всего, нет. Как усилить ролик, как через него продать, как привлечь клиента.</p><p>Ты должен <b>ЧЁТКО</b> понимать, что происходит <b>ПО ТУ</b> сторону алгоритмов.</p><p>Пока ты не понимаешь, почему твои ролики не заходят и что конкретно менять, ты будешь продолжать бояться поднять чек.</p></div>
+    <div class="st"><div class="n">2</div><h3>Поработай / поживи с человеком, у кого сильные кейсы В РАЗНЫХ нишах</h3><p>Чтобы понять, как он мыслит, создавая ролики. Как он выбирает стратегию, как он докручивает сценарии, как он генерит хуки.</p><p>Заплати ему, и пусть <b>ОН</b> тебе поможет сделать результаты уже в твоих существующих проектах. Нырнёт в них сам.</p><p>Одна ты так далеко не уедешь.</p></div>
     <div class="st"><div class="n">3</div><h3>Сделать кейсы в проектах, которые уже есть</h3><p>Новых клиентов для старта искать не нужно. Сначала результат тем, кто есть сейчас.</p></div>
     <div class="st hot"><div class="n">4</div><h3>Совершить первую продажу на новый чек</h3><p>Самый страшный и самый важный шаг. Дальше всё пойдёт сильно легче, обещаю 😉</p></div>
     <div class="st"><div class="n">5</div><h3>Продавать себя на своих кейсах</h3><p>Находить новых клиентов, в том числе за рубежом, и не бояться называть свою цену.</p></div>
   </div>
+  <p class="big-say c"><span class="chrome">Тебе всё равно придётся</span><br><span class="neon">через это пройти.</span></p>
   <div class="div"></div>
 </section>
 
 <section>
-  <span class="kicker">Почему я</span>
-  <h2>Для меня не бывает сложных ниш</h2>
+  <span class="kicker">Почему меня нужно слушать</span>
+  <h2>У нас не бывает сложных ниш</h2>
   <p>Я в сфере уже более 4 лет.</p>
   <p>Я знаю, как работает система, а механика везде одна. <span class="hl">Важно её знать.</span></p>
 
@@ -271,80 +317,23 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
     <div><b class="chrome">1 млн</b><span>подписчиков у клиента за год</span></div>
   </div>
 
-  <p>Именно поэтому у меня такие результаты 👇</p>
+  <p class="c">Вот мои кейсы. До и после 👇</p>
 
-<div class="rv cases">
-  <div class="rv-group">
-    <div class="rv-track" tabindex="0" aria-label="Мои кейсы, листай вбок">
-      <article class="rv-card cc">
-        <div class="cc-img"><img width="850" height="497" src="../img/phuket-after-top.jpg" alt="Рилсы клиента на Пхукете: 369 тыс., 329 тыс., 322 тыс. просмотров"></div>
-        <div class="cc-body">
-          <span class="cc-niche">🏝️ Элитная недвижимость · Пхукет</span>
-          <p class="cc-big">Вилла за ~45 млн ₽ с одного ролика</p>
-          <dl>
-            <dt>Запрос</dt><dd>Просмотры и заявки из инсты</dd>
-            <dt>До</dt><dd>Сменил кучу команд, слил кучу денег, а ролики набирали 1–⁠2 тысячи. Лидов не было вообще</dd>
-            <dt>После</dt><dd>Через месяц каждый третий ролик в рекомендациях на 100–⁠300к, в директе посыпались заявки, а на второй месяц <b>продали виллу холодному клиенту с одного ролика</b></dd>
-          </dl>
-        </div>
-      </article>
-      <article class="rv-card cc">
-        <div class="cc-img"><img width="800" height="520" src="../img/behind-3.jpg" alt="Профиль клиента: 1 млн подписчиков"></div>
-        <div class="cc-body">
-          <span class="cc-niche">🚗 Личный бренд · автомобили · Испания</span>
-          <p class="cc-big">2 тыс. → 1 млн подписчиков за год</p>
-          <dl>
-            <dt>Запрос</dt><dd>«Хочу просто популярный паблик»</dd>
-            <dt>До</dt><dd>2 тысячи подписчиков, ни ниши, ни аудитории, ни понимания формата</dd>
-            <dt>После</dt><dd>Миллионы просмотров с первого месяца, +10 тысяч подписчиков за первый месяц, <b>1 млн за год. И 0 ₽ на рекламу</b></dd>
-          </dl>
-        </div>
-      </article>
-      <article class="rv-card cc">
-        <div class="cc-img two"><img width="430" height="773" src="../img/laser-reel.jpg" alt="Рилс «Почему ходить на лазер ОПАСНО», 1 млн просмотров"><img width="800" height="1089" src="../img/laser-desc1.jpg" alt="Описание к рилсу: шуточные «опасности» лазера"></div>
-        <div class="cc-body">
-          <span class="cc-niche">💆‍♀️ Студия лазерной эпиляции</span>
-          <p class="cc-big">1 млн просмотров и +130 заявок</p>
-          <dl>
-            <dt>Запрос</dt><dd>Заявки из инсты</dd>
-            <dt>До</dt><dd>Ролики «почему наша студия лучшая»: 1300 просмотров и 0 заявок</dd>
-            <dt>После</dt><dd>Один ролик, снятый за 2 минуты: <b>1 млн просмотров и +130 заявок</b></dd>
-          </dl>
-        </div>
-      </article>
-      <article class="rv-card cc">
-        <div class="cc-img"><img width="900" height="1499" src="../img/ilya-reels.jpg" alt="Рилсы Ильи с нулевого аккаунта: от 1428 до 291 тысячи просмотров"></div>
-        <div class="cc-body">
-          <span class="cc-niche">🏋️ Фитнес-тренер Илья</span>
-          <p class="cc-big">0 → 291 000 просмотров за 4 дня</p>
-          <dl>
-            <dt>Запрос</dt><dd>Нет даже инстаграма, непонятно, что продавать</dd>
-            <dt>До</dt><dd>Нулевой аккаунт</dd>
-            <dt>После</dt><dd>Продукт, страница с нуля и 4 дня рилсов: <b>до 291 тысячи просмотров и 6 500 ₽ за первые два дня</b></dd>
-          </dl>
-        </div>
-      </article>
-      <article class="rv-card cc">
-        <div class="cc-img"><img width="900" height="246" src="../img/acc-47k.jpg" alt="Аккаунт Анастасии Барашковой: 47,4 тыс. подписчиков"></div>
-        <div class="cc-body">
-          <span class="cc-niche">🙋‍♀️ Мой личный блог</span>
-          <p class="cc-big">800 → 47 тысяч подписчиков</p>
-          <dl>
-            <dt>Запрос</dt><dd>Выбраться из общаги и зарплаты репетитора в 8 тысяч 😅</dd>
-            <dt>До</dt><dd>800 подписчиков, и это друзья и знакомые</dd>
-            <dt>После</dt><dd>Через полгода 46 тысяч подписчиков и <b>первый миллион с блога</b>, переезд в Москву, сейчас 47,4 тысячи</dd>
-          </dl>
-        </div>
-      </article>
-    </div>
-    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 5</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
-  </div>
+<div class="cases2">
+<article class="case2"><span class="cc-niche">🏝️ Элитная недвижимость · Пхукет</span><h3 class="c-title chrome">Вилла за ~45 млн ₽ с одного ролика</h3><div class="c-part bad"><span class="tag">ДО</span><p>Клиент сменил кучу команд, перепробовал разных специалистов и слил кучу денег. Никто не смог набрать ему даже <b>10 тысяч просмотров</b>. Лидов не было вообще, хотя контент выходил качественный.</p><div class="strip one"><img loading="lazy" width="900" height="295" src="../img/phuket-before.jpg" alt="Просмотры до: 1373, 1624, 2258, 1379, 2862, 1035"></div><div class="strip one"><img loading="lazy" width="552" height="996" src="../img/behind-4.jpg" alt="Ролики других команд: 1–2 тысячи просмотров"></div></div><div class="c-part good"><span class="tag">ПОСЛЕ</span><p>Через месяц работы <b>каждый третий ролик стабильно в рекомендациях на 100–⁠300к</b>. Валеру начали узнавать на Пхукете, в директе посыпались заявки, а на второй месяц он продал виллу холодному клиенту с одного ролика.</p><div class="strip one"><img loading="lazy" width="850" height="497" src="../img/phuket-after-top.jpg" alt="369 тыс., 329 тыс., 322 тыс. просмотров"></div><div class="strip"><img loading="lazy" width="720" height="1141" src="../img/behind-6.jpg" alt="148 тыс., 315 тыс., 187 тыс. просмотров"><img loading="lazy" width="724" height="980" src="../img/phuket-after-grid.jpg" alt="Остальные ролики: от 10 до 80 тысяч"><img loading="lazy" width="720" height="1263" src="../img/behind-5.jpg" alt="Вилла за 16,5 млн бат, проданная с одного ролика"></div><p class="strip-hint">листай 👉 3 фото</p></div></article>
+<article class="case2"><span class="cc-niche">💆‍♀️ Студия лазерной эпиляции</span><h3 class="c-title chrome">1 млн просмотров и +130 заявок</h3><div class="c-part bad"><span class="tag">ДО</span><p>Ролики в духе «почему наша студия лучшая»: по <b>1–⁠2 тысячи просмотров</b> и ноль заявок.</p><div class="strip one"><img loading="lazy" width="589" height="1280" src="../img/laser-before.jpg" alt="Просмотры студии до: около 1–2 тысяч на ролик"></div></div><div class="c-part good"><span class="tag">ПОСЛЕ</span><p>Начали снимать про страхи и желания клиенток. Ролик «Почему ходить на лазер ОПАСНО, пока ты не знаешь ЭТОГО» набрал <b>1 млн просмотров и +130 заявок</b>, а за ним пошли десятки роликов на 10–⁠200 тысяч.</p><div class="strip"><img loading="lazy" width="589" height="1280" src="../img/laser-after5.jpg" alt="Ролик на 1 млн просмотров"><img loading="lazy" width="430" height="773" src="../img/laser-reel.jpg" alt="Рилс «Почему ходить на лазер ОПАСНО»"><img loading="lazy" width="800" height="1089" src="../img/laser-desc1.jpg" alt="Описание с шуточными «опасностями»"><img loading="lazy" width="589" height="1280" src="../img/laser-after3.jpg" alt="183 тыс., 43,8 тыс., 52,5 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after7.jpg" alt="71 тыс., 102 тыс., 35,3 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after1.jpg" alt="229 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after2.jpg" alt="19,9 тыс., 28,2 тыс., 119 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after4.jpg" alt="50,3 тыс., 19 тыс., 27,6 тыс."><img loading="lazy" width="589" height="1280" src="../img/laser-after6.jpg" alt="36,8 тыс., 46,2 тыс., 28,6 тыс."><img loading="lazy" width="900" height="1356" src="../img/laser-dasha.jpg" alt="«Хочу поблагодарить, ты супер умница. Смотри просмотры»: 5,1 млн, 568 тыс."></div><p class="strip-hint">листай 👉 10 фото</p></div></article>
+<article class="case2"><span class="cc-niche">🙋‍♀️ Мои аккаунты</span><h3 class="c-title chrome">Десятки роликов-миллионников</h3><div class="c-part bad"><span class="tag">ДО</span><p>800 подписчиков (друзья и знакомые), репетиторство и <b>8 тысяч в месяц</b>.</p><div class="strip one"><img loading="lazy" width="700" height="1242" src="../img/dorm-mirror.jpg" alt="Та самая общага"></div></div><div class="c-part good"><span class="tag">ПОСЛЕ</span><p>Ролики по 1–⁠17 миллионов просмотров, 47 тысяч подписчиков, а после подключения автопродаж <b>+315 000 ₽ за 3 недели просто с просмотров</b>.</p><div class="strip one"><img loading="lazy" width="900" height="246" src="../img/acc-47k.jpg" alt="47,4 тыс. подписчиков"></div><div class="strip"><img loading="lazy" width="720" height="1280" src="../img/my-reels-2months.jpg" alt="Мои результаты за 2 месяца: 9,2 млн, 9 млн, 6,1 млн и ещё 315 000 ₽ с автопродаж"><img loading="lazy" width="783" height="1280" src="../img/my-reels-17m.jpg" alt="17,2 млн, 1,1 млн, 768 тыс., 436 тыс."><img loading="lazy" width="900" height="1056" src="../img/my-reels-4m.jpg" alt="4,6 млн, 4 млн, 3,9 млн, 3,2 млн, 2,7 млн"></div><p class="strip-hint">листай 👉 3 фото</p></div></article>
+<article class="case2"><span class="cc-niche">🚗 Личный бренд · автомобили · Испания</span><h3 class="c-title chrome">2 тыс. → 1 млн подписчиков за год</h3><div class="c-part bad"><span class="tag">ДО</span><p>2 тысячи подписчиков, ни ниши, ни аудитории, ни понимания формата. Запрос: «хочу просто популярный паблик».</p></div><div class="c-part good"><span class="tag">ПОСЛЕ</span><p>Нашли формат, который с первого месяца начал набирать миллионы. +10 тысяч подписчиков за первый месяц, <b>1 млн за год и 0 ₽ на рекламу</b>.</p><div class="strip one"><img loading="lazy" width="800" height="520" src="../img/behind-3.jpg" alt="1 млн подписчиков"></div></div></article>
+<article class="case2"><span class="cc-niche">🏋️ Фитнес-тренер Илья</span><h3 class="c-title chrome">0 → 291 000 просмотров за 4 дня</h3><div class="c-part bad"><span class="tag">ДО</span><p>Нет даже инстаграма и непонятно, что продавать.</p></div><div class="c-part good"><span class="tag">ПОСЛЕ</span><p>Сделали продукт, завели страницу с нуля: за 4 дня рилсов <b>до 291 тысячи просмотров и 6 500 ₽</b> за первые два дня.</p><div class="strip"><img loading="lazy" width="900" height="1499" src="../img/ilya-reels.jpg" alt="От 1428 до 291 тысячи просмотров"><img loading="lazy" width="900" height="1089" src="../img/ilya-payments.jpg" alt="Первые оплаты"></div><p class="strip-hint">листай 👉 2 фото</p></div></article>
 </div>
 
-  <div class="why">
-    <div><span class="k neon">Именно поэтому</span><p>мне готовы платить <b>от 150 тысяч за проект</b> ежемесячно.</p></div>
-    <div><span class="k neon">Именно поэтому</span><p>меня готовы перевозить как сотрудника, оплачивать мне все перелёты, селить в хорошее жильё, оплачивать его и при этом ещё <b>платить достойную зарплату</b> 🌴</p></div>
-    <div><span class="k neon">Именно поэтому</span><p>я не боюсь брать большие деньги за свою работу. Я знаю, что в любом случае дам результат клиенту, потому что <b>чётко знаю, как работает алгоритм.</b></p></div>
+  <div class="because">
+    <p class="bc-k">Именно поэтому</p>
+    <ul>
+      <li>мне готовы платить <b>от 150 тысяч за проект</b> ежемесячно</li>
+      <li>меня готовы перевозить как сотрудника, оплачивать мне все перелёты, селить в хорошее жильё, оплачивать его и при этом ещё <b>платить достойную зарплату</b> 🌴</li>
+      <li>я не боюсь брать большие деньги за свою работу. Я знаю, что в любом случае дам результат клиенту, потому что <b>чётко знаю, как работает алгоритм</b></li>
+    </ul>
   </div>
   <div class="div"></div>
 </section>
@@ -383,7 +372,7 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
     <span class="kicker">Школа балета</span>
     <div class="big-num"><span class="a">1–⁠2 тыс.</span><span class="arr">→</span><span class="b chrome">4,2 МЛН</span></div>
     <p>Только представь, это вообще сумасшествие.<br><b>Кто ещё на рынке делает такие результаты?</b></p>
-    <figure class="shot"><img width="800" height="1423" src="../img/reviews/r29.jpg" alt="Школа балета: было 1–2 тыс., стало 1 млн, 1,3 млн и 4,2 млн"></figure>
+    <div class="strip"><img loading="lazy" width="800" height="1423" src="../img/reviews/r29.jpg" alt="Школа балета: было 1–2 тыс., стало 1 млн, 1,3 млн и 4,2 млн"><img loading="lazy" width="800" height="1022" src="../img/reviews/r28.jpg" alt="«Нихрена себе апдейт»: 1,2 млн"><img loading="lazy" width="800" height="896" src="../img/reviews/r27.jpg" alt="«+150 баллов за новый рилс»: 978 тыс."></div><p class="strip-hint">листай 👉 3 фото</p>
   </div>
 
   <p>Девочка <b>очень боялась</b> идти на обучение, а по итогу выросла в огромный кейс.</p>
@@ -407,7 +396,7 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
     <img width="800" height="432" src="../img/reviews/r07.jpg" alt="«У меня 2 постоянных клиента на полном сопровождении, взяла ассистента и монтажёра»">
   </div>
 
-  <p class="big-say"><span class="chrome">Девчонки сильно вырастают в деньгах</span></p>
+  <p class="big-say c"><span class="chrome">Девчонки сильно вырастают в деньгах</span></p>
   <p>Заходят в обучение, когда с деньгами проблематично,<br>а выходят спустя 1,5–⁠2 месяца <span class="hl">с абсолютно новым кэшем.</span></p>
   <div class="div"></div>
 </section>
@@ -443,9 +432,9 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
 </section>
 
 <section class="final">
-  <p class="big-say"><span class="chrome">Всё.</span></p>
-  <p class="lead">Переставай быть дешёвым специалистом, которых и так навалом (ну, будем честны).</p>
-  <p>Выходи на новый уровень проектов. Становись дорогим и востребованным спецом с результатами, которые говорят сами за себя.</p>
+  <p class="big-say c"><span class="chrome">Всё.</span></p>
+  <p class="lead c">Переставай быть дешёвым специалистом, которых и так навалом (ну, будем честны).</p>
+  <p class="c">Выходи на новый уровень проектов. Становись дорогим и востребованным спецом с результатами, которые говорят сами за себя.</p>
   <p class="big-say" style="font-size:clamp(24px,7vw,34px)"><span class="neon">А это возможно.</span></p>
 
 <section class="anketa" id="anketa">
@@ -458,28 +447,28 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
     <div class="hp" aria-hidden="true"><label>Не заполняй это поле <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
 
     <label class="af-q"><span class="af-n">1</span>Твоё имя, возраст и город
-      <input type="text" name="name" data-label="Имя, возраст, город" required placeholder="Настя, 23, Казань">
+      <input type="text" name="name" data-label="Имя, возраст, город" required>
     </label>
 
     <label class="af-q"><span class="af-n">2</span>Ссылка на Instagram
-      <input type="text" name="instagram" required autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="ссылка или @ник">
+      <input type="text" name="instagram" required autocomplete="off" autocapitalize="off" spellcheck="false">
     </label>
 
     <label class="af-q"><span class="af-n">3</span>Ник в Telegram
-      <input type="text" name="telegram" required autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@nastya">
+      <input type="text" name="telegram" required autocomplete="off" autocapitalize="off" spellcheck="false">
       <small>чтобы мы могли тебе написать</small>
     </label>
 
     <label class="af-q"><span class="af-n">4</span>На чём ты сейчас зарабатываешь?
-      <input type="text" name="earn" data-label="На чём зарабатывает" required placeholder="Например: 3 проекта">
+      <input type="text" name="earn" data-label="На чём зарабатывает" required>
     </label>
 
     <label class="af-q"><span class="af-n">5</span>Твой доход сейчас
-      <input type="text" name="income" data-label="Доход сейчас" required placeholder="Например: 40 000 ₽">
+      <input type="text" name="income" data-label="Доход сейчас" required>
     </label>
 
     <label class="af-q"><span class="af-n">6</span>Твой запрос на обучение. К чему хочется прийти? Какой результат от обучения ты хочешь получить?
-      <textarea name="goal" data-label="Запрос и желаемый результат" rows="4" required placeholder="Например: хочу стабильно делать клиентам 100к+ просмотров и брать от 150к за проект"></textarea>
+      <textarea name="goal" data-label="Запрос и желаемый результат" rows="4" required></textarea>
     </label>
 
     <fieldset class="af-q">
