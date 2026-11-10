@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Клиенты из рилс каждый день</title>
-<meta name="description" content="Авторский метод Барашковой: как снимать рилсы, после которых к тебе записываются, и забить запись на свои услуги прямо из инстаграма">
+<title>Рилсы, после которых записываются</title>
+<meta name="description" content="Авторский метод Барашковой: как снимать рилсы, после которых к тебе записываются, даже если блог маленький">
 <meta name="theme-color" content="#050306">
 <script>document.documentElement.classList.add('js')</script>
 <link rel="preload" href="../fonts/unbounded-cyrillic-800-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -357,6 +357,39 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
 .flow li.hot b{color:var(--pink2)}
 .swap .v{font-size:clamp(15px,4.5vw,24px)}
 
+/* специалисты: запись по месяцам */
+.month{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 26px;align-items:end}
+.m-col{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.m-k{font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.m-bar{width:100%;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);position:relative;overflow:hidden;height:120px}
+.m-bar::after{content:"";position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#ff4ea3,#c8106b);box-shadow:0 0 18px rgba(255,46,147,.6)}
+.m-bar.full::after{height:96%}.m-bar.mid::after{height:48%;opacity:.8}.m-bar.low::after{height:10%;opacity:.6}
+.m-v{font-size:13.5px;font-weight:700;color:#eee;line-height:1.3}
+/* как снимают все vs что продаёт */
+.vs2{display:grid;gap:12px;margin:22px 0}
+.vs2>div{border-radius:22px;padding:18px 16px 10px}
+.vs2 .bad{background:rgba(255,255,255,.035);border:1px dashed rgba(255,255,255,.2)}
+.vs2 .good{background:radial-gradient(120% 70% at 50% 0%,rgba(255,46,147,.2),rgba(255,46,147,.04) 70%);border:1px solid rgba(255,46,147,.6);box-shadow:0 0 30px -10px rgba(255,46,147,.6)}
+.vs2 .bad .tag{background:rgba(255,255,255,.14);color:#fff}
+.vs2 ul{list-style:none;margin:4px 0 10px;padding:0}
+.vs2 li{position:relative;padding:7px 0 7px 26px;font-size:16px;line-height:1.4;color:#e6dfe6}
+.vs2 .bad li::before{content:"✕";position:absolute;left:2px;top:7px;color:#8e828f;font-weight:800}
+.vs2 .good li::before{content:"✓";position:absolute;left:2px;top:7px;color:var(--pink);font-weight:800;text-shadow:0 0 8px var(--pink)}
+.vs2 .res{font-family:var(--f-head);font-weight:800;font-size:15.5px;color:#fff;margin:0 0 6px!important}
+.vs3{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 8px}
+.vs3>div{border-radius:20px;padding:14px 12px;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.vs3 p{font-size:14.5px;line-height:1.4;margin:0!important;color:#e6dfe6}
+.vs3 b{font-family:var(--f-head);font-size:15px;line-height:1.3}
+.vs3 .bad{background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.2)}
+.vs3 .bad b{color:#9a909b}
+.vs3 .good{background:rgba(255,46,147,.12);border:1px solid rgba(255,46,147,.6);box-shadow:0 0 24px -8px rgba(255,46,147,.7)}
+/* что изменится */
+.wants{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 22px}
+.wants>div{background:var(--card);border:1px solid var(--card-b);border-radius:20px;padding:16px 12px 12px;text-align:center}
+.wants span{font-size:28px;line-height:1;display:block;margin-bottom:8px}
+.wants b{display:block;font-family:var(--f-head);font-size:14.5px;line-height:1.3;margin-bottom:6px}
+.wants p{font-size:13.5px;line-height:1.4;color:var(--muted);margin:0!important}
+
 </style>
 </head>
 <body>
@@ -365,49 +398,68 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
 <header class="hero">
   <div class="ring" aria-hidden="true"></div>
   <span class="kicker">Авторский метод Барашковой</span>
-  <h1><span class="chrome">Клиенты из рилс каждый день</span><span class="l2 chrome">и запись на месяц вперёд</span></h1>
-  <p class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>Без сарафана и вечных скидок</p>
+  <h1><span class="chrome">Рилсы, после которых к тебе записываются</span><span class="l2 chrome">даже если блог маленький</span></h1>
+  <p class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M8 3v4M16 3v4M3.5 10h17" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>Для специалистов, которые продают свои услуги</p>
   <p class="scroll">листай<i></i></p>
 </header>
 
 <section>
-  <p class="lead c">Я знаю, как многим больно снимать контент, тратить на него вечера, а в директе <span class="hl">тишина.</span></p>
-  <p class="lead c">Клиенты приходят только по сарафану.</p>
-  <p class="c">Ты можешь быть крутым спецом, но, сука, тебя не видят ))</p>
-  <p class="punch c">Да, сарафан. Но сарафан невозможно спланировать. В этом месяце тебя порекомендовали трём людям, в следующем никому. <span class="neon">Это игрушка, а не бизнес.</span></p>
+  <p class="lead c">Ты классный специалист.</p>
+  <p class="c">Клиенты, которые до тебя дошли, остаются надолго, пишут тёплые отзывы и приводят подруг.</p>
+  <p class="lead c">Но новые приходят <span class="hl">как повезёт.</span></p>
+  <p class="c">В одном месяце запись забита, в другом сплошные окна, и ты снова думаешь, не сделать ли скидку.</p>
 
-  <div class="swap" aria-label="Сейчас клиенты по сарафану, а хочется запись с инсты">
-    <div class="from"><span class="v">сарафан</span><span class="k">сейчас: то густо, то пусто</span></div>
-    <span class="arr" aria-hidden="true">→</span>
-    <div class="to"><span class="v">запись</span><span class="k">с инсты на месяц вперёд</span></div>
+  <div class="month" aria-label="Запись то забита, то пустая">
+    <div class="m-col"><span class="m-k">октябрь</span><span class="m-bar full"></span><span class="m-v">всё занято 😍</span></div>
+    <div class="m-col"><span class="m-k">ноябрь</span><span class="m-bar mid"></span><span class="m-v">есть окошки</span></div>
+    <div class="m-col"><span class="m-k">декабрь</span><span class="m-bar low"></span><span class="m-v">тишина 😶</span></div>
   </div>
 
-  <p class="c">А в глубине души ты хочешь, чтобы тебя узнавали в твоём городе и нише, а клиенты <b>сами писали «как к вам записаться?»</b></p>
-  <p class="c">И чтобы деньги приходили не только за твои часы.</p>
-
-  <p class="big-say c"><span class="chrome">И главное —</span><br><span class="neon">это возможно.</span></p>
+  <p class="c">Ты честно пробуешь вести блог: снимаешь, монтируешь, придумываешь подписи. А в итоге 300 просмотров, пара лайков от коллег и <b>ни одной записи.</b></p>
+  <p class="punch c">Обиднее всего, что на блог уходят часы, которые ты могла бы потратить на клиентов. <span class="neon">А взамен — ничего.</span></p>
   <div class="div"></div>
 </section>
 
 <section>
-  <span class="kicker">Путь</span>
-  <h2>5 шагов, чтобы с блога к тебе записывались</h2>
+  <span class="kicker">В чём дело</span>
+  <h2>Ты снимаешь красиво. Но не продаёшь</h2>
+  <p class="c">Дело не в тебе и не в том, что «инстаграм умер». Почти все специалисты снимают одни и те же ролики, которые хорошо выглядят, но не вызывают желания написать.</p>
 
-  <div class="steps">
-    <div class="st"><div class="n">1</div><h3>Снимай не про себя, а про клиента</h3><p>«Посмотрите, какой у меня кабинет», «процесс работы» и «наши преимущества» клиенту не интересны. Ему интересно про себя: его страхи, желания, деньги и ошибки.</p><p class="punch">Пока ты снимаешь про себя, ролики смотрят <span class="neon">коллеги и мама,</span> а не клиенты.</p></div>
-    <div class="st"><div class="n">2</div><h3>Найди свои форматы, которые залетают и продают</h3><p>Такие, которые делают тебя <span class="hl">узнаваемым специалистом</span> в твоём городе или нише. Чтобы о тебе думали первой, когда нужна твоя услуга.</p></div>
-    <div class="st"><div class="n">3</div><h3>Выстрой путь от рилса до записи</h3><p>Посмотрел ролик → написал кодовое слово → бот прогрел → заполнил анкету на запись.</p><p class="punch">Без этого пути даже залетевший ролик принесёт тебе <span class="neon">только лайки.</span></p></div>
-    <div class="st hot"><div class="n">4</div><h3>Упакуй свой опыт в мини-продукт</h3><p>Чтобы <b>ежедневно капала денежка</b>, а по этой же воронке к тебе на регулярной основе записывались люди. То есть это два в одном. Подробнее ниже 👇</p></div>
-    <div class="st"><div class="n">5</div><h3>Пройди это с тем, у кого уже есть такие результаты</h3><p>Кто сам выстраивал такие системы и знает, где ты споткнёшься. Самой на это уходят годы проб и ошибок.</p><p class="punch">Одна ты так далеко <span class="neon">не уедешь.</span></p></div>
+  <div class="vs2">
+    <div class="bad"><span class="tag">Как снимают почти все</span>
+      <ul><li>процесс работы под трендовый звук</li><li>«посмотрите, какой у меня кабинет»</li><li>до/после без объяснений</li><li>«есть окошки на неделю, записывайтесь»</li></ul>
+      <p class="res">😶 смотрят коллеги и мама</p></div>
+    <div class="good"><span class="tag">Что приводит записи</span>
+      <ul><li>ролик про страх или желание клиента</li><li>смысл, в котором человек узнаёт себя</li><li>понятный следующий шаг: что написать и куда</li><li>бот, который отвечает и записывает за тебя</li></ul>
+      <p class="res">🔥 пишут «как к вам записаться?»</p></div>
   </div>
-  <p class="big-say c"><span class="chrome">Тебе всё равно придётся</span><br><span class="neon">через это пройти.</span></p>
+
+  <p class="c">Смотри, как это выглядит на реальной студии лазерной эпиляции:</p>
+  <div class="vs3">
+    <div class="bad"><p>«Почему наша студия лучшая в городе»</p><b>1 300 просмотров<br>0 заявок</b></div>
+    <div class="good"><p>«Почему ходить на лазер ОПАСНО, пока ты не знаешь ЭТОГО»</p><b>1 млн просмотров<br>+130 заявок</b></div>
+  </div>
+  <p class="punch c">Та же студия, тот же телефон. Поменялся только <span class="neon">смысл ролика.</span></p>
   <div class="div"></div>
 </section>
 
 <section>
-  <span class="kicker">Почему меня нужно слушать</span>
-  <h2>У нас не бывает сложных ниш</h2>
-  <p class="c">Я знаю, как работает система.<br><span class="hl">А механика везде одна</span> — и важно её знать.</p>
+  <span class="kicker">Что изменится</span>
+  <h2>Когда блог начинает приводить клиентов</h2>
+  <div class="wants">
+    <div><span>🗓</span><b>Запись на недели вперёд</b><p>и не нужно гадать, что будет в следующем месяце</p></div>
+    <div><span>💸</span><b>Можно поднять цену</b><p>когда к тебе очередь, торговаться не приходится</p></div>
+    <div><span>🙋‍♀️</span><b>Ты выбираешь клиентов</b><p>а не берёшь всех подряд, лишь бы закрыть окна</p></div>
+    <div><span>☕</span><b>Деньги, пока ты отдыхаешь</b><p>с мини-продукта, который продаётся сам</p></div>
+  </div>
+  <p class="c">И для этого не нужно становиться блогером, плясать в трендах и снимать по три ролика в день.</p>
+  <div class="div"></div>
+</section>
+
+<section>
+  <span class="kicker">Почему мне можно доверить свой блог</span>
+  <h2>Мне важны не просмотры, а клиенты</h2>
+  <p class="c">Больше 4 лет я выстраиваю рилсы и воронки экспертам и бизнесам в самых разных нишах. И везде задача одна: чтобы <span class="hl">с блога приходили люди, готовые платить.</span></p>
 
   <div class="stats">
     <div><b class="chrome"><span class="cnt" data-to="4">4</span>+</b><span>года работаю с проектами</span></div>
@@ -415,43 +467,36 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
     <div><b class="chrome"><span class="cnt" data-to="300">300</span>+</b><span>отзывов учениц</span></div>
   </div>
 
-  <p class="big-say c"><span class="chrome">Смотри, что бывает,</span><br><span class="neon">когда за проект берусь я</span> 👇</p>
+  <p class="big-say c"><span class="chrome">Вот что получают мои клиенты</span> 👇</p>
   <p class="c" style="color:var(--muted);font-size:15px">листай кейсы или жми на вкладки</p>
 
 <div class="cz-box" id="cz-mine">
-  <div class="cz-tabs" role="tablist"><button type="button" class="cz-tab on" data-i="0">💆‍♀️ +130 заявок</button><button type="button" class="cz-tab" data-i="1">🏝️ Пхукет</button><button type="button" class="cz-tab" data-i="2">🏋️ Тренер</button></div>
-  <div class="cz-track" tabindex="0" aria-label="Кейсы, листай вбок"><article class="cz"><span class="cz-niche">Студия лазерной эпиляции</span><h3 class="cz-hook">Ни один СММщик не дал им заявок. А с первых же моих рилс — +130 заявок с ОДНОГО ролика 😳</h3><div class="cz-before"><span class="tag">ДО</span><p>Студия нанимала разных СММщиков, снимала «наши преимущества» и «почему мы лучшие». Красиво, но <b>заявок с инсты не было.</b> Все просмотры были вот такие 👇</p><div class="stack"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-b-0.jpg" alt="Просмотры до: 1–2 тысячи"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-b-1.jpg" alt="Просмотры до: 1–2 тысячи"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-b-2.jpg" alt="Просмотры до: 1–2 тысячи"></div></div><p class="cz-bang">💥 БАЦ. Студия приходит ко мне 👇</p><div class="cz-after"><span class="tag">ПОСЛЕ</span><div class="mega"><p class="mega-n chrome">+130</p><p class="mega-p">заявок с ОДНОГО ролика</p></div><p>Начали снимать не про студию, а про страхи и желания клиенток. Ролик «Почему ходить на лазер ОПАСНО, пока ты не знаешь ЭТОГО» набрал миллион и <span class="hl">принёс 130 заявок.</span> А за ним десятки роликов на 10–⁠200 тысяч 🔥</p><div class="stack"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-0.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-1.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-2.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-3.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-4.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-5.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-6.jpg" alt="Просмотры после"></div></div></article><article class="cz"><span class="cz-niche">Элитная недвижимость · Пхукет</span><h3 class="cz-hook">Ни одна команда не могла дать ему заявок. А потом пришла я 😏</h3><div class="cz-before"><span class="tag">ДО</span><p>Клиент сменил кучу команд и слил кучу денег. Ролики по 1–⁠2 тысячи и <b>ни одного лида с инсты</b>, хотя контент выходил качественный.</p><div class="stack"><img loading="lazy" class="wide" width="900" height="295" src="../img/phuket-before.jpg" alt="Просмотры до: 1–2 тысячи"></div></div><p class="cz-bang">💥 БАЦ. Я подключаюсь к работе 👇</p><div class="cz-after"><span class="tag">ПОСЛЕ</span><div class="mega"><p class="mega-n chrome">~45 млн ₽</p><p class="mega-p">продана вилла с ОДНОГО ролика</p></div><p>Уже в первый же месяц <span class="hl">каждый третий ролик в залёте.</span> Валеру начали узнавать на Пхукете, все, кому нужна недвижимость, стали обращаться К НЕМУ, и <b>заявки с инсты падают ежедневно.</b> А на второй месяц он продал виллу холодному клиенту с одного ролика 🤯</p><div class="stack"><img loading="lazy" class="wide" width="850" height="497" src="../img/phuket-after-top.jpg" alt="369 тыс., 329 тыс., 322 тыс."><img loading="lazy" class="wide" width="900" height="195" src="../img/strips/phuket-a-0.jpg" alt="148 тыс., 315 тыс., 187 тыс."><img loading="lazy" class="wide" width="900" height="195" src="../img/strips/phuket-a-1.jpg" alt="148 тыс., 315 тыс., 187 тыс."><img loading="lazy" width="720" height="1263" src="../img/behind-5.jpg" alt="Вилла, проданная с одного ролика"></div></div></article><article class="cz"><span class="cz-niche">Фитнес-тренер Илья</span><h3 class="cz-hook">9 из 10 рилс — сразу в залёт. И сразу оплаты 💸</h3><div class="cz-before"><span class="tag">ДО</span><p>Ролики, которые Илья снимал сам, набирали <b>меньше 2 000.</b> Ни клиентов, ни понимания, что продавать.</p><div class="stack"><img loading="lazy" class="wide" width="900" height="294" src="../img/strips/ilya-b-0.jpg" alt="Просмотры до: 727–1849"><img loading="lazy" class="wide" width="900" height="294" src="../img/strips/ilya-b-1.jpg" alt="Просмотры до: 727–1849"></div></div><p class="cz-bang">💥 БАЦ. Подключаемся мы 👇</p><div class="cz-after"><span class="tag">ПОСЛЕ</span><div class="mega"><p class="mega-n chrome">9 из 10</p><p class="mega-p">роликов сразу в залёте</p></div><p>Упаковали его опыт в продукт, и рилсы сразу пошли в залёт. А вместе с ними <span class="hl">первые оплаты: 6 500 ₽ за первые два дня</span> просто с рилсов. Все говорят, что новые аккаунты раскачиваются месяцами. Мы эту теорию опровергли 😂</p><div class="stack"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/ilya-a-0.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/ilya-a-1.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/ilya-a-2.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/ilya-a-3.jpg" alt="Просмотры после"><img loading="lazy" width="900" height="1089" src="../img/ilya-payments.jpg" alt="Первые оплаты: клуб за 4490 ₽ и метод за 499 ₽"></div></div></article></div>
-  <div class="rv-nav cz-nav"><button type="button" class="rv-btn cz-prev" aria-label="Предыдущий кейс">←</button><span class="rv-count"><b>1</b> / 3</span><button type="button" class="rv-btn cz-next" aria-label="Следующий кейс">→</button></div>
+  <div class="cz-tabs" role="tablist"><button type="button" class="cz-tab on" data-i="0">🙋‍♀️ 79 заявок</button><button type="button" class="cz-tab" data-i="1">📈 10% в покупку</button><button type="button" class="cz-tab" data-i="2">💆‍♀️ +130 заявок</button><button type="button" class="cz-tab" data-i="3">🏝️ Пхукет</button><button type="button" class="cz-tab" data-i="4">🏋️ Тренер</button></div>
+  <div class="cz-track" tabindex="0" aria-label="Кейсы, листай вбок"><article class="cz"><span class="cz-niche">Мой собственный кейс</span><h3 class="cz-hook">79 заявок в анкету и ещё ~45 в директ. С ОДНОЙ воронки 🤯</h3><div class="cz-before"><span class="tag">ДО</span><p>Я годами снимала рилсы и думала: будут просмотры — будут клиенты. Ролики залетали, аудитория набиралась, а <b>клиентов не было.</b> Что логично: зрителей из рилс я никуда не вела.</p><div class="stack"><img loading="lazy" width="783" height="1280" src="../img/my-reels-17m.jpg" alt="Миллионные просмотры, но без заявок"></div></div><p class="cz-bang">💥 БАЦ. Я выстраиваю воронку 👇</p><div class="cz-after"><span class="tag">ПОСЛЕ</span><div class="mega"><p class="mega-n chrome">79 + 45</p><p class="mega-p">заявок с ОДНОЙ воронки</p></div><p>Рилс → кодовое слово → бот с прогревом → анкета. Люди сами доходили до заявки, <span class="hl">без моего участия в переписке.</span></p><div class="stack"><img loading="lazy" class="wide" width="900" height="460" src="../img/anketa-79.jpg" alt="Анкета: 79 ответов"></div></div></article><article class="cz"><span class="cz-niche">Эксперт · свой продукт</span><h3 class="cz-hook">Просмотры 100–⁠300 тысяч, а оплат ноль. Знакомо?</h3><div class="cz-before"><span class="tag">ДО</span><p>У клиентки уже залетали рилсы на 100–⁠300 тысяч, был продукт и продающий сайт. <b>Но оплат не было.</b></p><div class="stack"><img loading="lazy" class="wide" width="900" height="259" src="../img/c3-request.jpg" alt="Запрос: рилсы по 100–300 тыс., продукт есть, оплат нет"></div></div><p class="cz-bang">💥 БАЦ. Мы докручиваем смыслы и воронку 👇</p><div class="cz-after"><span class="tag">ПОСЛЕ</span><div class="mega"><p class="mega-n chrome">10%</p><p class="mega-p">из комментария в покупку</p></div><p>Переписали заголовки, описания и дожимные сообщения в боте. Первый же ролик принёс оплаты, а <span class="hl">конверсия из комментария в покупку стала 10%.</span></p><div class="stack"><img loading="lazy" width="900" height="1418" src="../img/c3-44k.jpg" alt="44 378 просмотров, 4 оплаты, конверсия 10%"><img loading="lazy" class="wide" width="900" height="578" src="../img/c3-thanks.jpg" alt="«Спасибо, я очень рада, теперь только бомбить»"></div></div></article><article class="cz"><span class="cz-niche">Студия лазерной эпиляции</span><h3 class="cz-hook">Сменили кучу СММщиков и не получили ни одной заявки. А потом один ролик принёс 130 😳</h3><div class="cz-before"><span class="tag">ДО</span><p>Студия нанимала разных СММщиков, снимала «наши преимущества» и «почему мы лучшие». Красиво, но <b>заявок с инсты не было.</b> Все просмотры были вот такие 👇</p><div class="stack"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-b-0.jpg" alt="Просмотры до: 1–2 тысячи"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-b-1.jpg" alt="Просмотры до: 1–2 тысячи"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-b-2.jpg" alt="Просмотры до: 1–2 тысячи"></div></div><p class="cz-bang">💥 БАЦ. Студия приходит ко мне 👇</p><div class="cz-after"><span class="tag">ПОСЛЕ</span><div class="mega"><p class="mega-n chrome">+130</p><p class="mega-p">заявок с ОДНОГО ролика</p></div><p>Начали снимать не про студию, а про страхи и желания клиенток. Ролик «Почему ходить на лазер ОПАСНО, пока ты не знаешь ЭТОГО» набрал миллион просмотров и <span class="hl">принёс 130 заявок.</span> А за ним десятки роликов на 10–⁠200 тысяч 🔥</p><div class="stack"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-0.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-1.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-2.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-3.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-4.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-5.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/laser-a-6.jpg" alt="Просмотры после"></div></div></article><article class="cz"><span class="cz-niche">Элитная недвижимость · Пхукет</span><h3 class="cz-hook">Куча команд, куча денег и ноль заявок. Пока не пришла я 😏</h3><div class="cz-before"><span class="tag">ДО</span><p>Клиент сменил кучу команд и слил кучу денег. Ролики по 1–⁠2 тысячи и <b>ни одного лида с инсты</b>, хотя контент выходил качественный.</p><div class="stack"><img loading="lazy" class="wide" width="900" height="295" src="../img/phuket-before.jpg" alt="Просмотры до: 1–2 тысячи"></div></div><p class="cz-bang">💥 БАЦ. Я подключаюсь к работе 👇</p><div class="cz-after"><span class="tag">ПОСЛЕ</span><div class="mega"><p class="mega-n chrome">~45 млн ₽</p><p class="mega-p">продана вилла с ОДНОГО ролика</p></div><p>Уже в первый месяц <span class="hl">каждый третий ролик в залёте.</span> Валеру начали узнавать на Пхукете, все, кому нужна недвижимость, стали обращаться К НЕМУ, и <b>заявки с инсты начали падать каждый день.</b> А на второй месяц он продал виллу холодному клиенту с одного ролика 🤯</p><div class="stack"><img loading="lazy" class="wide" width="850" height="497" src="../img/phuket-after-top.jpg" alt="369 тыс., 329 тыс., 322 тыс."><img loading="lazy" class="wide" width="900" height="195" src="../img/strips/phuket-a-0.jpg" alt="148 тыс., 315 тыс., 187 тыс."><img loading="lazy" class="wide" width="900" height="195" src="../img/strips/phuket-a-1.jpg" alt="148 тыс., 315 тыс., 187 тыс."><img loading="lazy" width="720" height="1263" src="../img/behind-5.jpg" alt="Вилла, проданная с одного ролика"></div></div></article><article class="cz"><span class="cz-niche">Фитнес-тренер Илья</span><h3 class="cz-hook">Новый аккаунт, 9 из 10 роликов в залёте и первые оплаты за 2 дня 💸</h3><div class="cz-before"><span class="tag">ДО</span><p>Ролики, которые Илья снимал сам, набирали <b>меньше 2 000.</b> Ни клиентов, ни понимания, что продавать.</p><div class="stack"><img loading="lazy" class="wide" width="900" height="294" src="../img/strips/ilya-b-0.jpg" alt="Просмотры до: 727–1849"><img loading="lazy" class="wide" width="900" height="294" src="../img/strips/ilya-b-1.jpg" alt="Просмотры до: 727–1849"></div></div><p class="cz-bang">💥 БАЦ. Подключаемся мы 👇</p><div class="cz-after"><span class="tag">ПОСЛЕ</span><div class="mega"><p class="mega-n chrome">9 из 10</p><p class="mega-p">роликов сразу в залёте</p></div><p>Упаковали его опыт в продукт, и рилсы сразу пошли в залёт. А вместе с ними <span class="hl">первые оплаты: 6 500 ₽ за первые два дня</span> просто с рилсов. Все говорят, что новые аккаунты раскачиваются месяцами. Мы эту теорию опровергли 😂</p><div class="stack"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/ilya-a-0.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/ilya-a-1.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/ilya-a-2.jpg" alt="Просмотры после"><img loading="lazy" class="wide" width="900" height="196" src="../img/strips/ilya-a-3.jpg" alt="Просмотры после"><img loading="lazy" width="900" height="1089" src="../img/ilya-payments.jpg" alt="Первые оплаты: клуб за 4490 ₽ и метод за 499 ₽"></div></div></article></div>
+  <div class="rv-nav cz-nav"><button type="button" class="rv-btn cz-prev" aria-label="Предыдущий кейс">←</button><span class="rv-count"><b>1</b> / 5</span><button type="button" class="rv-btn cz-next" aria-label="Следующий кейс">→</button></div>
 </div>
-
-  <div class="because">
-    <p class="bc-k">Именно поэтому</p>
-    <ul>
-      <li>ко мне приходят эксперты и бизнесы, которым <b>нужны не просмотры, а клиенты</b>, и уходят с заявками</li>
-      <li>мне готовы платить <b>от 150 тысяч за проект</b> ежемесячно</li>
-      <li>я достойна брать большие деньги за свой труд, опыт и наработки. Я знаю, <b>КАК дать результат ЛЮБОМУ клиенту</b>, т.к. понимаю, как работает ТА сторона алгоритмов, и дружу с ней 😅</li>
-    </ul>
-  </div>
   <div class="div"></div>
 </section>
 
 <section>
   <span class="kicker">2 в 1</span>
-  <h2>А теперь самое вкусное 😏</h2>
-  <p>Если у тебя уже большой опыт в сфере и ты не хочешь упираться в потолок в часы своей работы, то у меня для тебя есть ещё одна методика, которую я рекомендую всем специалистам.</p>
+  <h2>А теперь то, что я рекомендую всем специалистам</h2>
+  <p>Если у тебя уже большой опыт в сфере и ты не хочешь упираться в потолок в часы своей работы, то у меня для тебя есть ещё одна методика.</p>
   <p class="big-say c" style="font-size:clamp(24px,7vw,34px)"><span class="neon">Свой мини-продукт через автоворонку.</span></p>
   <p>Благодаря ней ежедневно капает денежка, которую ты можешь тратить на кофе или куда хочешь ☕ Но при этом по этой воронке к тебе на регулярной основе записываются люди.</p>
   <p class="punch c">То есть это <span class="neon">два в одном.</span></p>
 
+  <p>Как это работает:</p>
   <ol class="flow">
-    <li><b>Рилс</b><span>бьёт в страх или желание твоего клиента</span></li>
-    <li><b>Кодовое слово</b><span>человек пишет его в комментарии или директ</span></li>
-    <li><b>Бот</b><span>сам отвечает, рассказывает про тебя и прогревает</span></li>
-    <li><b>Мини-продукт</b><span>гайд, чек-лист или план за пару сотен рублей — и тебе капает денежка 💸</span></li>
-    <li class="hot"><b>Запись на услугу</b><span>человек уже получил пользу, доверяет и приходит к тебе</span></li>
+    <li><b>Человек смотрит твой рилс</b><span>и узнаёт в нём свою проблему</span></li>
+    <li><b>Пишет кодовое слово</b><span>в комментарии или в директ</span></li>
+    <li><b>Бот отвечает за тебя</b><span>рассказывает, кто ты и как работаешь, и прогревает</span></li>
+    <li><b>Покупает мини-продукт</b><span>гайд, чек-лист или план за пару сотен рублей. Тебе капает денежка 💸</span></li>
+    <li class="hot"><b>Записывается к тебе</b><span>он уже получил от тебя пользу и доверяет. Заявка падает тебе в телеграм</span></li>
   </ol>
+  <p class="c">Ты в это время работаешь с клиентами. Или спишь 😴</p>
 
-  <p>Это я не из теории говорю. Вот что приносит мне моя собственная автоворонка на продукт за 499 ₽ 👇</p>
+  <p>Это я не из теории говорю. Вот что приносит моя собственная автоворонка на продукт за 499 ₽ 👇</p>
 
   <div class="glowcard">
     <div class="emo">🌴</div>
@@ -467,36 +512,41 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
     <img width="900" height="1024" src="../img/january-1003.jpg" alt="1003 платежа на сумму 627 692 ₽">
   </div>
 
-  <p>И это работает не только у меня 👇</p>
+  <p>И у специалистов это работает так же 👇</p>
 
   <div class="glowcard">
     <div class="emo">💇‍♀️</div>
     <span class="kicker">Аня · мастер по волосам</span>
     <p class="money-num chrome"><span class="cnt" data-to="166615">166 615</span> ₽</p>
     <p class="money-t">в кассе через месяц после запуска</p>
-    <p>Сливала по 300к на другие обучения, рилсы снимала, а в директе тишина. Собрали 2 платных продукта, 1 бесплатный и воронку: <b>+27 300 ₽ уже за первые две недели с нуля.</b></p>
+    <p>До этого Аня потратила 300 тысяч на другие обучения, снимала рилсы, а в директе была тишина. Мы собрали ей 2 платных продукта, 1 бесплатный и воронку: <b>+27 300 ₽ уже за первые две недели.</b></p>
     <img width="800" height="816" src="../img/anya-166k.jpg" alt="Касса Ани: 166 615 ₽">
   </div>
 
   <div class="glowcard">
     <div class="emo">💅</div>
-    <span class="kicker">Мастер маникюра</span>
+    <span class="kicker">Мастер маникюра · маленький блог</span>
     <p class="money-num chrome">500</p>
-    <p class="money-t">просмотров — и уже продажа</p>
-    <p>«У меня и 500 просмотров не наберётся». А первая продажа пришла именно с такого ролика. <b>Ночью. Пока она спала</b> 🥰</p>
+    <p class="money-t">просмотров на ролике — и продажа</p>
+    <p>«У меня и 500 просмотров не наберётся», — говорила она. А первая продажа пришла именно с такого ролика. <b>Ночью, пока она спала</b> 🥰</p>
     <img width="900" height="730" src="../img/c4-500.jpg" alt="«Ещё одна продажа была ночью, когда я сплю… с 500 просмотров»">
   </div>
+  <p class="punch c">Огромный блог не нужен. Нужны <span class="neon">правильные смыслы и система.</span></p>
   <div class="div"></div>
 </section>
 
 <section>
-  <span class="kicker">Ученицы</span>
-  <h2>Не люблю голословить</h2>
-  <p>Уже <b>3 года</b> я обучаю других делать результаты в рилс. Просто смотри примеры и читай отзывы моих любимых учениц. <span class="hl">Можешь написать любой из них</span> и запросить отзыв на моё обучение 😉</p>
+  <span class="kicker">Отзывы</span>
+  <h2>Что пишут мои клиенты и ученицы</h2>
+  <p>Не люблю голословить, поэтому вот живые сообщения: от клиентов, с которыми я работала над их проектами, и от учениц, которые прошли моё обучение 😉</p>
 
 <div class="rv" id="reviews">
-  <div class="rv-tabs" role="tablist"><button type="button" class="rv-tab on" data-g="reels" role="tab" aria-selected="true">🔥 Залёты <span>18</span></button><button type="button" class="rv-tab" data-g="words" role="tab" aria-selected="false">💬 Отзывы <span>9</span></button></div>
-  <div class="rv-group" data-g="reels">
+  <div class="rv-tabs" role="tablist"><button type="button" class="rv-tab on" data-g="clients" role="tab" aria-selected="true">🤝 Клиенты <span>7</span></button><button type="button" class="rv-tab" data-g="reels" role="tab" aria-selected="false">🔥 Залёты учениц <span>18</span></button><button type="button" class="rv-tab" data-g="words" role="tab" aria-selected="false">💬 Ученицы <span>9</span></button></div>
+  <div class="rv-group" data-g="clients">
+    <div class="rv-track" tabindex="0" aria-label="Листай вбок"><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="846" src="../img/anya-thanks.jpg" alt="Аня, мастер по волосам: «Я безмерно тебе благодарна»"></div><figcaption>Аня, мастер по волосам: «Я безмерно тебе благодарна»</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="1100" height="1955" src="../img/anya.jpg" alt="Аня: первые оплаты по гайду, +27 300 ₽ за две недели"></div><figcaption>Аня: первые оплаты по гайду, +27 300 ₽ за две недели</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="900" height="578" src="../img/c3-thanks.jpg" alt="«Спасибо, я очень рада, теперь только бомбить»"></div><figcaption>«Спасибо, я очень рада, теперь только бомбить»</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="900" height="1175" src="../img/c3-tz.jpg" alt="«Спасибо большое за работу, очень информативно»"></div><figcaption>«Спасибо большое за работу, очень информативно»</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="900" height="1356" src="../img/laser-dasha.jpg" alt="Студия лазера: «Хочу поблагодарить, ты супер умница. Смотри просмотры»"></div><figcaption>Студия лазера: «Хочу поблагодарить, ты супер умница. Смотри просмотры»</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="900" height="220" src="../img/c4-first.jpg" alt="«Божечки, у меня первая оплата! Только что!»"></div><figcaption>«Божечки, у меня первая оплата! Только что!»</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="900" height="1598" src="../img/notifications.jpg" alt="Уведомления об оплатах подряд"></div><figcaption>Уведомления об оплатах подряд</figcaption></figure></div>
+    <div class="rv-nav"><button type="button" class="rv-btn prev" aria-label="Назад">←</button><span class="rv-count"><b>1</b> / 7</span><button type="button" class="rv-btn next" aria-label="Вперёд">→</button></div>
+  </div>
+  <div class="rv-group" data-g="reels" hidden>
     <div class="rv-track" tabindex="0" aria-label="Листай вбок">
       <figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="1423" src="../img/reviews/r29.jpg" alt="Школа балета: было 1–2 тыс., стало 1 млн, 1,3 млн и 4,2 млн. Ролик повторил Плющенко"></div><figcaption>Школа балета: было 1–⁠2 тыс., стало 1 млн, 1,3 млн и 4,2 млн. Ролик повторил Плющенко</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="1223" src="../img/st-polina.jpg" alt="Полина: 439 тыс. на ТРЕТЬЕМ ролике, а первый по моему методу — 78,9 тыс. «Почти пол ляма» 🤯"></div><figcaption>Полина: 439 тыс. на ТРЕТЬЕМ ролике, а первый по моему методу — 78,9 тыс. «Почти пол ляма» 🤯</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="1022" src="../img/reviews/r28.jpg" alt="1,2 млн просмотров у школы танцев: «Нихрена себе апдейт»"></div><figcaption>1,2 млн просмотров у школы танцев: «Нихрена себе апдейт»</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="896" src="../img/reviews/r27.jpg" alt="978 тыс. просмотров за новый рилс"></div><figcaption>978 тыс. просмотров за новый рилс</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="991" src="../img/reviews/r09.jpg" alt="47 тыс. просмотров у клиента"></div><figcaption>47 тыс. просмотров у клиента</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="285" src="../img/reviews/r23.jpg" alt="Рилс клиента снова улетел больше 17 тыс."></div><figcaption>Рилс клиента снова улетел больше 17 тыс.</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="1097" src="../img/reviews/r10.jpg" alt="13,5 тыс. просмотров у кафе"></div><figcaption>13,5 тыс. просмотров у кафе</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="1063" src="../img/reviews/r11.jpg" alt="11,3 тыс. просмотров у кафе"></div><figcaption>11,3 тыс. просмотров у кафе</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="865" src="../img/reviews/r12.jpg" alt="10 тыс. просмотров у кондитерской"></div><figcaption>10 тыс. просмотров у кондитерской</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="894" src="../img/reviews/r13.jpg" alt="10,1 тыс. просмотров у кафе"></div><figcaption>10,1 тыс. просмотров у кафе</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="800" height="392" src="../img/reviews/r14.jpg" alt="Загнали трафик в платный тг-канал"></div><figcaption>Загнали трафик в платный тг-канал</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="778" height="1288" src="../img/reviews/r32.jpg" alt="111 366 просмотров на ролике"></div><figcaption>111 366 просмотров на ролике</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="900" height="867" src="../img/dasha-570k.jpg" alt="Даша: 200 тыс. и 570 тыс. у своей клиентки — «Даже уже вот так 🔥»"></div><figcaption>Даша: 200 тыс. и 570 тыс. у своей клиентки — «Даже уже вот так 🔥»</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="900" height="1334" src="../img/dasha-wow.jpg" alt="Даша: залёты клиентки после 4–5 тысяч. «ооо нихуяя, Даша ты красотка!!!»"></div><figcaption>Даша: залёты клиентки после 4–⁠5 тысяч. «ооо нихуяя, Даша ты красотка!!!»</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="738" height="1155" src="../img/dasha-90k.jpg" alt="Даша: ещё 90,3 тыс."></div><figcaption>Даша: ещё 90,3 тыс.</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="900" height="1121" src="../img/st-1m.jpg" alt="1 030 954 просмотра за 30 дней: «Сделала им ахуенную статистику и ушла 😂 Поняла, что я стою больше))»"></div><figcaption>1 030 954 просмотра за 30 дней: «Сделала им ахуенную статистику и ушла 😂 Поняла, что я стою больше))»</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="900" height="1397" src="../img/st-katya.jpg" alt="Катя: первые залетевшие рилсы — 124 тыс. и 12,7 тыс."></div><figcaption>Катя: первые залетевшие рилсы — 124 тыс. и 12,7 тыс.</figcaption></figure><figure class="rv-card"><div class="rv-img"><img loading="lazy" width="900" height="928" src="../img/st-66k.jpg" alt="«Сутки набрало 66 000 просмотров» — при соседних роликах по 150–300"></div><figcaption>«Сутки набрало 66 000 просмотров» — при соседних роликах по 150–⁠300</figcaption></figure>
     </div>
@@ -514,22 +564,22 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
 
 <section>
   <div class="offer">
-    <span class="kicker">Если хочешь так же</span>
+    <span class="kicker">Хочешь так же?</span>
     <h2>Обучающая программа<span class="sub2">с личной работой со мной <span class="nw">1 на 1</span></span></h2>
 
-    <p>Если хочешь, чтобы мы выстроили тебе такую систему, приходи на моё большое обучение, где мы за 1,5 месяца:</p>
+    <p>Я на 1,5 месяца захожу в твой блог с головой, и мы вместе выстраиваем тебе систему, которая приводит клиентов. За это время мы:</p>
     <ul class="checks">
-      <li>найдём тебе <b>форматы контента</b>, которые делают тебя узнаваемым специалистом, залетают и классно продают</li>
+      <li>найдём <b>форматы контента</b>, которые делают тебя узнаваемым специалистом, залетают и классно продают</li>
       <li><b>продумаем и упакуем твой опыт в продукт</b></li>
       <li><b>подключим ботов и платёжную систему</b></li>
       <li><b>пропишем автопрогревы</b></li>
       <li><b>создадим анкету</b> для получения заявок на твои услуги</li>
-      <li>и <b>автоматизируем весь процесс</b>, чтобы ты занималась клиентами, а не сидела сутками в директе</li>
+      <li>и <b>автоматизируем весь процесс</b>, чтобы ты работала с клиентами, а не сидела сутками в директе</li>
     </ul>
 
     <p class="brain"><span class="chrome">Ты по факту арендуешь мои мозги</span> 🧠</p>
-    <p>В теории узнаешь, как работают алгоритмы и психология зрителя, как снимать рилсы, после которых записываются, и как строятся воронки продаж в инстаграме.</p>
-    <p class="punch c">А на практике мы всё это <span class="neon">запустим ещё во время обучения,</span> чтобы ты получила первые заявки и первые оплаты.</p>
+    <p>В уроках разберёшься, как работают алгоритмы и психология зрителя, почему одни ролики приводят клиентов, а другие нет, и как строятся воронки продаж в инстаграме.</p>
+    <p class="punch c">А главное, мы запустим всё это <span class="neon">ещё во время обучения</span>, чтобы первые заявки и оплаты пришли, пока ты ещё учишься.</p>
 
     <div class="facts">
       <div><b class="chrome">1,5 мес</b><span>обучения</span></div>
@@ -540,10 +590,10 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
 </section>
 
 <section class="final">
-  <p class="big-say c"><span class="chrome">Всё.</span></p>
-  <p class="lead c">Хватит ждать сарафан, который невозможно спланировать, и снимать контент в пустоту.</p>
-  <p class="c">Выходи на <span class="hl">новый уровень:</span> забитая запись с инсты и денежка, которая капает каждый день.</p>
-  <p class="big-say c" style="font-size:clamp(24px,7vw,34px)"><span class="neon">А это возможно.</span></p>
+  <p class="big-say c"><span class="chrome">Представь</span></p>
+  <p class="lead c">Ты открываешь телефон, а там новые заявки, которые пришли, пока ты работала.</p>
+  <p class="c">Запись расписана на недели вперёд, а за ночь капнуло несколько оплат за твой продукт.</p>
+  <p class="big-say c" style="font-size:clamp(24px,7vw,34px)"><span class="neon">Это реально.</span></p>
 
 <section class="anketa" id="anketa">
   <p class="cta-scarcity">Т.к. я работаю <b>ЛИЧНО С КАЖДЫМ</b>, места ограничены</p>
@@ -603,13 +653,13 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
   <div class="tried">
     <p class="bc-k">Ты уже<br>пробовала</p>
     <ul>
-      <li>снимать свой красивый кабинет, «процесс работы» и «до/после», а в итоге 200 просмотров от коллег и мамы</li>
-      <li>просить ChatGPT написать сценарий или пост, а он выдавал несвязную воду, в которой нет ни тебя, ни твоей экспертности</li>
-      <li>нанимать СММщика, который сделал красиво, а записей с инсты как не было, так и нет</li>
-      <li>покупать курсы по блогу, где внутри в итоге оказывалась одна вода и «просто будьте собой»</li>
-      <li>выкладывать полезные советы, а в ответ получать лайки от коллег, а не записи от клиентов</li>
-      <li>делать скидки, акции и «приведи подругу», лишь бы хоть как-то заполнить запись</li>
-      <li>каждый день вести сторис, «чтобы не забыли», а писать всё равно приходят только по сарафану</li>
+      <li>снимать процесс работы и до/после, а в ответ получать 200 просмотров и пару лайков от коллег</li>
+      <li>просить ChatGPT написать сценарий или пост, а получать воду, в которой нет ни тебя, ни твоей экспертности</li>
+      <li>платить СММщику, который делал красиво, а записей с инсты как не было, так и нет</li>
+      <li>покупать курсы по блогу, где внутри «будьте собой и выкладывайтесь регулярно», а клиентов так и не прибавилось</li>
+      <li>выкладывать полезные советы, которые сохраняют, но по которым никто не записывается</li>
+      <li>делать скидки, акции и «приведи подругу», лишь бы закрыть окна в записи</li>
+      <li>каждый день вести сторис, чтобы о тебе не забыли, а новые клиенты всё равно приходят только по сарафану</li>
     </ul>
     <p class="big-say c" style="font-size:clamp(26px,8vw,38px)"><span class="neon">Ну алло!</span></p>
     <p class="c">Ты и так уже потратила достаточно нервов, времени, а возможно, даже денег.</p>
@@ -620,7 +670,7 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
   <div class="ps">
     <p class="k">P.S.</p>
     <p>Сейчас у тебя есть выбор.</p>
-    <p>Ты можешь и дальше снимать контент, на который никто не записывается, и ждать, когда тебя кому-нибудь порекомендуют.</p>
+    <p>Ты можешь и дальше снимать ролики, после которых никто не записывается, и ждать, что тебя кому-нибудь порекомендуют.</p>
     <p>А можешь перестать ебать себе голову, вернуться к анкете, заполнить её и попасть ко мне на обучение. <b>И, вероятно, это станет для тебя тем самым поворотным событием! Которое ты так ждёшь!</b></p>
     <p><a class="btn" href="#anketa">Вернуться к анкете ↑</a></p>
   </div>
