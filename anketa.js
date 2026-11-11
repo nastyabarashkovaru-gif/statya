@@ -40,15 +40,16 @@
     if (!clean(f.name.value)) return fail('Напиши имя, возраст и город 🙂', f.name);
     if (!/^[A-Za-z0-9._]{1,30}$/.test(ig)) return fail('Проверь Instagram: вставь ссылку на профиль или ник, например @nastya', f.instagram);
     if (!/^[A-Za-z0-9_]{4,32}$/.test(tg)) return fail('Проверь ник в Telegram: только латиница, цифры и _, например @nastya', f.telegram);
-    var texts = form.querySelectorAll('[data-label]');
+    var texts = form.querySelectorAll('input[data-label], textarea[data-label]');
     for (var i = 0; i < texts.length; i++) {
       if (texts[i].required && !clean(texts[i].value)) return fail('Ответь, пожалуйста, на все вопросы 🙏', texts[i]);
     }
-    if (!ready) return fail('Выбери, насколько готов(а) ворваться в обучение', form.querySelector('input[name=ready]'));
+    var readyFs = form.querySelector('fieldset[data-label]');
+    if (!ready) return fail((readyFs && readyFs.getAttribute('data-err')) || 'Выбери, насколько готов(а) ворваться в обучение', form.querySelector('input[name=ready]'));
 
     var fields = [];
     for (var j = 0; j < texts.length; j++) fields.push([texts[j].getAttribute('data-label'), clean(texts[j].value)]);
-    fields.push(['Готовность', ready.value]);
+    fields.push([(readyFs && readyFs.getAttribute('data-label')) || 'Готовность', ready.value]);
 
     var params = new URLSearchParams(location.search);
     var data = {
