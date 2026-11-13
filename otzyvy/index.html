@@ -426,19 +426,15 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
 .mat-t em{font-style:normal;color:#fff;font-weight:800;background:linear-gradient(transparent 60%,rgba(255,46,147,.5) 60%)}
 .mat-k{display:block;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pink2);margin-bottom:3px}
 .mat-a{flex:none;color:var(--pink2);font-weight:800;font-size:18px}
-.mat-wow{position:relative;margin:24px 0 10px;padding:22px 14px 16px;border:2px solid transparent;background:linear-gradient(135deg,#2a0718,#14040d) padding-box,linear-gradient(90deg,#ff2e93,#ffb347,#ff6ab4,#b14dff,#ff2e93) border-box;background-size:100% 100%,300% 100%;animation:wowb 4s linear infinite,wowg 2.2s ease-in-out infinite;overflow:visible}
-.mat-wow::after{content:"";position:absolute;inset:0;border-radius:16px;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.18) 50%,transparent 70%);background-size:250% 100%;animation:wows 3s ease-in-out infinite;pointer-events:none}
+.mat-wow{position:relative;margin:24px 0 10px;padding:22px 14px 16px;border:1.5px solid rgba(255,46,147,.75);background:linear-gradient(135deg,#22061a,#120409);animation:wowg 4s ease-in-out infinite;overflow:visible}
 .mat-wow .mat-i{width:52px;height:52px;font-size:28px;background:linear-gradient(135deg,#ff2e93,#b14dff);border:none;box-shadow:var(--glow)}
 .mat-wow .mat-t{font-size:15px;color:#fff;font-weight:700}
 .mat-wow .mat-k{color:#ffd27a;font-size:11px}
 .mat-wow .mat-a{color:#fff;font-size:22px;text-shadow:0 0 12px #ff2e93}
-.wow-n{color:#ffd27a;text-shadow:0 0 12px rgba(255,179,71,.7)}
+.wow-n{white-space:nowrap;color:#ffd27a;text-shadow:0 0 12px rgba(255,179,71,.7)}
 .wow-badge{position:absolute;top:-12px;left:14px;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:.12em;color:#fff;background:linear-gradient(90deg,#ff2e93,#ff7a3d);box-shadow:0 0 16px rgba(255,46,147,.8)}
-@keyframes wowb{to{background-position:0 0,300% 0}}
-@keyframes wowg{0%,100%{box-shadow:0 0 18px rgba(255,46,147,.55),0 0 40px rgba(255,46,147,.25)}50%{box-shadow:0 0 28px rgba(255,46,147,.9),0 0 70px rgba(177,77,255,.45)}}
-@keyframes wows{0%{background-position:150% 0}100%{background-position:-100% 0}}
-@media (prefers-reduced-motion:reduce){.mat-wow,.mat-wow::after{animation:none}}
-
+@keyframes wowg{0%,100%{box-shadow:0 0 14px rgba(255,46,147,.28)}50%{box-shadow:0 0 22px rgba(255,46,147,.45)}}
+@media (prefers-reduced-motion:reduce){.mat-wow{animation:none}}
 /* кейсы на странице отзывов: компактно и одной высоты */
 .compact .cz-track{align-items:stretch}
 .compact .cz{display:flex;flex-direction:column;padding:16px 12px 12px}
@@ -543,7 +539,7 @@ footer{font-size:13px;color:var(--muted);margin-top:40px}
   <a class="mat" href="../reels/"><span class="mat-i">🎬</span><span class="mat-t"><span class="mat-k">Для рилсмейкеров и СММщиков</span>Как выйти на новый уровень финансов за счёт прокачки профессионализма: научись делать клиентам <em>ВЫСОКИЕ ПРОСМОТРЫ В ЛЮБОЙ НИШЕ</em></span><span class="mat-a">→</span></a>
   <a class="mat" href="../v2/"><span class="mat-i">💡</span><span class="mat-t"><span class="mat-k">Для экспертов</span>Как создать продукт, который будет приносить <em>до 40к руб в день</em>, даже на небольшом блоге</span><span class="mat-a">→</span></a>
   <a class="mat" href="../specialist/"><span class="mat-i">🗓</span><span class="mat-t"><span class="mat-k">Для специалистов</span>Начни получать заявки с блога <em>РЕГУЛЯРНО и автоматизированно</em>. Как выстроить воронку специалисту, чтобы запись всегда была забита на месяцы вперёд</span><span class="mat-a">→</span></a>
-  <a class="mat mat-wow" href="https://t.me/club90_dney_bot?start=pack" target="_blank" rel="noopener"><span class="wow-badge">🔥 МАСТ ХЕВ</span><span class="mat-i">🤯</span><span class="mat-t"><span class="mat-k">Набор для залётных рилс в любой нише</span><em>6 АВТОРСКИХ ПРОМПТОВ</em> для ChatGPT, которые дали мне уже <b class="wow-n">+15 000 подписчиков</b> 🚀</span><span class="mat-a">→</span></a>
+  <a class="mat mat-wow" href="https://t.me/club90_dney_bot?start=pack" target="_blank" rel="noopener"><span class="wow-badge">🔥 МАСТ ХЕВ</span><span class="mat-i">🤯</span><span class="mat-t"><span class="mat-k">Набор для залётных рилс в любой нише</span><em>6 АВТОРСКИХ ПРОМПТОВ</em> для ChatGPT, которые дали мне уже <b class="wow-n">+15&nbsp;000&nbsp;подписчиков</b> 🚀</span><span class="mat-a">→</span></a>
 </section>
 
 <section class="final">
