@@ -60,6 +60,10 @@
       telegram: tg,
       instagram: ig,
       fields: fields,
+      // пока в Google стоит старая версия скрипта, она показывает только check/pain —
+      // кладём туда все ответы, чтобы они точно дошли до бота
+      check: 'ответы ниже 👇',
+      pain: '\n' + fields.filter(function (x) { return !/^Имя/i.test(x[0]); }).map(function (x) { return '▫️ ' + x[0] + ': ' + x[1]; }).join('\n'),
       page: location.origin + location.pathname,
       utm: ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].map(function (k) { return params.get(k) ? k.replace('utm_', '') + '=' + params.get(k) : ''; }).filter(Boolean).join(', ')
     };
