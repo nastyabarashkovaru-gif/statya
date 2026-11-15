@@ -6,10 +6,12 @@
 (function () {
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxKoqzrEWBQJOcPePfNyPCRbviyjFXMJm3F2ChJ9ozHh1pWplikvHF3ev_iAE8iqshD/exec';
 
-  var form = document.getElementById('af');
-  if (!form) return;
-  var err = document.getElementById('af-err');
-  var done = document.getElementById('af-done');
+  var forms = document.querySelectorAll('form.af');
+  for (var n = 0; n < forms.length; n++) setup(forms[n]);
+
+  function setup(form) {
+  var err = form.querySelector('.af-err');
+  var done = form.parentNode.querySelector('.af-done');
   var btn = form.querySelector('button[type=submit]');
 
   function clean(v) { return (v || '').trim(); }
@@ -73,4 +75,5 @@
         fail('Не получилось отправить, проверь интернет и попробуй ещё раз');
       });
   });
+  }
 })();
